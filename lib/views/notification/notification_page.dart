@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/controllers/notification_page_controller.dart';
+import 'package:realix_real_estate_app/model/notification_model.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:grouped_list/grouped_list.dart';
 
 class NotificationPage extends StatelessWidget {
   NotificationPage({super.key});
@@ -26,21 +28,33 @@ class NotificationPage extends StatelessWidget {
               ),
               PageHeadingRow(pageHeadingText: 'Notification'),
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
-              ListView.builder(
-                padding: EdgeInsets.symmetric(
-                  vertical: 20,
+              GroupedListView<NotificationModel, String>(
+                padding: EdgeInsets.all(0),
+                elements: notificationPageController.notifications,
+                groupBy: (notification) =>
+                    notificationPageController.getGroupTitle(notification.date),
+                groupSeparatorBuilder: (String groupByValue) => Padding(    
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      groupByValue,
+                      style: TextStyle(
+                          fontSize: 17.sp, fontWeight: FontWeight.w700),
+                    ),
+                  ),
                 ),
+                itemBuilder: (context, notification) =>
+                    _buildNotificationTile(context, height, notification),
+                itemComparator: (item1, item2) =>
+                    item2.date.compareTo(item1.date),
+                useStickyGroupSeparators: true,
+                floatingHeader: true,
                 shrinkWrap: true,
-                physics: PageScrollPhysics(),
-                itemCount: notificationPageController.notifications.length,
-                itemBuilder: (context, index) {
-                  var notification =
-                      notificationPageController.notifications[index];
-                  return _buildNotificationTile(height, notification);
-                },
-              )
+                physics: NeverScrollableScrollPhysics(),
+              ),
             ],
           ),
         ),
@@ -48,9 +62,10 @@ class NotificationPage extends StatelessWidget {
     );
   }
 
-  Widget _buildNotificationTile(double height, var notifcation) {
+  Widget _buildNotificationTile(
+      BuildContext context, double height, NotificationModel notification) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(vertical: 10),
+      contentPadding: const EdgeInsets.symmetric(vertical: 10),
       leading: Container(
         height: 50,
         width: 50,
@@ -58,41 +73,30 @@ class NotificationPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             color: Color(0xFF274D710A)),
         child: SvgPicture.asset(
-          notifcation.iconPath,
+          notification.iconPath,
           fit: BoxFit.scaleDown,
         ),
       ),
       title: Text(
-        notifcation.title,
+        notification.title,
         style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
       ),
       subtitle: Text(
-        notifcation.message,
+        notification.message,
         style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        softWrap: true,
       ),
       trailing: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            notificationPageController.formatDayMonth(notifcation.date),
-            // 'Date',
-            style: TextStyle(
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w400,
-                color: Colors.grey),
+            notificationPageController.formatDayMonth(notification.date),
+            style: TextStyle(fontSize: 15.sp, color: Colors.grey),
           ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Icon(
-            Icons.circle,
-            size: 14.sp,
-            color: Color(0xFF2FA2B9),
-          ),
+          SizedBox(height: height * 0.02),
+          Icon(Icons.circle, size: 14.sp, color: Color(0xFF2FA2B9)),
         ],
       ),
     );
