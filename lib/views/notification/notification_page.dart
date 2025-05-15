@@ -35,8 +35,8 @@ class NotificationPage extends StatelessWidget {
                 elements: notificationPageController.notifications,
                 groupBy: (notification) =>
                     notificationPageController.getGroupTitle(notification.date),
-                groupSeparatorBuilder: (String groupByValue) => Padding(    
-                  padding: const EdgeInsets.only(top: 10),
+                groupSeparatorBuilder: (String groupByValue) => Padding(
+                  padding: EdgeInsets.only(top: height * 0.03),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -46,15 +46,22 @@ class NotificationPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                itemBuilder: (context, notification) =>
-                    _buildNotificationTile(context, height, notification),
+                itemBuilder: (context, notification) => _buildNotificationTile(
+                    context, height, width, notification),
+
+                // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
+                groupComparator: (group1, group2) {
+                  const order = ['Today', 'This Week', 'Earlier'];
+                  return order.indexOf(group1).compareTo(order.indexOf(group2));
+                },
+
                 itemComparator: (item1, item2) =>
                     item2.date.compareTo(item1.date),
                 useStickyGroupSeparators: true,
                 floatingHeader: true,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-              ),
+              )
             ],
           ),
         ),
@@ -62,41 +69,90 @@ class NotificationPage extends StatelessWidget {
     );
   }
 
-  Widget _buildNotificationTile(
-      BuildContext context, double height, NotificationModel notification) {
-    return ListTile(
-      contentPadding: const EdgeInsets.symmetric(vertical: 10),
-      leading: Container(
-        height: 50,
-        width: 50,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Color(0xFF274D710A)),
-        child: SvgPicture.asset(
-          notification.iconPath,
-          fit: BoxFit.scaleDown,
-        ),
-      ),
-      title: Text(
-        notification.title,
-        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
-      ),
-      subtitle: Text(
-        notification.message,
-        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      ),
-      trailing: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
+  // Widget _buildNotificationTile2(BuildContext context, double height, ) {
+  //   return Row(
+  //     children: [
+
+  //     ],
+  //   );
+  // }
+
+  Widget _buildNotificationTile(BuildContext context, double height,
+      double width, NotificationModel notification) {
+    return Padding(
+      padding: EdgeInsets.only(top: height * 0.02),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            notificationPageController.formatDayMonth(notification.date),
-            style: TextStyle(fontSize: 15.sp, color: Colors.grey),
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFF274D710A)),
+            child: SvgPicture.asset(
+              notification.iconPath,
+              fit: BoxFit.scaleDown,
+            ),
           ),
-          SizedBox(height: height * 0.02),
-          Icon(Icons.circle, size: 14.sp, color: Color(0xFF2FA2B9)),
+          SizedBox(
+            width: width * 0.05,
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: width * 0.6,
+                      child: Text(
+                        notification.title,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Text(
+                      notificationPageController
+                          .formatDayMonth(notification.date),
+                      style: TextStyle(fontSize: 15.sp, color: Colors.grey),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.008,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: width * 0.66,
+                      child: Text(
+                        notification.message,
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w300,
+                            color: Color(0xFF353945)),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Icon(Icons.circle, size: 14.sp, color: Color(0xFF2FA2B9)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.start,
+          //   crossAxisAlignment: CrossAxisAlignment.end,
+          //   children: [
+          //     SizedBox(height: height * 0.02),
+          //     Icon(Icons.circle, size: 14.sp, color: Color(0xFF2FA2B9)),
+          //   ],
+          // ),
         ],
       ),
     );
