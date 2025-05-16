@@ -17,26 +17,28 @@ class MessagePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-        child: Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
+      body: Column(
+        children: [
+          SizedBox(
+            height: height * 0.05,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: PageHeadingRow(pageHeadingText: 'Message'),
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            separatorBuilder: (context, index) => Divider(
+              color: Colors.grey.shade200,
+              indent: width * 0.05,
+              endIndent: width * 0.05,
             ),
-            PageHeadingRow(pageHeadingText: 'Message'),
-            ListView.separated(
-              shrinkWrap: true,
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.grey.shade200,
-              ),
-              itemCount: messagePageController.messageList.length,
-              itemBuilder: (context, index) {
-                return _buildMessageCard(width, height, index);
-              },
-            )
-          ],
-        ),
+            itemCount: messagePageController.messageList.length,
+            itemBuilder: (context, index) {
+              return _buildMessageCard(width, height, index);
+            },
+          )
+        ],
       ),
     );
   }
@@ -44,12 +46,14 @@ class MessagePage extends StatelessWidget {
   Widget _buildMessageCard(double width, double height, int index) {
     var message = messagePageController.messageList[index];
     return ListTile(
-        contentPadding: EdgeInsets.symmetric(vertical: width * 0.01),
+        contentPadding: EdgeInsets.symmetric(
+            vertical: width * 0.01, horizontal: width * 0.05),
+        onTap: () {},
         leading: Stack(
           children: [
             CircleAvatar(
               radius: 20.sp,
-              backgroundImage: AssetImage('assets/images/Facebook.png'),
+              backgroundImage: AssetImage(message.imagePath),
             ),
             Positioned(
               bottom: 0,

@@ -18,14 +18,14 @@ class MessagePageController extends GetxController {
       isOnline: false,
     ),
     MessageModel(
-      imagePath: 'assets/images/user_profile_pic_3.png',
+      imagePath: 'assets/images/user_profile_pic_4.png',
       name: 'Fatima Noor',
       message: 'Check your email.',
       time: 'Yesterday',
       isOnline: true,
     ),
     MessageModel(
-      imagePath: 'assets/images/user_profile_pic_4.png',
+      imagePath: 'assets/images/user_profile_pic_3.png',
       name: 'Bilal Sheikh',
       message: 'I’ll call you later.',
       time: 'Tuesday',
