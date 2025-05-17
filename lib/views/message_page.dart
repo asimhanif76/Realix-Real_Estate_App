@@ -26,17 +26,19 @@ class MessagePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             child: PageHeadingRow(pageHeadingText: 'Message'),
           ),
-          ListView.separated(
-            shrinkWrap: true,
-            separatorBuilder: (context, index) => Divider(
-              color: Colors.grey.shade200,
-              indent: width * 0.05,
-              endIndent: width * 0.05,
+          Obx(
+            () => ListView.separated(
+              shrinkWrap: true,
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.grey.shade200,
+                indent: width * 0.05,
+                endIndent: width * 0.05,
+              ),
+              itemCount: messagePageController.messageList.length,
+              itemBuilder: (context, index) {
+                return _buildMessageCard(width, height, index);
+              },
             ),
-            itemCount: messagePageController.messageList.length,
-            itemBuilder: (context, index) {
-              return _buildMessageCard(width, height, index);
-            },
           )
         ],
       ),

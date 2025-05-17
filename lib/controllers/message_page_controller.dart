@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/model/message_model.dart';
 
 class MessagePageController extends GetxController {
-  List<MessageModel> messageList = [
+  RxList<MessageModel> messageList = [
     MessageModel(
       imagePath: 'assets/images/user_profile_pic_1.png',
       name: 'Sara Ahmed',
@@ -38,5 +38,5 @@ class MessagePageController extends GetxController {
       time: 'Monday',
       isOnline: true,
     ),
-  ];
+  ].obs;
 }

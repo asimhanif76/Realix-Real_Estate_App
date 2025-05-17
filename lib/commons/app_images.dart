@@ -3,6 +3,9 @@ class AppImages {
   static String onoarding_img = 'assets/images/onboarding_img.png';
   static String google = 'assets/images/google.png';
   static String facebook = 'assets/images/Facebook.png';
+  static String my_home_empty = 'assets/images/my_home_empty.png';
+  static String my_notification_empty =
+      'assets/images/my_notification_empty.png';
   static String favourite = 'assets/images/svg/favourite.svg';
   static String favourite_outline = 'assets/images/svg/favourite_outline.svg';
   static String search = 'assets/images/svg/search.svg';

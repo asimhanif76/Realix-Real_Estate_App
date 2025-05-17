@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class PageHeadingRow extends StatelessWidget {
   String pageHeadingText;
-  PageHeadingRow({super.key,required this.pageHeadingText});
+  PageHeadingRow({super.key, required this.pageHeadingText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,9 @@ class PageHeadingRow extends StatelessWidget {
             border: Border.all(color: Colors.grey.shade300),
           ),
           child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: Icon(
                 Icons.arrow_back_ios_rounded,
                 size: 18.sp,

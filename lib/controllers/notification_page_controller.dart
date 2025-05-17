@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/model/notification_model.dart';
 import 'package:intl/intl.dart';
