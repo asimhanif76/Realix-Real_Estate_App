@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
+import 'package:realix_real_estate_app/views/message/message_chat_page.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -36,7 +37,14 @@ class MessagePage extends StatelessWidget {
               ),
               itemCount: messagePageController.messageList.length,
               itemBuilder: (context, index) {
-                return _buildMessageCard(width, height, index);
+                return _buildMessageCard(
+                  width,
+                  height,
+                  index,
+                  () {
+                    Get.to(MessageChatPage());
+                  },
+                );
               },
             ),
           )
@@ -45,12 +53,13 @@ class MessagePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMessageCard(double width, double height, int index) {
+  Widget _buildMessageCard(
+      double width, double height, int index, VoidCallback ontap) {
     var message = messagePageController.messageList[index];
     return ListTile(
         contentPadding: EdgeInsets.symmetric(
             vertical: width * 0.01, horizontal: width * 0.05),
-        onTap: () {},
+        onTap: ontap,
         leading: Stack(
           children: [
             CircleAvatar(

@@ -6,7 +6,7 @@ import 'package:realix_real_estate_app/controllers/bottom_bar_controller.dart';
 import 'package:realix_real_estate_app/views/My%20Home/my_home_page.dart';
 import 'package:realix_real_estate_app/views/discover_page.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
-import 'package:realix_real_estate_app/views/message_page.dart';
+import 'package:realix_real_estate_app/views/message/message_page.dart';
 import 'package:realix_real_estate_app/views/profile_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
