@@ -19,9 +19,13 @@ class AppStrings {
   static String addProperty = 'Add property';
   static String alreadyHaveAcc = 'You already have an account? ';
   static String readyToSellYourHome = 'Ready to sell your home?';
-  static String realixIsMakingSimpler = 'Realix is making it simpler to sell your home and move forward.';
+  static String realixIsMakingSimpler =
+      'Realix is making it simpler to sell your home and move forward.';
   static String noNotificationYet = 'No Notifications Yet';
-  static String noNotificationRightNow = 'No notification right now, notifications about your activity will show up here.';
+  static String noNotificationRightNow =
+      'No notification right now, notifications about your activity will show up here.';
   static String notificationsSettings = 'Notifications Settings';
+  static String notification = 'Notification';
+  static String deleted = "Deleted";
   static String a = '';
 }

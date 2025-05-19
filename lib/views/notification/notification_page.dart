@@ -30,7 +30,7 @@ class NotificationPage extends StatelessWidget {
                     SizedBox(
                       height: height * 0.04,
                     ),
-                    PageHeadingRow(pageHeadingText: 'Notification'),
+                    PageHeadingRow(pageHeadingText: AppStrings.notification),
                     SizedBox(
                       height: height * 0.01,
                     ),
@@ -63,7 +63,7 @@ class NotificationPage extends StatelessWidget {
                           notificationPageController.notifications
                               .remove(notification);
                           Get.snackbar(
-                            "Deleted",
+                            AppStrings.deleted,
                             "${notification.title} removed",
                             snackPosition: SnackPosition.BOTTOM,
                           );
