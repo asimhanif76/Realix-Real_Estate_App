@@ -14,12 +14,7 @@ class MessageChatPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: height * 0.05,
-          ),
-          Container(
-            width: 100,
-            height: 50,
-            color: Colors.amber,
+            height: height * 0.04   ,
           ),
           ListTile(
             leading: Container(

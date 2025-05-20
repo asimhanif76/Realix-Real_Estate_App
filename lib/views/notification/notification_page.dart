@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/notification_page_controller.dart';
 import 'package:realix_real_estate_app/model/notification_model.dart';
@@ -20,77 +19,79 @@ class NotificationPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: notificationPageController.notifications.isEmpty
-          ? _emptyNotificationPage(width, height)
-          : SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.04,
-                    ),
-                    PageHeadingRow(pageHeadingText: AppStrings.notification),
-                    SizedBox(
-                      height: height * 0.01,
-                    ),
-                    GroupedListView<NotificationModel, String>(
-                      padding: EdgeInsets.all(0),
-                      elements: notificationPageController.notifications,
-                      groupBy: (notification) => notificationPageController
-                          .getGroupTitle(notification.date),
-                      groupSeparatorBuilder: (String groupByValue) => Padding(
-                        padding: EdgeInsets.only(top: height * 0.03),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            groupByValue,
-                            style: TextStyle(
-                                fontSize: 17.sp, fontWeight: FontWeight.w700),
+      body: Obx(
+        () => notificationPageController.notifications.isEmpty
+            ? _emptyNotificationPage(width, height)
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: height * 0.04,
+                      ),
+                      PageHeadingRow(pageHeadingText: AppStrings.notification),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      GroupedListView<NotificationModel, String>(
+                        padding: EdgeInsets.all(0),
+                        elements: notificationPageController.notifications, 
+                        groupBy: (notification) => notificationPageController
+                            .getGroupTitle(notification.date),
+                        groupSeparatorBuilder: (String groupByValue) => Padding(
+                          padding: EdgeInsets.only(top: height * 0.03),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              groupByValue,
+                              style: TextStyle(
+                                  fontSize: 17.sp, fontWeight: FontWeight.w700),
+                            ),
                           ),
                         ),
-                      ),
-                      itemBuilder: (context, notification) => Dismissible(
-                        key: Key(notification.title),
-                        direction: DismissDirection.horizontal,
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          color: Colors.red,
-                          child: Icon(Icons.delete, color: Colors.white),
+                        itemBuilder: (context, notification) => Dismissible(
+                          key: Key(notification.title),
+                          direction: DismissDirection.horizontal,
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            color: Colors.red,
+                            child: Icon(Icons.delete, color: Colors.white),
+                          ),
+                          onDismissed: (direction) {
+                            notificationPageController.notifications
+                                .remove(notification);
+                            Get.snackbar(
+                              AppStrings.deleted,
+                              "${notification.title} removed",
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          },
+                          child: _buildNotificationTile(
+                              context, height, width, notification),
                         ),
-                        onDismissed: (direction) {
-                          notificationPageController.notifications
-                              .remove(notification);
-                          Get.snackbar(
-                            AppStrings.deleted,
-                            "${notification.title} removed",
-                            snackPosition: SnackPosition.BOTTOM,
-                          );
+
+                        // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
+                        groupComparator: (group1, group2) {
+                          const order = ['Today', 'This Week', 'Earlier'];
+                          return order
+                              .indexOf(group1)
+                              .compareTo(order.indexOf(group2));
                         },
-                        child: _buildNotificationTile(
-                            context, height, width, notification),
-                      ),
 
-                      // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
-                      groupComparator: (group1, group2) {
-                        const order = ['Today', 'This Week', 'Earlier'];
-                        return order
-                            .indexOf(group1)
-                            .compareTo(order.indexOf(group2));
-                      },
-
-                      itemComparator: (item1, item2) =>
-                          item2.date.compareTo(item1.date),
-                      useStickyGroupSeparators: true,
-                      floatingHeader: true,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                    )
-                  ],
+                        itemComparator: (item1, item2) =>
+                            item2.date.compareTo(item1.date),
+                        useStickyGroupSeparators: true,
+                        floatingHeader: true,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 
