@@ -22,4 +22,7 @@ class AppImages {
   static String my_home_outline = 'assets/images/svg/my_home_outline.svg';
   static String profile = 'assets/images/svg/profile.svg';
   static String profile_outline = 'assets/images/svg/profile_outline.svg';
+  static String audio_call = 'assets/images/svg/audio_call.svg';
+  static String video_call = 'assets/images/svg/video_call.svg';
+  static String send = 'assets/images/svg/send.svg';
 }

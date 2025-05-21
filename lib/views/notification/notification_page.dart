@@ -95,14 +95,6 @@ class NotificationPage extends StatelessWidget {
     );
   }
 
-  // Widget _buildNotificationTile2(BuildContext context, double height, ) {
-  //   return Row(
-  //     children: [
-
-  //     ],
-  //   );
-  // }
-
   Widget _buildNotificationTile(BuildContext context, double height,
       double width, NotificationModel notification) {
     return Padding(

@@ -8,7 +8,7 @@ class DiscoverPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue.shade100,
-      body: MessageChatPage(),
+      body: Container(),
     );
   }
 }

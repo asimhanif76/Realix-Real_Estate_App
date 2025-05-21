@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
 import 'package:realix_real_estate_app/views/message/message_chat_page.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -25,7 +26,7 @@ class MessagePage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: PageHeadingRow(pageHeadingText: 'Message'),
+            child: PageHeadingRow(pageHeadingText: AppStrings.message),
           ),
           Obx(
             () => ListView.separated(
@@ -42,7 +43,12 @@ class MessagePage extends StatelessWidget {
                   height,
                   index,
                   () {
-                    Get.to(MessageChatPage());
+                    var message = messagePageController.messageList[index];
+
+                    Get.to(MessageChatPage(
+                      name: message.name,
+                      isOnline: message.isOnline,
+                    ));
                   },
                 );
               },

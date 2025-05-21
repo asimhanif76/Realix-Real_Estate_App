@@ -27,5 +27,8 @@ class AppStrings {
   static String notificationsSettings = 'Notifications Settings';
   static String notification = 'Notification';
   static String deleted = "Deleted";
+  static String online = 'Online';
+  static String writeMessage = 'Write a reply...';
+  static String message = 'Message';
   static String a = '';
 }
