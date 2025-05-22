@@ -25,4 +25,8 @@ class AppImages {
   static String audio_call = 'assets/images/svg/audio_call.svg';
   static String video_call = 'assets/images/svg/video_call.svg';
   static String send = 'assets/images/svg/send.svg';
+  static String document = 'assets/images/svg/Document.svg';
+  static String location = 'assets/images/svg/location.svg';
+  static String camera = 'assets/images/svg/Camera.svg';
+  static String edit = 'assets/images/svg/edit.svg';
 }
