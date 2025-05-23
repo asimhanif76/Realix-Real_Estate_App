@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
+import 'package:realix_real_estate_app/controllers/profile_page_controller.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  ProfilePageController profilePageController =
+      Get.put(ProfilePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,45 +25,128 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             height: height * 0.05,
           ),
-          PageHeadingRow(pageHeadingText: 'Profile'),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: PageHeadingRow(pageHeadingText: AppStrings.profile),
+          ),
           SizedBox(
             height: height * 0.05,
           ),
-          Stack(
-            children: [
-              CircleAvatar(
-                radius: 26.sp,
-              ),
-              Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    width: 21.sp,
-                    height: 21.sp,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 2),
-                        shape: BoxShape.circle,
-                        color: Colors.black),
-                    child: SvgPicture.asset(
-                      AppImages.edit,
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ))
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: width * 0.04, bottom: width * 0.01),
-            child: Text(
-              'Andrew Preston',
-              style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
-            ),
-          ),
-          Text(
-            'andrew.hello@gmail.com',
-            style: TextStyle(fontSize: 15.2.sp, fontWeight: FontWeight.w500),
-          ),
+          _userProfileContainer(width),
+          ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            shrinkWrap: true,
+            itemCount: profilePageController.settingOptions.length,
+            itemBuilder: (context, index) {
+              final item = profilePageController.settingOptions[index];
+
+              return index == 0
+                  ? Column(
+                      children: [
+                        _buildProfileOptionHeading(width, 'Home search'),
+                        _buildProfileTile(item, height)
+                      ],
+                    )
+                  : index == 3
+                      ? Column(
+                          children: [
+                            _buildProfileOptionHeading(width, 'General'),
+                            _buildProfileTile(item, height)
+                          ],
+                        )
+                      : _buildProfileTile(item, height);
+            },
+          )
         ],
       ),
+    );
+  }
+
+  Widget _buildProfileTile(var item, double height) {
+    return Padding(
+      padding: EdgeInsets.only(top: height * 0.01),
+      child: ListTile(
+        contentPadding: EdgeInsets.all(0),
+        onTap: () {},
+        leading: Container(
+          height: 28.sp,
+          width: 28.sp,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Color(0xFFE6E8EC)),
+          child: SvgPicture.asset(
+            item['svgImage'],
+            fit: BoxFit.scaleDown,
+          ),
+        ),
+        title: Text(
+          item['title'],
+          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          size: 16.sp,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileOptionHeading(double width, String heading) {
+    return Padding(
+      padding: EdgeInsets.only(top: width * 0.06, bottom: width * 0.01),
+      child: Container(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            heading,
+            style: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey),
+          )),
+    );
+  }
+
+  Widget _userProfileContainer(double width) {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            CircleAvatar(
+              radius: 26.sp,
+              backgroundImage: AssetImage(profilePageController.user.userImage),
+            ),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  width: 21.sp,
+                  height: 21.sp,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 2),
+                      shape: BoxShape.circle,
+                      color: Colors.black),
+                  child: SvgPicture.asset(
+                    AppImages.edit,
+                    fit: BoxFit.scaleDown,
+                  ),
+                ))
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: width * 0.04, bottom: width * 0.01),
+          child: Text(
+            profilePageController.user.userName,
+            style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
+          ),
+        ),
+        Text(
+          profilePageController.user.userEmail,
+          style: TextStyle(
+              fontSize: 15.2.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey),
+        ),
+      ],
     );
   }
 }

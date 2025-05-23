@@ -36,7 +36,7 @@ class NotificationPage extends StatelessWidget {
                       ),
                       GroupedListView<NotificationModel, String>(
                         padding: EdgeInsets.all(0),
-                        elements: notificationPageController.notifications, 
+                        elements: notificationPageController.notifications,
                         groupBy: (notification) => notificationPageController
                             .getGroupTitle(notification.date),
                         groupSeparatorBuilder: (String groupByValue) => Padding(
@@ -103,11 +103,11 @@ class NotificationPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 50,
-            width: 50,
+            height: 28.sp,
+            width: 28.sp,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: Color(0xFF274D710A)),
+                color: Color(0xFFE6E8EC)),
             child: SvgPicture.asset(
               notification.iconPath,
               fit: BoxFit.scaleDown,

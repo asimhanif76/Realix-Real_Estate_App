@@ -30,5 +30,6 @@ class AppStrings {
   static String online = 'Online';
   static String writeMessage = 'Write a reply...';
   static String message = 'Message';
+  static String profile = 'Profile';
   static String a = '';
 }

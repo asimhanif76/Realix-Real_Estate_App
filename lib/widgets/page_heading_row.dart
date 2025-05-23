@@ -12,8 +12,8 @@ class PageHeadingRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: 40,
-          height: 40,
+          width: 27.sp,
+          height: 27.sp,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.grey.shade300),
