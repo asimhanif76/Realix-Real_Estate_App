@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
@@ -50,27 +51,51 @@ class NotificationPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        itemBuilder: (context, notification) => Dismissible(
+                        itemBuilder: (context, notification) => Slidable(
                           key: Key(notification.title),
-                          direction: DismissDirection.horizontal,
-                          background: Container(
-                            alignment: Alignment.centerRight,
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            color: Colors.red,
-                            child: Icon(Icons.delete, color: Colors.white),
+                          direction: Axis.horizontal,
+                          endActionPane: ActionPane(
+                            motion: BehindMotion(),
+
+                            extentRatio: 0.3, // Swipe only 30% of screen width
+                            children: [
+                              SlidableAction(
+                                onPressed: (context) {
+                                  final index = notificationPageController
+                                      .notifications
+                                      .indexOf(notification);
+
+                                  notificationPageController.notifications
+                                      .removeAt(index);
+                                },
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
                           ),
-                          onDismissed: (direction) {
-                            notificationPageController.notifications
-                                .remove(notification);
-                            Get.snackbar(
-                              AppStrings.deleted,
-                              "${notification.title} removed",
-                              snackPosition: SnackPosition.BOTTOM,
-                            );
-                          },
                           child: _buildNotificationTile(
                               context, height, width, notification),
                         ),
+
+                        // repeated
+                        //  itemBuilder: (context, notification) => Dismissible(
+                        //   key: Key(notification.title),
+                        //   direction: DismissDirection.horizontal,
+                        //   background: Container(
+                        //     alignment: Alignment.centerRight,
+                        //     padding: EdgeInsets.symmetric(horizontal: 20),
+                        //     color: Colors.red,
+                        //     child: Icon(Icons.delete, color: Colors.white),
+                        //   ),
+                        //   onDismissed: (direction) {
+                        //     notificationPageController.notifications
+                        //         .remove(notification);
+                        //   },
+                        //   child: _buildNotificationTile(
+                        //       context, height, width, notification),
+                        // ),
 
                         // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
                         groupComparator: (group1, group2) {

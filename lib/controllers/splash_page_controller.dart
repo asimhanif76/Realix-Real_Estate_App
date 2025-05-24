@@ -11,7 +11,7 @@ class SplashPageController extends GetxController {
     Timer(
       Duration(seconds: 2),
       () {
-        Get.to(OnboardingPage());
+        Get.toNamed('/onboardingpage');
       },
     );
   }

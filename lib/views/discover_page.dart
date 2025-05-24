@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realix_real_estate_app/views/message/message_chat_page.dart';
+import 'package:realix_real_estate_app/views/message/message_page.dart';
 
 class DiscoverPage extends StatelessWidget {
   const DiscoverPage({super.key});

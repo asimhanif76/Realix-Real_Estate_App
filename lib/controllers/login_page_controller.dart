@@ -30,7 +30,11 @@ class LoginPageController extends GetxController {
 
     if (isUserFound) {
       // Get.to(RootPage());
-      Navigator.pushNamed(context, '/rootPage');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        '/rootPage',
+        (route) => false,
+      );
 
       phoneController.clear();
       passwordController.clear();

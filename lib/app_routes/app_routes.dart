@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
+import 'package:realix_real_estate_app/views/message/message_page.dart';
 import 'package:realix_real_estate_app/views/notification/notification_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/onboarding_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/sign_in_page.dart';
@@ -15,6 +16,7 @@ class AppRoutes {
   static const String rootPage = '/rootPage';
   static const String homePage = '/homePage';
   static const String notificationPage = '/notificationPage';
+  static const String messagePage = '/messagePage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -24,5 +26,6 @@ class AppRoutes {
         rootPage: (_) => RootPage(),
         homePage: (_) => HomePage(),
         notificationPage: (_) => NotificationPage(),
+        messagePage: (_) => MessagePage(name: "", isOnline: true),
       };
 }

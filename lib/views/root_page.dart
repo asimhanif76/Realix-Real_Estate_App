@@ -6,7 +6,7 @@ import 'package:realix_real_estate_app/controllers/bottom_bar_controller.dart';
 import 'package:realix_real_estate_app/views/My%20Home/my_home_page.dart';
 import 'package:realix_real_estate_app/views/discover_page.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
-import 'package:realix_real_estate_app/views/message/message_page.dart';
+import 'package:realix_real_estate_app/views/message/chat_page.dart';
 import 'package:realix_real_estate_app/views/profile/profile_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -17,7 +17,7 @@ class RootPage extends StatelessWidget {
 
   List pageList = [
     HomePage(),
-    MessagePage(),
+    ChatPage(),
     DiscoverPage(),
     MyHomePage(),
     ProfilePage(),

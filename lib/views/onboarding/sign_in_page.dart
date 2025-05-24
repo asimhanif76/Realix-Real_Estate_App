@@ -78,7 +78,7 @@ class SignInPage extends StatelessWidget {
                 height: height * 0.015,
               ),
               InkWell(
-                onTap: () => Get.to(SignUpPage()),
+                onTap: () => Get.toNamed('/signUpPage'),
                 child: RichText(
                   text: TextSpan(
                     text: AppStrings.dontAccount,
