@@ -25,92 +25,108 @@ class NotificationPage extends StatelessWidget {
             ? _emptyNotificationPage(width, height)
             : SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.0),
                   child: Column(
                     children: [
                       SizedBox(
                         height: height * 0.04,
                       ),
-                      PageHeadingRow(pageHeadingText: AppStrings.notification),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                        child: PageHeadingRow(
+                            pageHeadingText: AppStrings.notification),
+                      ),
                       SizedBox(
                         height: height * 0.01,
                       ),
-                      GroupedListView<NotificationModel, String>(
-                        padding: EdgeInsets.all(0),
-                        elements: notificationPageController.notifications,
-                        groupBy: (notification) => notificationPageController
-                            .getGroupTitle(notification.date),
-                        groupSeparatorBuilder: (String groupByValue) => Padding(
-                          padding: EdgeInsets.only(top: height * 0.03),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              groupByValue,
-                              style: TextStyle(
-                                  fontSize: 17.sp, fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                        ),
-                        itemBuilder: (context, notification) => Slidable(
-                          key: Key(notification.title),
-                          direction: Axis.horizontal,
-                          endActionPane: ActionPane(
-                            motion: BehindMotion(),
-
-                            extentRatio: 0.3, // Swipe only 30% of screen width
-                            children: [
-                              SlidableAction(
-                                onPressed: (context) {
-                                  final index = notificationPageController
-                                      .notifications
-                                      .indexOf(notification);
-
-                                  notificationPageController.notifications
-                                      .removeAt(index);
-                                },
-                                backgroundColor: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.delete,
-                                label: 'Delete',
+                      SlidableAutoCloseBehavior(
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: width * 0.05),
+                          child: GroupedListView<NotificationModel, String>(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.0),
+                            elements: notificationPageController.notifications,
+                            groupBy: (notification) =>
+                                notificationPageController
+                                    .getGroupTitle(notification.date),
+                            groupSeparatorBuilder: (String groupByValue) =>
+                                Padding(
+                              padding: EdgeInsets.only(
+                                top: height * 0.03,
                               ),
-                            ],
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  groupByValue,
+                                  style: TextStyle(
+                                      fontSize: 17.sp,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ),
+                            itemBuilder: (context, notification) => Slidable(
+                              key: Key(notification.title),
+                              direction: Axis.horizontal,
+                              endActionPane: ActionPane(
+                                motion: BehindMotion(),
+                                extentRatio: 0.3,
+                                children: [
+                                  SlidableAction(
+                                    onPressed: (context) {
+                                      final index = notificationPageController
+                                          .notifications
+                                          .indexOf(notification);
+
+                                      notificationPageController.notifications
+                                          .removeAt(index);
+                                    },
+                                    backgroundColor:
+                                        Colors.red.shade100.withOpacity(0.5),
+                                    foregroundColor: Colors.red,
+                                    icon: Icons.delete,
+                                    label: 'Delete',
+                                  ),
+                                ],
+                              ),
+                              child: _buildNotificationTile(
+                                  context, height, width, notification),
+                            ),
+
+                            // repeated
+                            //  itemBuilder: (context, notification) => Dismissible(
+                            //   key: Key(notification.title),
+                            //   direction: DismissDirection.horizontal,
+                            //   background: Container(
+                            //     alignment: Alignment.centerRight,
+                            //     padding: EdgeInsets.symmetric(horizontal: 20),
+                            //     color: Colors.red,
+                            //     child: Icon(Icons.delete, color: Colors.white),
+                            //   ),
+                            //   onDismissed: (direction) {
+                            //     notificationPageController.notifications
+                            //         .remove(notification);
+                            //   },
+                            //   child: _buildNotificationTile(
+                            //       context, height, width, notification),
+                            // ),
+
+                            // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
+                            groupComparator: (group1, group2) {
+                              const order = ['Today', 'This Week', 'Earlier'];
+                              return order
+                                  .indexOf(group1)
+                                  .compareTo(order.indexOf(group2));
+                            },
+
+                            itemComparator: (item1, item2) =>
+                                item2.date.compareTo(item1.date),
+                            useStickyGroupSeparators: true,
+                            floatingHeader: true,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                           ),
-                          child: _buildNotificationTile(
-                              context, height, width, notification),
                         ),
-
-                        // repeated
-                        //  itemBuilder: (context, notification) => Dismissible(
-                        //   key: Key(notification.title),
-                        //   direction: DismissDirection.horizontal,
-                        //   background: Container(
-                        //     alignment: Alignment.centerRight,
-                        //     padding: EdgeInsets.symmetric(horizontal: 20),
-                        //     color: Colors.red,
-                        //     child: Icon(Icons.delete, color: Colors.white),
-                        //   ),
-                        //   onDismissed: (direction) {
-                        //     notificationPageController.notifications
-                        //         .remove(notification);
-                        //   },
-                        //   child: _buildNotificationTile(
-                        //       context, height, width, notification),
-                        // ),
-
-                        // 👇 This will ensure 'Today' comes first, then 'This Week', then 'Earlier'
-                        groupComparator: (group1, group2) {
-                          const order = ['Today', 'This Week', 'Earlier'];
-                          return order
-                              .indexOf(group1)
-                              .compareTo(order.indexOf(group2));
-                        },
-
-                        itemComparator: (item1, item2) =>
-                            item2.date.compareTo(item1.date),
-                        useStickyGroupSeparators: true,
-                        floatingHeader: true,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
                       )
                     ],
                   ),

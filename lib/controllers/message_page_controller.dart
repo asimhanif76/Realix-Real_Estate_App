@@ -6,6 +6,8 @@ import 'package:realix_real_estate_app/model/message_model.dart';
 class MessagePageController extends GetxController {
   TextEditingController messageController = TextEditingController();
 
+  final scrollController = ScrollController();
+
   RxDouble turns = 0.0.obs;
 
   void rotareIcon() {
@@ -20,18 +22,40 @@ class MessagePageController extends GetxController {
     MessageModel(message: 'How are you', time: "10.31", isMe: false),
   ].obs;
 
-  void sendMessage({required String message, required bool isMe}) {
-    if (message.trim().isEmpty) return;
+  void sendMessage({
+    required String message,
+    required bool isMe,
+    required String imagePath,
+  }) {
+    if (message.trim().isNotEmpty) {
+      messageList.add(
+        MessageModel(
+          message: message,
+          time: getCurrentTime(),
+          isMe: isMe,
+        ),
+      );
+    } else if (imagePath.isNotEmpty) {
+      messageList.add(
+        MessageModel(
+          time: getCurrentTime(),
+          isMe: isMe,
+          imagePath: imagePath,
+          isImage: true,
+        ),
+      );
+    }
 
-    messageList.add(
-      MessageModel(
-        message: message,
-        time: getCurrentTime(),
-        isMe: isMe,
-      ),
-    );
+    messageController.clear(); // clear after sending
+    selectedImage.value = null; // reset selected image
 
-    messageController.clear(); // clear the field after sending
+    Future.delayed(Duration(milliseconds: 100), () {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
   }
 
   String getCurrentTime() {

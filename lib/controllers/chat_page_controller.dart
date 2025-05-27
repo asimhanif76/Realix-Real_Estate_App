@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
 import 'package:realix_real_estate_app/model/chat_model.dart';
 
 class ChatPageController extends GetxController {
+  MessagePageController messagePageController =
+      Get.put(MessagePageController());
   RxList<ChatModel> chatList = [
     ChatModel(
       imagePath: 'assets/images/user_profile_pic_1.png',

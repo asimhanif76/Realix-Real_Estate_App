@@ -1,7 +1,9 @@
 class MessageModel {
-  String message;
+  String? message;
   String time;
   bool isMe;
+  bool isImage ;
+  String? imagePath;
 
-  MessageModel({required this.message, required this.time, required this.isMe});
+  MessageModel({ this.message, required this.time, required this.isMe, this.isImage = false, this.imagePath});
 }

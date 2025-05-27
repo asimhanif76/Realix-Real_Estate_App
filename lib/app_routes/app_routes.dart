@@ -26,6 +26,6 @@ class AppRoutes {
         rootPage: (_) => RootPage(),
         homePage: (_) => HomePage(),
         notificationPage: (_) => NotificationPage(),
-        messagePage: (_) => MessagePage(name: "", isOnline: true),
+        messagePage: (_) => MessagePage(),
       };
 }

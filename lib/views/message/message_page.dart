@@ -9,17 +9,19 @@ import 'package:realix_real_estate_app/controllers/message_page_controller.dart'
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MessagePage extends StatelessWidget {
-  String name;
-  bool isOnline;
-  MessagePage({super.key, required this.name, required this.isOnline});
+  MessagePage({super.key});
 
   MessagePageController messagePageController =
       Get.put(MessagePageController());
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map;
+    final String name = args['name'];
+    final bool isOnline = args['isOnline'];
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    print(name);
 
     return Scaffold(
       backgroundColor: Color(0xFFFCFCFD),
@@ -28,21 +30,26 @@ class MessagePage extends StatelessWidget {
           SizedBox(
             height: height * 0.04,
           ),
-          _headingRow(width),
+          _headingRow(width, name, isOnline),
           Divider(),
           Expanded(
             child: Stack(
               children: [
                 Obx(() => ListView.separated(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.04, vertical: width * 0.02),
+                      controller:
+                          messagePageController.scrollController, // Add this
+                      reverse: true,
+                      padding: EdgeInsets.only(
+                          left: width * 0.04,
+                          right: width * 0.04,
+                          bottom: height * 0.13),
                       separatorBuilder: (context, index) => SizedBox(
-                        height: height * 0.005,
+                        height: height * 0.015,
                       ),
                       itemCount: messagePageController.messageList.length,
-                      itemBuilder: (context, index) {
-                        final chat =
-                            messagePageController.messageList[index];
+                      itemBuilder: (context, index)         {
+                        final chat = messagePageController.messageList.reversed
+                            .toList()[index];
 
                         return Align(
                           alignment: chat.isMe
@@ -53,35 +60,74 @@ class MessagePage extends StatelessWidget {
                                 ? CrossAxisAlignment.end
                                 : CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                margin: EdgeInsets.symmetric(
-                                    vertical: width * 0.015),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.03,
-                                    vertical: width * 0.02),
-                                constraints:
-                                    BoxConstraints(maxWidth: width * 0.7),
-                                decoration: BoxDecoration(
-                                    color: chat.isMe
-                                        ? Colors.black
-                                        : Colors.grey.shade300,
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(
-                                            chat.isMe ? width * 0.05 : 0.0),
-                                        bottomRight:
-                                            Radius.circular(width * 0.05),
-                                        topLeft: Radius.circular(width * 0.05),
-                                        topRight: Radius.circular(
-                                            chat.isMe ? 0.0 : width * 0.05))),
-                                child: Text(
-                                  chat.message,
-                                  style: TextStyle(
-                                    color:
-                                        chat.isMe ? Colors.white : Colors.black,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
+                              chat.isImage
+                                  ? Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(),
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(
+                                                chat.isMe ? width * 0.05 : 0.0),
+                                            bottomRight:
+                                                Radius.circular(width * 0.05),
+                                            topLeft:
+                                                Radius.circular(width * 0.05),
+                                            topRight: Radius.circular(chat.isMe
+                                                ? 0.0
+                                                : width * 0.05)),
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(
+                                                chat.isMe ? width * 0.05 : 0.0),
+                                            bottomRight:
+                                                Radius.circular(width * 0.05),
+                                            topLeft:
+                                                Radius.circular(width * 0.05),
+                                            topRight: Radius.circular(chat.isMe
+                                                ? 0.0
+                                                : width * 0.05)),
+                                        child: Image.file(
+                                          File(chat.imagePath!),
+                                          width: width * 0.7,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      margin: EdgeInsets.symmetric(
+                                          vertical: width * 0.015),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: width * 0.03,
+                                          vertical: width * 0.02),
+                                      constraints:
+                                          BoxConstraints(maxWidth: width * 0.7),
+                                      decoration: BoxDecoration(
+                                          color: chat.isMe
+                                              ? Colors.black
+                                              : Colors.grey.shade300,
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(
+                                                  chat.isMe
+                                                      ? width * 0.05
+                                                      : 0.0),
+                                              bottomRight:
+                                                  Radius.circular(width * 0.05),
+                                              topLeft:
+                                                  Radius.circular(width * 0.05),
+                                              topRight: Radius.circular(
+                                                  chat.isMe
+                                                      ? 0.0
+                                                      : width * 0.05))),
+                                      child: Text(
+                                        chat.message,
+                                        style: TextStyle(
+                                          color: chat.isMe
+                                              ? Colors.white
+                                              : Colors.black,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                    ),
                               Text(
                                 chat.time,
                                 style: TextStyle(
@@ -98,14 +144,31 @@ class MessagePage extends StatelessWidget {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: _buildMessagetextField(height, width, () {
-                    messagePageController.sendMessage(
-                      message: messagePageController.messageController.text,
-                      isMe: true,
-                    );
-                  }),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          offset: Offset(0, -2), // upward shadow
+                          blurRadius: 5,
+                          spreadRadius: 0,
+                        ),
+                      ],
+                    ),
+                    child: _buildMessagetextField(height, width, () {
+                      messagePageController.sendMessage(
+                        message: messagePageController.messageController.text,
+                        isMe: true,
+                        imagePath:
+                            messagePageController.selectedImage.value?.path ??
+                                '',
+                      );
+                    }),
+                  ),
                 ),
-                Obx(() => messagePageController.isPopupVisible
+                Obx(() => messagePageController.isPopupVisible &&
+                        messagePageController.selectedImage.value == null
                     ? Positioned(
                         left: width * 0.05,
                         bottom: width * 0.18,
@@ -282,7 +345,7 @@ class MessagePage extends StatelessWidget {
     );
   }
 
-  Widget _headingRow(double width) {
+  Widget _headingRow(double width, String name, bool isOnline) {
     return ListTile(
       leading: Container(
         width: 40,
@@ -302,7 +365,8 @@ class MessagePage extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+        style: TextStyle(
+            fontSize: 18, fontWeight: FontWeight.w700, color: Colors.black),
       ),
       subtitle: isOnline
           ? Text(
