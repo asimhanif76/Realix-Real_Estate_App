@@ -12,6 +12,8 @@ class MyHomeEmpty extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+            backgroundColor: Color(0xFFFCFCFD),
+
       body: Container(
         width: width,
         height: height,

@@ -15,6 +15,11 @@ class AppStrings {
   static String createAccount = 'Create an account to continue';
   static String createA = 'Create a ';
   static String account = ' account';
+  static String home = 'Home';
+  static String message = 'Message';
+  static String discover = 'Discover';
+  static String myHome = 'My Home';
+  static String profile = 'Profile';
   static String fullName = 'Full Name';
   static String addProperty = 'Add property';
   static String alreadyHaveAcc = 'You already have an account? ';
@@ -29,7 +34,15 @@ class AppStrings {
   static String deleted = "Deleted";
   static String online = 'Online';
   static String writeMessage = 'Write a reply...';
-  static String message = 'Message';
-  static String profile = 'Profile';
+  static String perMonth = 'per month';
+  static String search = 'Search...';
+  static String location = 'Location';
+  static String delete = 'Delete';
+  static String enjoyBeautiful = 'Enjoy the beautiful world';
+  static String loremIpsum =
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ';
+  static String getStarted = 'Get Started';
+  static String homeSearch = 'Home search';
+  static String generals = 'General';
   static String a = '';
 }

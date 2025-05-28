@@ -50,7 +50,7 @@ class _MyTextFieldState extends State<MyTextField> {
     var width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: width * 0.025),
       child: Container(
         padding: EdgeInsets.only(left: width * 0.01, right: width * 0.01),
         height: height * 0.07,

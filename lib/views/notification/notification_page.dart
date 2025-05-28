@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/notification_page_controller.dart';
 import 'package:realix_real_estate_app/model/notification_model.dart';
@@ -85,7 +86,7 @@ class NotificationPage extends StatelessWidget {
                                         Colors.red.shade100.withOpacity(0.5),
                                     foregroundColor: Colors.red,
                                     icon: Icons.delete,
-                                    label: 'Delete',
+                                    label: AppStrings.delete,
                                   ),
                                 ],
                               ),
@@ -220,7 +221,7 @@ class NotificationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/my_notification_empty.png',
+             AppImages.myNotificationEmpty ,
               scale: 4,
             ),
             SizedBox(

@@ -5,14 +5,18 @@ class MyContainerButton extends StatelessWidget {
   Color color;
   Widget widget;
   VoidCallback onTap;
-  MyContainerButton({super.key, required this.color, required this.widget,required this.onTap});
+  MyContainerButton(
+      {super.key,
+      required this.color,
+      required this.widget,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: width * 0.025),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -20,7 +24,7 @@ class MyContainerButton extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               border: Border.all(color: Color(0xFFE6E8EC)),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(width * 0.04),
               color: color),
           child: Center(child: widget),
         ),

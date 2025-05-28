@@ -43,14 +43,14 @@ class ProfilePage extends StatelessWidget {
               return index == 0
                   ? Column(
                       children: [
-                        _buildProfileOptionHeading(width, 'Home search'),
+                        _buildProfileOptionHeading(width,AppStrings.homeSearch ),
                         _buildProfileTile(item, height)
                       ],
                     )
                   : index == 3
                       ? Column(
                           children: [
-                            _buildProfileOptionHeading(width, 'General'),
+                            _buildProfileOptionHeading(width,AppStrings.generals ),
                             _buildProfileTile(item, height)
                           ],
                         )

@@ -29,4 +29,5 @@ class AppImages {
   static String location = 'assets/images/svg/location.svg';
   static String camera = 'assets/images/svg/Camera.svg';
   static String edit = 'assets/images/svg/edit.svg';
+  static String myNotificationEmpty = 'assets/images/my_notification_empty.png';
 }

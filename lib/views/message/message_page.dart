@@ -47,7 +47,7 @@ class MessagePage extends StatelessWidget {
                         height: height * 0.015,
                       ),
                       itemCount: messagePageController.messageList.length,
-                      itemBuilder: (context, index)         {
+                      itemBuilder: (context, index) {
                         final chat = messagePageController.messageList.reversed
                             .toList()[index];
 

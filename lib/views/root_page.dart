@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/bottom_bar_controller.dart';
 import 'package:realix_real_estate_app/views/My%20Home/my_home_page.dart';
 import 'package:realix_real_estate_app/views/discover_page.dart';
@@ -53,7 +54,7 @@ class RootPage extends StatelessWidget {
                         ? Colors.black
                         : Color(0xFF777E90),
                   ),
-                  label: 'Home'),
+                  label: AppStrings.home),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     bottomBarController.selectedIndex.value == 1
@@ -63,7 +64,7 @@ class RootPage extends StatelessWidget {
                         ? Colors.black
                         : Color(0xFF777E90),
                   ),
-                  label: 'Message'),
+                  label: AppStrings.message),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     bottomBarController.selectedIndex.value == 2
@@ -73,7 +74,7 @@ class RootPage extends StatelessWidget {
                         ? Colors.black
                         : Color(0xFF777E90),
                   ),
-                  label: 'Discover'),
+                  label: AppStrings.discover),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     bottomBarController.selectedIndex.value == 3
@@ -83,7 +84,7 @@ class RootPage extends StatelessWidget {
                         ? Colors.black
                         : Color(0xFF777E90),
                   ),
-                  label: 'My Home'),
+                  label: AppStrings.myHome),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     bottomBarController.selectedIndex.value == 4
@@ -93,7 +94,7 @@ class RootPage extends StatelessWidget {
                         ? Colors.black
                         : Color(0xFF777E90),
                   ),
-                  label: 'Profile'),
+                  label: AppStrings.profile),
             ]),
       ),
       body: Obx(

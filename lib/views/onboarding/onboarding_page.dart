@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/onboarding_page_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -51,7 +52,7 @@ class OnboardingPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Enjoy the beautiful world',
+           AppStrings.enjoyBeautiful   ,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
@@ -61,7 +62,7 @@ class OnboardingPage extends StatelessWidget {
               height: 1.5.h,
             ),
             Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+             AppStrings.loremIpsum ,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 14,
@@ -113,7 +114,7 @@ class OnboardingPage extends StatelessWidget {
                     color: Color(0xFF2FA2B9)),
                 child: Center(
                   child: Text(
-                    'Get Started',
+                  AppStrings.getStarted  ,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,

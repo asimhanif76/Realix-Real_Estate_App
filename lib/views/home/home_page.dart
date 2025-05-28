@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
 import 'package:realix_real_estate_app/widgets/circle_icon.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          'per month',
+                          AppStrings.perMonth,
                           style: TextStyle(
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w300,
@@ -176,7 +177,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        labelText: 'Search...',
+        labelText:AppStrings.search ,
         controller: homePageController.searchController);
   }
 
@@ -191,7 +192,7 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Location',
+                  AppStrings.location,
                   style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
