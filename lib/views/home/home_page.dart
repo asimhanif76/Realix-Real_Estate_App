@@ -158,6 +158,7 @@ class HomePage extends StatelessWidget {
   Widget _myTextField(width) {
     return MyTextField(
         color: Colors.white,
+        border: true,
         prefixIcon: SvgPicture.asset(
           AppImages.search,
           fit: BoxFit.scaleDown,
@@ -177,7 +178,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        labelText:AppStrings.search ,
+        labelText: AppStrings.search,
         controller: homePageController.searchController);
   }
 

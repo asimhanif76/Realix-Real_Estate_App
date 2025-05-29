@@ -3,8 +3,8 @@ import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 
-class AnpTimeToSell extends StatelessWidget {
-  const AnpTimeToSell({super.key});
+class AnpReasonSellingHome extends StatelessWidget {
+  const AnpReasonSellingHome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AnpTimeToSell extends StatelessWidget {
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: 'Time To Sell', indicatorValue: 3),
+                  indicatorHeading: 'Reason Selling Home', indicatorValue: 4),
             ],
           ),
           Positioned(

@@ -2,11 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/model/new_property_model.dart';
 
-class AddPropertyController extends GetxController {
+class AddNewPropertyController extends GetxController {
   TextEditingController streetAddressController = TextEditingController();
   TextEditingController unitNumberController = TextEditingController();
   TextEditingController cityNameController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
   TextEditingController zipCodeController = TextEditingController();
+
+  void clearTextFields() {
+    streetAddressController.clear();
+    unitNumberController.clear();
+    cityNameController.clear();
+    stateController.clear();
+    zipCodeController.clear();
+  }
+
   var property = PropertyModel(
     streetAddress: '',
     city: '',
@@ -25,6 +35,13 @@ class AddPropertyController extends GetxController {
     phoneNumber: '',
     amenities: [],
   ).obs;
+
+  void varPrint() {
+    print("Street: ${property.value.streetAddress}");
+    print("City: ${property.value.city}");
+    print("State : ${property.value.state}");
+    print("Zip Code: ${property.value.zipCode}");
+  }
 
   void updateAddress({
     required String street,
@@ -97,4 +114,6 @@ class AddPropertyController extends GetxController {
       val!.amenities = amenitiesList;
     });
   }
+
+  RxString selectedState = ''.obs;
 }

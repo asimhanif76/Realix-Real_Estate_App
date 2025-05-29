@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyTextField extends StatefulWidget {
   final bool isPasswordField;
@@ -7,16 +8,22 @@ class MyTextField extends StatefulWidget {
   final Widget? trailingIcon;
   final Widget? prefixIcon;
   final Color color;
+  final bool border;
+  final bool isReadable;
+ final VoidCallback? onTap;
 
-  const MyTextField({
-    super.key,
-    this.isPasswordField = false,
-    required this.labelText,
-    required this.controller,
-    this.trailingIcon,
-    this.prefixIcon,
-    this.color = const Color(0xFFF4F5F6),
-  });
+  const MyTextField(
+      {super.key,
+      this.isPasswordField = false,
+      required this.labelText,
+      required this.controller,
+      this.trailingIcon,
+      this.prefixIcon,
+      this.color = const Color(0xFFF4F5F6),
+      this.border = false,
+      this.isReadable = false,
+      this.onTap,
+      });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -57,15 +64,21 @@ class _MyTextFieldState extends State<MyTextField> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           border: Border.all(
-            color: isFocused ? Color(0xFF2FA2B9) : Colors.grey,
+            color: isFocused
+                ? Color(0xFF2FA2B9)
+                : widget.border
+                    ? Color(0xFFF4F5F6)
+                    : Colors.transparent,
             width: 1.5,
           ),
           color: widget.color,
         ),
         child: Center(
           child: TextField(
+            onTap: widget.onTap,
             controller: widget.controller,
             focusNode: focusNode,
+            readOnly: widget.isReadable,
             cursorHeight: 20,
             cursorColor: Colors.grey,
             obscureText: widget.isPasswordField ? isObscure : false,

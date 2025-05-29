@@ -22,23 +22,26 @@ class MyHomePage extends StatelessWidget {
           SizedBox(
             height: height * 0.04,
           ),
-          MyContainerButton(
-            color: Color(0xFFF1F2F4),
-            widget: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.add_box_outlined),
-                SizedBox(
-                  width: width * 0.03,
-                ),
-                Text(
-                  'Add New Property',
-                )
-              ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: MyContainerButton(
+              color: Color(0xFFF1F2F4),
+              widget: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.add_box_outlined),
+                  SizedBox(
+                    width: width * 0.03,
+                  ),
+                  Text(
+                    'Add New Property',
+                  )
+                ],
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, '/anpAddressPage');
+              },
             ),
-            onTap: () {
-              Navigator.pushNamed(context, '/anpAddressPage');
-            },
           )
         ],
       ),

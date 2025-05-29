@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:realix_real_estate_app/app_routes/app_routes.dart';
+import 'package:realix_real_estate_app/Routes/app_routes.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
