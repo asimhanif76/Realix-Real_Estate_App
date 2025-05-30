@@ -5,6 +5,7 @@ import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AnpAddressPage extends StatelessWidget {
   AnpAddressPage({super.key});
@@ -72,47 +73,61 @@ class AnpAddressPage extends StatelessWidget {
                         controller:
                             addNewPropertyController.cityNameController),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                    child: MyTextField(
-                        labelText: 'Select State',
-                        isReadable: true,
-                        trailingIcon: Icon(Icons.keyboard_arrow_down_rounded),
-                        onTap: () async {
-                          final selected = await showMenu(
-                            context: context,
-                            position: RelativeRect.fromLTRB(width * 0.9,
-                                height * 0.5, width * 0.1, height * 0.4),
-                            items: [
-                              PopupMenuItem(
-                                value: '1',
-                                child: Text('1'),
-                              ),
-                              PopupMenuItem(
-                                value: '2',
-                                child: Text('2'),
-                              ),
-                              PopupMenuItem(
-                                value: '3',
-                                child: Text('3'),
-                              ),
-                              PopupMenuItem(
-                                value: '4',
-                                child: Text('4'),
-                              ),
-                              PopupMenuItem(
-                                value: '5',
-                                child: Text('5'),
-                              ),
-                            ],
-                          );
-
-                          if (selected != null) {
-                            addNewPropertyController.stateController.text =
-                                selected;
-                          }
-                        },
-                        controller: addNewPropertyController.stateController),
+                  Obx(
+                    () => Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.05, vertical: width * 0.025),
+                      child: DropdownButtonHideUnderline(
+                        child: Container(
+                          height: height * 0.07,
+                          width: width - width * 0.05,
+                          decoration: BoxDecoration(
+                              color: Color(0xFFF4F5F6),
+                              borderRadius:
+                                  BorderRadius.circular(width * 0.04)),
+                          child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.05),
+                              child: DropdownButton<String>(
+                                hint: Text(
+                                  'Select State',
+                                  style: TextStyle(fontSize: 16),
+                                ),
+                                value: addNewPropertyController
+                                        .property.value.state.isEmpty
+                                    ? null
+                                    : addNewPropertyController
+                                        .property.value.state,
+                                style: TextStyle(
+                                    fontSize: 16.5.sp, color: Colors.black),
+                                icon: Icon(Icons.keyboard_arrow_down),
+                                dropdownColor: Color(0xFFF4F5F6),
+                                borderRadius:
+                                    BorderRadius.circular(width * 0.05),
+                                isExpanded: true,
+                                items: [
+                                  DropdownMenuItem(
+                                      value: 'Punjab', child: Text('Punjab')),
+                                  DropdownMenuItem(
+                                      value: 'Sindh', child: Text('Sindh')),
+                                  DropdownMenuItem(
+                                      value: 'KPK', child: Text('KPK')),
+                                  DropdownMenuItem(
+                                      value: 'Balochistan',
+                                      child: Text('Balochistan')),
+                                ],
+                                onChanged: (String? value) {
+                                  if (value != null) {
+                                    addNewPropertyController.property
+                                        .update((val) {
+                                      val?.state = value;
+                                    });
+                                  }
+                                },
+                              )),
+                        ),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -120,6 +135,9 @@ class AnpAddressPage extends StatelessWidget {
                         labelText: 'Zipcode',
                         controller: addNewPropertyController.zipCodeController),
                   ),
+                  SizedBox(
+                    height: height * 0.15,
+                  )
                 ],
               ),
             ),
@@ -136,9 +154,7 @@ class AnpAddressPage extends StatelessWidget {
                   addNewPropertyController.cityNameController.text
                       .trim()
                       .isNotEmpty &&
-                  addNewPropertyController.stateController.text
-                      .trim()
-                      .isNotEmpty &&
+                  addNewPropertyController.property.value.state.isNotEmpty &&
                   addNewPropertyController.zipCodeController.text
                       .trim()
                       .isNotEmpty) {
@@ -148,7 +164,7 @@ class AnpAddressPage extends StatelessWidget {
                             ", " +
                             addNewPropertyController.unitNumberController.text,
                     city: addNewPropertyController.cityNameController.text,
-                    state: addNewPropertyController.stateController.text,
+                    state: addNewPropertyController.property.value.state,
                     zip: addNewPropertyController.zipCodeController.text);
                 addNewPropertyController.varPrint();
                 addNewPropertyController.clearTextFields();
@@ -158,10 +174,10 @@ class AnpAddressPage extends StatelessWidget {
                   'Missing Fields',
                   'Please fill out all fields',
                   snackPosition: SnackPosition.TOP,
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Colors.redAccent,  
                   colorText: Colors.white,
-                  // dismissDirection: DismissDirection.startToEnd,
-                  // isDismissible: true,
+                  dismissDirection: DismissDirection.startToEnd,
+                  isDismissible: true,
                   duration: Duration(seconds: 2),
                   margin: EdgeInsets.all(10),
                   borderRadius: 8,

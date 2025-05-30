@@ -13,7 +13,7 @@ class LoginPageController extends GetxController {
   TextEditingController signUpPasswordController = TextEditingController();
 
   List<LoginModel> LoginUsers = [
-    LoginModel(name: 'Asim', phonrNumber: 'a', password: 'a'),
+    LoginModel(name: 'Asim', phonrNumber: '', password: ''),
     LoginModel(name: 'Asim', phonrNumber: '03001234567', password: '123456'),
     LoginModel(name: 'Asim', phonrNumber: '03001234560', password: '000000'),
     LoginModel(name: 'Asim', phonrNumber: '03001234561', password: '111111'),

@@ -10,20 +10,20 @@ class MyTextField extends StatefulWidget {
   final Color color;
   final bool border;
   final bool isReadable;
- final VoidCallback? onTap;
+  final VoidCallback? onTap;
 
-  const MyTextField(
-      {super.key,
-      this.isPasswordField = false,
-      required this.labelText,
-      required this.controller,
-      this.trailingIcon,
-      this.prefixIcon,
-      this.color = const Color(0xFFF4F5F6),
-      this.border = false,
-      this.isReadable = false,
-      this.onTap,
-      });
+  const MyTextField({
+    super.key,
+    this.isPasswordField = false,
+    required this.labelText,
+    required this.controller,
+    this.trailingIcon,
+    this.prefixIcon,
+    this.color = const Color(0xFFF4F5F6),
+    this.border = false,
+    this.isReadable = false,
+    this.onTap,
+  });
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
