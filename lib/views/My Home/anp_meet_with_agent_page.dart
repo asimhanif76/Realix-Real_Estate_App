@@ -129,7 +129,7 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                           ),
                       itemBuilder: (context, index) {
                         DateTime date =
-                            addNewPropertyControllerdaysOfMonth[index];
+                            addNewPropertyController.daysOfMonth[index];
                         String dayName =
                             DateFormat('EEEE').format(date).toUpperCase();
                         String dayNum = DateFormat('d').format(date);
