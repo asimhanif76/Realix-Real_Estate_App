@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_address_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_meet_with_agent_page.dart';
+import 'package:realix_real_estate_app/views/My%20Home/anp_reason_selling_home.dart';
+import 'package:realix_real_estate_app/views/My%20Home/anp_time_to_sell.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
 import 'package:realix_real_estate_app/views/message/message_page.dart';
 import 'package:realix_real_estate_app/views/notification/notification_page.dart';
@@ -21,6 +23,8 @@ class AppRoutes {
   static const String messagePage = '/messagePage';
   static const String anpAddressPage = '/anpAddressPage';
   static const String anpMeetWithAgentPage = '/anpMeetWithAgentPage';
+  static const String anpTimeToSell = '/anpTimeToSell';
+  static const String anpReasonSellingHome = '/anpReasonSellingHome';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -33,5 +37,7 @@ class AppRoutes {
         messagePage: (_) => MessagePage(),
         anpAddressPage: (_) => AnpAddressPage(),
         anpMeetWithAgentPage: (_) => AnpMeetWithAgentPage(),
+        anpTimeToSell: (_) => AnpTimeToSell(),
+        anpReasonSellingHome: (_) => AnpReasonSellingHome(),
       };
 }

@@ -44,8 +44,8 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                 child: Container(
                   height: 67,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.grey),
+                      color: Color(0xFFFFFFFF),
+                      border: Border.all(color: Color(0xFFE6E8EC)),
                       borderRadius: BorderRadius.circular(width * 0.03)),
                   child: Center(
                     child: ListTile(
@@ -60,12 +60,12 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                       title: Text(
                         'Property Address',
                         style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w700),
+                            fontSize: 15.5.sp, fontWeight: FontWeight.w700),
                       ),
                       subtitle: Text(
                         addNewPropertyController.property.value.streetAddress,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w300,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -149,16 +149,12 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                                   EdgeInsets.symmetric(vertical: width * 0.02),
                               decoration: BoxDecoration(
                                   border: Border.all(
-                                      color: addNewPropertyController
-                                                  .selectedDateIndex.value ==
-                                              index
-                                          ? Color(0xFF2FA2B9)
-                                          : Colors.grey,
-                                      width: addNewPropertyController
-                                                  .selectedDateIndex.value ==
-                                              index
-                                          ? 2
-                                          : 1),
+                                    color: addNewPropertyController
+                                                .selectedDateIndex.value ==
+                                            index
+                                        ? Color(0xFF2FA2B9)
+                                        : Color(0xFFE6E8EC),
+                                  ),
                                   borderRadius:
                                       BorderRadius.circular(width * 0.02)),
                               child: Column(
@@ -169,21 +165,21 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                                   Text(
                                     dayName,
                                     style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.grey),
                                   ),
                                   Text(
                                     dayNum,
                                     style: TextStyle(
-                                        fontSize: 24,
+                                        fontSize: 20.sp,
                                         fontWeight: FontWeight.w600,
                                         color: Colors.black),
                                   ),
                                   Text(
                                     monthName,
                                     style: TextStyle(
-                                        fontSize: 12,
+                                        fontSize: 14.sp,
                                         fontWeight: FontWeight.w500,
                                         color: Colors.grey),
                                   ),
@@ -233,25 +229,24 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                           padding: EdgeInsets.symmetric(vertical: width * 0.02),
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: addNewPropertyController
-                                              .selectedTimeIndex.value ==
-                                          index
-                                      ? Color(0xFF2FA2B9)
-                                      : Colors.grey,
-                                  width: addNewPropertyController
-                                              .selectedTimeIndex.value ==
-                                          index
-                                      ? 2
-                                      : 1),
+                                color: addNewPropertyController
+                                            .selectedTimeIndex.value ==
+                                        index
+                                    ? Color(0xFF2FA2B9)
+                                    : Color(0xFFE6E8EC),
+                              ),
                               borderRadius:
                                   BorderRadius.circular(width * 0.02)),
                           child: Padding(
                             padding:
                                 EdgeInsets.symmetric(horizontal: width * 0.05),
-                            child: Text(
-                              addNewPropertyController.time[index],
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            child: Center(
+                              child: Text(
+                                addNewPropertyController.time[index],
+                                style: TextStyle(
+                                    fontSize: 15.5.sp,
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                         ),
@@ -268,7 +263,9 @@ class AnpMeetWithAgentPage extends StatelessWidget {
               right: 0,
               child: CustomBlackButtton(
                 buttonName: 'Next',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/anpTimeToSell');
+                },
               ))
         ],
       ),

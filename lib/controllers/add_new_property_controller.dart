@@ -118,7 +118,7 @@ class AddNewPropertyController extends GetxController {
   RxString selectedState = ''.obs;
   RxInt selectedMonth = 8.obs;
   RxBool animateRight = false.obs;
-  RxInt selectedDateIndex = 1.obs;
+  RxInt selectedDateIndex = 2.obs;
   RxInt selectedTimeIndex = 1.obs;
 
   RxString month = 'January'.obs;
@@ -210,4 +210,28 @@ class AddNewPropertyController extends GetxController {
     '11:00 PM',
     '11:30 PM',
   ];
+
+  RxString timePeriodForSell = ''.obs;
+  RxInt selectedPeriod = 1.obs;
+
+  List sellingPeriod = [
+    'Within 3 days',
+    'Within 1 week',
+    'Within 1 month',
+    'Within 2 months',
+    'In more than 3 months',
+    'I’m not sure',
+  ];
+
+RxString reasonForSelling = ''.obs;
+  RxInt reasonSellingIndex = 1.obs;
+
+  List reasonSelling = [
+    'Upgrading my home',
+    'Selling secondary home',
+    'Relocating',
+    'Downsizing my home',
+    'Retiring',
+    'Other',
+    ];
 }
