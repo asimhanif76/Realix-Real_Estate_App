@@ -1,7 +1,7 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
@@ -29,13 +29,13 @@ class AnpMeetWithAgentPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: PageHeadingRow(pageHeadingText: 'Add New Property'),
+                child: PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
               SizedBox(
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: 'Address', indicatorValue: 2),
+                  indicatorHeading: AppStrings.address, indicatorValue: 2),
               SizedBox(
                 height: height * 0.04,
               ),
@@ -58,7 +58,7 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                         ),
                       ),
                       title: Text(
-                        'Property Address',
+                        AppStrings.propertyAddress,
                         style: TextStyle(
                             fontSize: 15.5.sp, fontWeight: FontWeight.w700),
                       ),
@@ -199,7 +199,7 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Pick a time',
+                    AppStrings.pickATime,
                     style: TextStyle(
                         fontSize: 17.5.sp, fontWeight: FontWeight.w700),
                   ),
@@ -262,8 +262,18 @@ class AnpMeetWithAgentPage extends StatelessWidget {
               left: 0,
               right: 0,
               child: CustomBlackButtton(
-                buttonName: 'Next',
+                buttonName: AppStrings.next,
                 onTap: () {
+                  DateTime selectedDate = addNewPropertyController.daysOfMonth[
+                      addNewPropertyController.selectedDateIndex.value];
+
+                  String selectedTime = addNewPropertyController
+                      .time[addNewPropertyController.selectedTimeIndex.value];
+
+                  addNewPropertyController.updateMeeting(
+                    selectedDate,
+                    selectedTime,
+                  );
                   Navigator.pushNamed(context, '/anpTimeToSell');
                 },
               ))

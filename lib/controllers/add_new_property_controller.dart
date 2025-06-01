@@ -36,13 +36,6 @@ class AddNewPropertyController extends GetxController {
     amenities: [],
   ).obs;
 
-  void varPrint() {
-    print("Street: ${property.value.streetAddress}");
-    print("City: ${property.value.city}");
-    print("State : ${property.value.state}");
-    print("Zip Code: ${property.value.zipCode}");
-  }
-
   void updateAddress({
     required String street,
     required String city,
@@ -212,7 +205,7 @@ class AddNewPropertyController extends GetxController {
   ];
 
   RxString timePeriodForSell = ''.obs;
-  RxInt selectedPeriod = 1.obs;
+  RxInt selectedPeriod = 0.obs;
 
   List sellingPeriod = [
     'Within 3 days',
@@ -223,8 +216,9 @@ class AddNewPropertyController extends GetxController {
     'I’m not sure',
   ];
 
-RxString reasonForSelling = ''.obs;
-  RxInt reasonSellingIndex = 1.obs;
+  TextEditingController otherReasonController = TextEditingController();
+  RxString reasonForSelling = ''.obs;
+  RxInt reasonSellingIndex = 0.obs;
 
   List reasonSelling = [
     'Upgrading my home',
@@ -233,5 +227,5 @@ RxString reasonForSelling = ''.obs;
     'Downsizing my home',
     'Retiring',
     'Other',
-    ];
+  ];
 }

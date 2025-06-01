@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
@@ -27,13 +28,13 @@ class AnpTimeToSell extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: PageHeadingRow(pageHeadingText: 'Add New Property'),
+                child: PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
               SizedBox(
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: 'Time To Sell', indicatorValue: 3),
+                  indicatorHeading: AppStrings.timeToSell, indicatorValue: 3),
               SizedBox(
                 height: height * 0.025,
               ),
@@ -42,7 +43,7 @@ class AnpTimeToSell extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'How soon do you want to sell?',
+                    AppStrings.howSoonWantToSell,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                   ),
                 ),
@@ -96,8 +97,10 @@ class AnpTimeToSell extends StatelessWidget {
               left: 0,
               right: 0,
               child: CustomBlackButtton(
-                buttonName: 'Next',
+                buttonName: AppStrings.next,
                 onTap: () {
+                  addNewPropertyController.updateTimeToSell(
+                      addNewPropertyController.timePeriodForSell.value);
                   Navigator.pushNamed(context, '/anpReasonSellingHome');
                 },
               ))

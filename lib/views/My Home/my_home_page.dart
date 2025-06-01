@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:realix_real_estate_app/views/My%20Home/my_home_empty.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/widgets/my_container_button.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 
@@ -18,7 +18,7 @@ class MyHomePage extends StatelessWidget {
           SizedBox(
             height: height * 0.04,
           ),
-          PageHeadingRow(pageHeadingText: 'My Home'),
+          PageHeadingRow(pageHeadingText: AppStrings.myHome),
           SizedBox(
             height: height * 0.04,
           ),
@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
                     width: width * 0.03,
                   ),
                   Text(
-                    'Add New Property',
+                    AppStrings.addNewProperty,
                   )
                 ],
               ),

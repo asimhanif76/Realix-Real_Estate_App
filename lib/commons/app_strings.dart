@@ -44,5 +44,25 @@ class AppStrings {
   static String getStarted = 'Get Started';
   static String homeSearch = 'Home search';
   static String generals = 'General';
+  static String addNewProperty = 'Add New Property';
+  static String address = 'Address';
+  static String propertyAddress = 'Property Address';
+  static String streetAddress = 'Street address';
+  static String unitNumber = 'Unit number';
+  static String cityName = 'City name';
+  static String selectState = 'Select State';
+  static String zipCode = 'Zipcode';
+  static String next = 'Next';
+  static String missingFields = 'Missing Fields';
+  static String fillAllFields = 'Please fill out all fields';
+  static String pickATime = 'Pick a time';
+  static String timeToSell = 'Time To Sell';
+  static String howSoonWantToSell = 'How soon do you want to sell?';
+  static String reasonSelling = 'Reason Selling Home';
+  static String whySellingHome = 'Why are you selling your home?';
+  static String punjab = 'Punjab';
+  static String Sindh = 'Sindh';
+  static String kpk = 'KPK';
+  static String balochistan = 'Balochistan';
   static String a = '';
 }

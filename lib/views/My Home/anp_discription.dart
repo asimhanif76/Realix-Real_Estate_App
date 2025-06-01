@@ -28,7 +28,7 @@ class AnpDiscription extends StatelessWidget {
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: 'Reason Selling Home', indicatorValue: 4),
+                  indicatorHeading: 'Reason Selling Home', indicatorValue: 5),
             ],
           ),
           Positioned(

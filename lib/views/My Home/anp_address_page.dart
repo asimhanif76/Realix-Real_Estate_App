@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
@@ -33,20 +34,21 @@ class AnpAddressPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                    child: PageHeadingRow(pageHeadingText: 'Add New Property'),
+                    child: PageHeadingRow(
+                        pageHeadingText: AppStrings.addNewProperty),
                   ),
                   SizedBox(
                     height: height * 0.04,
                   ),
                   MyLinearProgressIndicator(
-                      indicatorHeading: 'Address', indicatorValue: 1),
+                      indicatorHeading: AppStrings.address, indicatorValue: 1),
                   Padding(
                     padding:
                         EdgeInsets.only(left: width * 0.05, top: height * 0.03),
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Property Address',
+                        AppStrings.propertyAddress,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w700),
                       ),
@@ -55,21 +57,21 @@ class AnpAddressPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: MyTextField(
-                        labelText: 'Street address',
+                        labelText: AppStrings.streetAddress,
                         controller:
                             addNewPropertyController.streetAddressController),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: MyTextField(
-                        labelText: 'Unit number',
+                        labelText: AppStrings.unitNumber,
                         controller:
                             addNewPropertyController.unitNumberController),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: MyTextField(
-                        labelText: 'City name',
+                        labelText: AppStrings.cityName,
                         controller:
                             addNewPropertyController.cityNameController),
                   ),
@@ -90,7 +92,7 @@ class AnpAddressPage extends StatelessWidget {
                                   horizontal: width * 0.05),
                               child: DropdownButton<String>(
                                 hint: Text(
-                                  'Select State',
+                                  AppStrings.selectState,
                                   style: TextStyle(fontSize: 16),
                                 ),
                                 value: addNewPropertyController
@@ -107,14 +109,17 @@ class AnpAddressPage extends StatelessWidget {
                                 isExpanded: true,
                                 items: [
                                   DropdownMenuItem(
-                                      value: 'Punjab', child: Text('Punjab')),
+                                      value: AppStrings.punjab,
+                                      child: Text(AppStrings.punjab)),
                                   DropdownMenuItem(
-                                      value: 'Sindh', child: Text('Sindh')),
+                                      value: AppStrings.Sindh,
+                                      child: Text(AppStrings.Sindh)),
                                   DropdownMenuItem(
-                                      value: 'KPK', child: Text('KPK')),
+                                      value: AppStrings.kpk,
+                                      child: Text(AppStrings.kpk)),
                                   DropdownMenuItem(
-                                      value: 'Balochistan',
-                                      child: Text('Balochistan')),
+                                      value: AppStrings.balochistan,
+                                      child: Text(AppStrings.balochistan)),
                                 ],
                                 onChanged: (String? value) {
                                   if (value != null) {
@@ -132,7 +137,7 @@ class AnpAddressPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: MyTextField(
-                        labelText: 'Zipcode',
+                        labelText: AppStrings.zipCode,
                         controller: addNewPropertyController.zipCodeController),
                   ),
                   SizedBox(
@@ -143,7 +148,7 @@ class AnpAddressPage extends StatelessWidget {
             ),
           ),
           CustomBlackButtton(
-            buttonName: 'Next',
+            buttonName: AppStrings.next,
             onTap: () {
               if (addNewPropertyController.streetAddressController.text
                       .trim()
@@ -166,15 +171,14 @@ class AnpAddressPage extends StatelessWidget {
                     city: addNewPropertyController.cityNameController.text,
                     state: addNewPropertyController.property.value.state,
                     zip: addNewPropertyController.zipCodeController.text);
-                addNewPropertyController.varPrint();
                 addNewPropertyController.clearTextFields();
                 Navigator.pushNamed(context, '/anpMeetWithAgentPage');
               } else {
                 Get.snackbar(
-                  'Missing Fields',
-                  'Please fill out all fields',
+                  AppStrings.missingFields,
+                  AppStrings.fillAllFields,
                   snackPosition: SnackPosition.TOP,
-                  backgroundColor: Colors.redAccent,  
+                  backgroundColor: Colors.redAccent,
                   colorText: Colors.white,
                   dismissDirection: DismissDirection.startToEnd,
                   isDismissible: true,
