@@ -75,8 +75,15 @@ class AddNewPropertyController extends GetxController {
     });
   }
 
-  void updateHomeFacts({
+   void updatePropertyType({
     required String type,
+  }) {
+    property.update((val) {
+      val!.propertyType = type;
+    });
+  }
+
+  void updateHomeFacts({
     required double lotSize,
     required int yearBuilt,
     required int fullBaths,
@@ -85,8 +92,7 @@ class AddNewPropertyController extends GetxController {
     required double securityDeposit,
   }) {
     property.update((val) {
-      val!.propertyType = type;
-      val.lotSize = lotSize;
+      val!.lotSize = lotSize;
       val.yearBuilt = yearBuilt;
       val.fullBaths = fullBaths;
       val.bedrooms = bedrooms;
@@ -94,6 +100,7 @@ class AddNewPropertyController extends GetxController {
       val.securityDeposit = securityDeposit;
     });
   }
+ 
 
   void updateContact(String phone, String? note) {
     property.update((val) {
@@ -228,4 +235,8 @@ class AddNewPropertyController extends GetxController {
     'Retiring',
     'Other',
   ];
+
+
+    TextEditingController discriptionController = TextEditingController();
+
 }

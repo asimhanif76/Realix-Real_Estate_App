@@ -4,7 +4,6 @@ import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
-import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -154,6 +153,15 @@ class AnpReasonSellingHome extends StatelessWidget {
                                                     height: height * 0.006,
                                                   ),
                                                   TextField(
+                                                    onTap: () {
+                                                      addNewPropertyController
+                                                              .reasonSellingIndex
+                                                              .value =
+                                                          addNewPropertyController
+                                                                  .reasonSelling
+                                                                  .length -
+                                                              1;
+                                                    },
                                                     controller:
                                                         addNewPropertyController
                                                             .otherReasonController,

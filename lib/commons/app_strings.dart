@@ -64,5 +64,11 @@ class AppStrings {
   static String Sindh = 'Sindh';
   static String kpk = 'KPK';
   static String balochistan = 'Balochistan';
+  static String discription = 'Decscription';
+  static String tellUsAboutHome = 'Tell us about your home here';
+  static String homeFacts ="Home Facts";
+  static String helpYourAgent = 'This helps your agent prepare the most accurate home estimate';
+  static String commercial = 'Commercial';
+  static String residential = 'Residential';
   static String a = '';
 }

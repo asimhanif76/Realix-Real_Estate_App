@@ -89,7 +89,7 @@ class AnpAddressPage extends StatelessWidget {
                                   BorderRadius.circular(width * 0.04)),
                           child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.05),
+                                  horizontal: width * 0.01),
                               child: DropdownButton<String>(
                                 hint: Text(
                                   AppStrings.selectState,
@@ -107,6 +107,9 @@ class AnpAddressPage extends StatelessWidget {
                                 borderRadius:
                                     BorderRadius.circular(width * 0.05),
                                 isExpanded: true,
+                                elevation: 0,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: width * 0.05),
                                 items: [
                                   DropdownMenuItem(
                                       value: AppStrings.punjab,
