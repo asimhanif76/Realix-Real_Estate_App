@@ -11,6 +11,7 @@ class MyTextField extends StatefulWidget {
   final bool border;
   final bool isReadable;
   final VoidCallback? onTap;
+  final TextInputType keyBoardType;
 
   const MyTextField({
     super.key,
@@ -23,6 +24,7 @@ class MyTextField extends StatefulWidget {
     this.border = false,
     this.isReadable = false,
     this.onTap,
+    this.keyBoardType = TextInputType.text,
   });
 
   @override
@@ -75,6 +77,7 @@ class _MyTextFieldState extends State<MyTextField> {
         ),
         child: Center(
           child: TextField(
+            keyboardType: widget.keyBoardType,
             onTap: widget.onTap,
             controller: widget.controller,
             focusNode: focusNode,
@@ -90,6 +93,7 @@ class _MyTextFieldState extends State<MyTextField> {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10),
                 ),
+                
                 prefixIcon:
                     widget.prefixIcon != null ? widget.prefixIcon : null,
                 suffixIcon: widget.trailingIcon != null

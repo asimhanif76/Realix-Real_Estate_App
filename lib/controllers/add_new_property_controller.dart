@@ -75,7 +75,7 @@ class AddNewPropertyController extends GetxController {
     });
   }
 
-   void updatePropertyType({
+  void updatePropertyType({
     required String type,
   }) {
     property.update((val) {
@@ -100,7 +100,6 @@ class AddNewPropertyController extends GetxController {
       val.securityDeposit = securityDeposit;
     });
   }
- 
 
   void updateContact(String phone, String? note) {
     property.update((val) {
@@ -236,7 +235,16 @@ class AddNewPropertyController extends GetxController {
     'Other',
   ];
 
+  TextEditingController discriptionController = TextEditingController();
 
-    TextEditingController discriptionController = TextEditingController();
+  RxString selectedCode = '+92'.obs;
+  RxString countryFlag = '🇵🇰'.obs;
 
+  List countryPicker = [
+    {
+      'number' : '+92',
+      'name':'pk',
+      'flag': 'assets/images/icons/pakistan.png'
+    }
+  ];
 }

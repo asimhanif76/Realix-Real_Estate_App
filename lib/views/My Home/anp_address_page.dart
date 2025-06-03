@@ -140,6 +140,7 @@ class AnpAddressPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: MyTextField(
+                        keyBoardType: TextInputType.number,
                         labelText: AppStrings.zipCode,
                         controller: addNewPropertyController.zipCodeController),
                   ),

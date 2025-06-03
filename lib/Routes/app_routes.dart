@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_address_page.dart';
+import 'package:realix_real_estate_app/views/My%20Home/anp_contacts.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_discription.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_home_facts.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_meet_with_agent_page.dart';
@@ -29,6 +30,7 @@ class AppRoutes {
   static const String anpReasonSellingHome = '/anpReasonSellingHome';
   static const String anpDiscription = '/anpDiscription';
   static const String anpHomeFacts = '/anpHomeFacts';
+  static const String anpContacts = '/anpContacts';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -45,5 +47,6 @@ class AppRoutes {
         anpReasonSellingHome: (_) => AnpReasonSellingHome(),
         anpDiscription: (_) => AnpDiscription(),
         anpHomeFacts: (_) => AnpHomeFacts(),
+        anpContacts: (_) => AnpContacts(),
       };
 }
