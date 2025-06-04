@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -22,13 +23,14 @@ class AnpSelectAmenities extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: PageHeadingRow(pageHeadingText: 'Add New Property'),
+                child:
+                    PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
               SizedBox(
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: 'Reason Selling Home', indicatorValue: 5),
+                  indicatorHeading: AppStrings.homeFacts, indicatorValue: 8),
             ],
           ),
           Positioned(

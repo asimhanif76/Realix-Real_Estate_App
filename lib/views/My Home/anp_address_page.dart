@@ -154,43 +154,43 @@ class AnpAddressPage extends StatelessWidget {
           CustomBlackButtton(
             buttonName: AppStrings.next,
             onTap: () {
-              if (addNewPropertyController.streetAddressController.text
-                      .trim()
-                      .isNotEmpty &&
-                  addNewPropertyController.unitNumberController.text
-                      .trim()
-                      .isNotEmpty &&
-                  addNewPropertyController.cityNameController.text
-                      .trim()
-                      .isNotEmpty &&
-                  addNewPropertyController.property.value.state.isNotEmpty &&
-                  addNewPropertyController.zipCodeController.text
-                      .trim()
-                      .isNotEmpty) {
-                addNewPropertyController.updateAddress(
-                    street:
-                        addNewPropertyController.streetAddressController.text +
-                            ", " +
-                            addNewPropertyController.unitNumberController.text,
-                    city: addNewPropertyController.cityNameController.text,
-                    state: addNewPropertyController.property.value.state,
-                    zip: addNewPropertyController.zipCodeController.text);
-                addNewPropertyController.clearTextFields();
-                Navigator.pushNamed(context, '/anpMeetWithAgentPage');
-              } else {
-                Get.snackbar(
-                  AppStrings.missingFields,
-                  AppStrings.fillAllFields,
-                  snackPosition: SnackPosition.TOP,
-                  backgroundColor: Colors.redAccent,
-                  colorText: Colors.white,
-                  dismissDirection: DismissDirection.startToEnd,
-                  isDismissible: true,
-                  duration: Duration(seconds: 2),
-                  margin: EdgeInsets.all(10),
-                  borderRadius: 8,
-                );
-              }
+              // if (addNewPropertyController.streetAddressController.text
+              //         .trim()
+              //         .isNotEmpty &&
+              //     addNewPropertyController.unitNumberController.text
+              //         .trim()
+              //         .isNotEmpty &&
+              //     addNewPropertyController.cityNameController.text
+              //         .trim()
+              //         .isNotEmpty &&
+              //     addNewPropertyController.property.value.state.isNotEmpty &&
+              //     addNewPropertyController.zipCodeController.text
+              //         .trim()
+              //         .isNotEmpty) {
+              addNewPropertyController.updateAddress(
+                  street:
+                      addNewPropertyController.streetAddressController.text +
+                          ", " +
+                          addNewPropertyController.unitNumberController.text,
+                  city: addNewPropertyController.cityNameController.text,
+                  state: addNewPropertyController.property.value.state,
+                  zip: addNewPropertyController.zipCodeController.text);
+              addNewPropertyController.clearTextFields();
+              Navigator.pushNamed(context, '/anpMeetWithAgentPage');
+              // } else {
+              //   Get.snackbar(
+              //     AppStrings.missingFields,
+              //     AppStrings.fillAllFields,
+              //     snackPosition: SnackPosition.TOP,
+              //     backgroundColor: Colors.redAccent,
+              //     colorText: Colors.white,
+              //     dismissDirection: DismissDirection.startToEnd,
+              //     isDismissible: true,
+              //     duration: Duration(seconds: 2),
+              //     margin: EdgeInsets.all(10),
+              //     borderRadius: 8,
+              //   );
+              // }
             },
           )
         ],

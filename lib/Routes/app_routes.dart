@@ -5,6 +5,7 @@ import 'package:realix_real_estate_app/views/My%20Home/anp_discription.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_home_facts.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_meet_with_agent_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_reason_selling_home.dart';
+import 'package:realix_real_estate_app/views/My%20Home/anp_select_amenities.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_time_to_sell.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
 import 'package:realix_real_estate_app/views/message/message_page.dart';
@@ -31,6 +32,7 @@ class AppRoutes {
   static const String anpDiscription = '/anpDiscription';
   static const String anpHomeFacts = '/anpHomeFacts';
   static const String anpContacts = '/anpContacts';
+  static const String anpSelectAmenities = '/anpSelectAmenities';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -48,5 +50,6 @@ class AppRoutes {
         anpDiscription: (_) => AnpDiscription(),
         anpHomeFacts: (_) => AnpHomeFacts(),
         anpContacts: (_) => AnpContacts(),
+        anpSelectAmenities: (_) => AnpSelectAmenities(),
       };
 }
