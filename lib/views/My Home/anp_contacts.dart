@@ -40,7 +40,7 @@ class AnpContacts extends StatelessWidget {
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: AppStrings.homeFacts, indicatorValue: 7),
+                  indicatorHeading: AppStrings.contact, indicatorValue: 7),
               Padding(
                 padding: EdgeInsets.only(
                     top: width * 0.06,

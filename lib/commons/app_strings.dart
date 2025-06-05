@@ -70,5 +70,7 @@ class AppStrings {
   static String helpYourAgent = 'This helps your agent prepare the most accurate home estimate';
   static String commercial = 'Commercial';
   static String residential = 'Residential';
+  static String contact = 'Contact';
+  static String selectAmenitites = 'Select Amenitites';
   static String a = '';
 }
