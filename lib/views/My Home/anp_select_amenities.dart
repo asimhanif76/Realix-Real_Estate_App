@@ -56,8 +56,10 @@ class AnpSelectAmenities extends StatelessWidget {
               left: 0,
               right: 0,
               child: CustomBlackButtton(
-                buttonName: 'Next',
-                onTap: () {},
+                buttonName: '',
+                onTap: () {
+                  print('object');
+                },
               ))
         ],
       ),
@@ -65,6 +67,8 @@ class AnpSelectAmenities extends StatelessWidget {
   }
 }
 
+// git hub ma b add krna sab sy pehly
+//  class ko main ma set krna ha or contact ma b class ko main class ma add krna ha      ||       or inka data list ma update krna ha dono pages ka amenities or contacts class ka
 class FacilityChips extends StatefulWidget {
   @override
   _FacilityChipsState createState() => _FacilityChipsState();
