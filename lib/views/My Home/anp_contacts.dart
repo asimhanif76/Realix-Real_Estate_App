@@ -50,7 +50,7 @@ class AnpContacts extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Tell us a little about yourself',
+                    AppStrings.tellUsAboutYourself,
                     style: TextStyle(
                         fontSize: 17.5.sp, fontWeight: FontWeight.w700),
                   ),
@@ -60,7 +60,7 @@ class AnpContacts extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: MyTextField(
-                    labelText: 'Is there anything else we should know?',
+                    labelText: AppStrings.isThereAnythingElse,
                     controller: aboutController),
               ),
             ],

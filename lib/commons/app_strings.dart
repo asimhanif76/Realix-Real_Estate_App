@@ -72,5 +72,7 @@ class AppStrings {
   static String residential = 'Residential';
   static String contact = 'Contact';
   static String selectAmenitites = 'Select Amenitites';
+  static String tellUsAboutYourself = 'Tell us a little about yourself';
+  static String isThereAnythingElse = 'Is there anything else we should know?';
   static String a = '';
 }
