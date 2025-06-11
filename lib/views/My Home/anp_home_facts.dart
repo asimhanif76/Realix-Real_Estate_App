@@ -14,14 +14,6 @@ class AnpHomeFacts extends StatelessWidget {
   AddNewPropertyController addNewPropertyController =
       Get.put(AddNewPropertyController());
 
-  TextEditingController finishedSqFtController = TextEditingController();
-  TextEditingController lotSizeController = TextEditingController();
-  TextEditingController yearBuiltController = TextEditingController();
-  TextEditingController bedroomsController = TextEditingController();
-  TextEditingController fullBathsController = TextEditingController();
-  TextEditingController securityDepositController = TextEditingController();
-  TextEditingController monthlyRentController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -149,13 +141,13 @@ class AnpHomeFacts extends StatelessWidget {
                           'Finished Sq. Ft.',
                           true,
                           '0',
-                          finishedSqFtController,
+                          addNewPropertyController.finishedSqFtController,
                         ),
                         SizedBox(
                           width: width * 0.04,
                         ),
-                        _customTextField(
-                            'Lot Size', false, '0 Sq. Ft.', lotSizeController),
+                        _customTextField('Lot Size', false, '0 Sq. Ft.',
+                            addNewPropertyController.lotSizeController),
                       ],
                     ),
                   ),
@@ -163,13 +155,13 @@ class AnpHomeFacts extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: Row(
                       children: [
-                        _customTextField(
-                            'Year Built', false, '0', yearBuiltController),
+                        _customTextField('Year Built', false, '0',
+                            addNewPropertyController.yearBuiltController),
                         SizedBox(
                           width: width * 0.04,
                         ),
-                        _customTextField(
-                            'Bedrooms', false, '0', bedroomsController),
+                        _customTextField('Bedrooms', false, '0',
+                            addNewPropertyController.bedroomsController),
                       ],
                     ),
                   ),
@@ -177,13 +169,13 @@ class AnpHomeFacts extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: Row(
                       children: [
-                        _customTextField(
-                            'Full Baths', true, '0', fullBathsController),
+                        _customTextField('Full Baths', true, '0',
+                            addNewPropertyController.fullBathsController),
                         SizedBox(
                           width: width * 0.04,
                         ),
                         _customTextField('Security Deposit', true, '0 \$',
-                            securityDepositController),
+                            addNewPropertyController.securityDepositController),
                       ],
                     ),
                   ),
@@ -202,7 +194,8 @@ class AnpHomeFacts extends StatelessWidget {
                         MyTextField(
                             keyBoardType: TextInputType.number,
                             labelText: '0 \$',
-                            controller: monthlyRentController),
+                            controller:
+                                addNewPropertyController.monthlyRentController),
                       ],
                     ),
                   ),
@@ -221,16 +214,27 @@ class AnpHomeFacts extends StatelessWidget {
                 buttonName: AppStrings.next,
                 onTap: () {
                   addNewPropertyController.updateHomeFacts(
-                    lotSize: double.tryParse(lotSizeController.text) ?? 0.0,
-                    yearBuilt: int.tryParse(yearBuiltController.text) ?? 0,
-                    fullBaths: int.tryParse(fullBathsController.text) ?? 0,
-                    bedrooms: int.tryParse(bedroomsController.text) ?? 0,
-                    monthlyRent:
-                        double.tryParse(monthlyRentController.text) ?? 0.0,
-                    securityDeposit:
-                        double.tryParse(securityDepositController.text) ?? 0.0,
+                    lotSize: double.tryParse(
+                            addNewPropertyController.lotSizeController.text) ??
+                        0.0,
+                    yearBuilt: int.tryParse(addNewPropertyController
+                            .yearBuiltController.text) ??
+                        0,
+                    fullBaths: int.tryParse(addNewPropertyController
+                            .fullBathsController.text) ??
+                        0,
+                    bedrooms: int.tryParse(
+                            addNewPropertyController.bedroomsController.text) ??
+                        0,
+                    monthlyRent: double.tryParse(addNewPropertyController
+                            .monthlyRentController.text) ??
+                        0.0,
+                    securityDeposit: double.tryParse(addNewPropertyController
+                            .securityDepositController.text) ??
+                        0.0,
                   );
                   Navigator.pushNamed(context, '/anpContacts');
+                  addNewPropertyController.clearHomeFactsFields();
                 },
               )),
         ],

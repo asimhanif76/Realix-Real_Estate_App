@@ -105,6 +105,9 @@ class AddNewPropertyController extends GetxController {
     property.update((val) {
       val!.phoneNumber = phone;
       val.additionalInfo = note;
+
+      print('Phone Number IS ${val.phoneNumber}');
+      print(val.additionalInfo);
     });
   }
 
@@ -223,6 +226,23 @@ class AddNewPropertyController extends GetxController {
   ];
 
   TextEditingController otherReasonController = TextEditingController();
+  TextEditingController finishedSqFtController = TextEditingController();
+  TextEditingController lotSizeController = TextEditingController();
+  TextEditingController yearBuiltController = TextEditingController();
+  TextEditingController bedroomsController = TextEditingController();
+  TextEditingController fullBathsController = TextEditingController();
+  TextEditingController securityDepositController = TextEditingController();
+  TextEditingController monthlyRentController = TextEditingController();
+  void clearHomeFactsFields() {
+    finishedSqFtController.clear();
+    lotSizeController.clear();
+    yearBuiltController.clear();
+    bedroomsController.clear();
+    fullBathsController.clear();
+    securityDepositController.clear();
+    monthlyRentController.clear();
+  }
+
   RxString reasonForSelling = ''.obs;
   RxInt reasonSellingIndex = 0.obs;
 
@@ -237,36 +257,34 @@ class AddNewPropertyController extends GetxController {
 
   TextEditingController discriptionController = TextEditingController();
 
-  RxString selectedCode = '+92'.obs;
-  RxString countryFlag = '🇵🇰'.obs;
+  final TextEditingController mobileNumberController = TextEditingController();
+  final TextEditingController aboutController = TextEditingController();
 
   var selectedCountry = <String, dynamic>{
-    'number': '+92',
     'name': 'pk',
-    'flag': 'assets/images/icons/pakistan.png',
+    'code': '+92',
+    'image': 'assets/images/icons/pakistan.png',
   }.obs;
 
-  List<Map<String, dynamic>> countryPicker = [
-    {'number': '+92', 'name': 'pk', 'flag': 'assets/images/icons/pakistan.png'},
-    {'number': '+91', 'name': 'in', 'flag': 'assets/images/icons/india.png'},
-    {'number': '+86', 'name': 'cn', 'flag': 'assets/images/icons/china.png'},
-    {'number': '+90', 'name': 'tr', 'flag': 'assets/images/icons/turkey.png'},
-    {
-      'number': '+93',
-      'name': 'af',
-      'flag': 'assets/images/icons/afghanistan.png'
-    },
-    {
-      'number': '+966',
-      'name': 'sa',
-      'flag': 'assets/images/icons/saudi-arabia.png'
-    },
-    {'number': '+968', 'name': 'om', 'flag': 'assets/images/icons/oman.png'},
-    {'number': '+98', 'name': 'ir', 'flag': 'assets/images/icons/iran.png'},
-    {'number': '+20', 'name': 'eg', 'flag': 'assets/images/icons/egypt.png'},
-  ];
-
-  void updateCountry(Map<String, dynamic> country) {
-    selectedCountry.value = country;
+  void printCountry() {
+    print(selectedCountry['name']);
+    print(selectedCountry['code']);
+    print(selectedCountry['image']);
   }
+
+
+ RxList<String> facilities = <String>[
+    'Free WiFi',
+    'Pool',
+    'Apartment',
+    'Air Conditioning',
+    'Spa',
+    'View',
+    'Elevator',
+    'Garage Spots',
+  ].obs;
+
+  RxList<String> selectedFacilities = <String>[].obs;
+
+  
 }

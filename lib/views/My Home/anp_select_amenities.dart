@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
+import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -7,6 +9,9 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AnpSelectAmenities extends StatelessWidget {
   AnpSelectAmenities({super.key});
+
+  AddNewPropertyController addNewPropertyController =
+      Get.put(AddNewPropertyController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +53,48 @@ class AnpSelectAmenities extends StatelessWidget {
                   ),
                 ),
               ),
-              FacilityChips()
+              Obx(() => Wrap(
+                    spacing: 10,
+                    runSpacing: 0,
+                    children:
+                        addNewPropertyController.facilities.map((facility) {
+                      final isSelected = addNewPropertyController
+                          .selectedFacilities
+                          .contains(facility);
+
+                      return ChoiceChip(
+                        label: Text(facility),
+                        selected: isSelected,
+                        showCheckmark: false,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        onSelected: (selected) {
+                          if (isSelected) {
+                            addNewPropertyController.selectedFacilities
+                                .remove(facility);
+                          } else {
+                            addNewPropertyController.selectedFacilities
+                                .add(facility);
+                          }
+                        },
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: isSelected
+                                ? Colors.black
+                                : Colors.grey.shade300,
+                            width: isSelected ? 2 : 1,
+                          ),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        backgroundColor: Colors.white,
+                        selectedColor: Colors.white,
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      );
+                    }).toList(),
+                  ))
             ],
           ),
           Positioned(
@@ -56,74 +102,14 @@ class AnpSelectAmenities extends StatelessWidget {
               left: 0,
               right: 0,
               child: CustomBlackButtton(
-                buttonName: '',
+                buttonName: 'Next',
                 onTap: () {
                   print('object');
+                  print(addNewPropertyController.selectedFacilities);
                 },
               ))
         ],
       ),
-    );
-  }
-}
-
-// git hub ma b add krna sab sy pehly
-//  class ko main ma set krna ha or contact ma b class ko main class ma add krna ha      ||       or inka data list ma update krna ha dono pages ka amenities or contacts class ka
-class FacilityChips extends StatefulWidget {
-  @override
-  _FacilityChipsState createState() => _FacilityChipsState();
-}
-
-class _FacilityChipsState extends State<FacilityChips> {
-  List<String> facilities = [
-    'Free WiFi',
-    'Pool',
-    'Apartment',
-    'Air Conditioning',
-    'Spa',
-    'View',
-    'Elevator',
-    'Garage Spots',
-  ];
-
-  List<String> selectedFacilities = [];
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 10,
-      runSpacing: 0,
-      children: facilities.map((facility) {
-        final isSelected = selectedFacilities.contains(facility);
-        return ChoiceChip(
-          label: Text(facility),
-          selected: isSelected,
-          showCheckmark: false,
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-          onSelected: (selected) {
-            setState(() {
-              if (selected) {
-                selectedFacilities.add(facility);
-              } else {
-                selectedFacilities.remove(facility);
-              }
-            });
-          },
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: isSelected ? Colors.black : Colors.grey.shade300,
-              width: isSelected ? 2 : 1,
-            ),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          backgroundColor: Colors.white,
-          selectedColor: Colors.white,
-          labelStyle: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w500,
-          ),
-        );
-      }).toList(),
     );
   }
 }

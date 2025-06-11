@@ -11,11 +11,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class AnpContacts extends StatelessWidget {
   AnpContacts({super.key});
 
-  AddNewPropertyController addNewPropertyController =
+  final AddNewPropertyController addNewPropertyController =
       Get.put(AddNewPropertyController());
-
-  TextEditingController numberController = TextEditingController();
-  TextEditingController aboutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +20,27 @@ class AnpContacts extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xFFFCFCFD),
+      backgroundColor: const Color(0xFFFCFCFD),
       body: Stack(
         children: [
           Column(
             children: [
-              SizedBox(
-                height: height * 0.04,
-              ),
+              SizedBox(height: height * 0.04),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child:
                     PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
-              SizedBox(
-                height: height * 0.04,
-              ),
+              SizedBox(height: height * 0.04),
               MyLinearProgressIndicator(
                   indicatorHeading: AppStrings.contact, indicatorValue: 7),
               Padding(
                 padding: EdgeInsets.only(
-                    top: width * 0.06,
-                    bottom: width * 0.02,
-                    left: width * 0.05,
-                    right: width * 0.05),
+                  top: width * 0.06,
+                  bottom: width * 0.02,
+                  left: width * 0.05,
+                  right: width * 0.05,
+                ),
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -56,25 +50,34 @@ class AnpContacts extends StatelessWidget {
                   ),
                 ),
               ),
-              CountryDropdownCustom(),
+              CountryDropdownCustom(
+                  controller: addNewPropertyController.mobileNumberController),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: MyTextField(
-                    labelText: AppStrings.isThereAnythingElse,
-                    controller: aboutController),
+                  labelText: AppStrings.isThereAnythingElse,
+                  controller: addNewPropertyController.aboutController,
+                ),
               ),
             ],
           ),
           Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: 'Next',
-                onTap: () {
-                  Navigator.pushNamed(context, '/anpSelectAmenities');
-                },
-              ))
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: CustomBlackButtton(
+              buttonName: 'Next',
+              onTap: () {
+                addNewPropertyController.updateContact(
+                  addNewPropertyController.selectedCountry['code'] +
+                      addNewPropertyController.mobileNumberController.text,
+                  addNewPropertyController.aboutController.text,
+                );
+
+                Navigator.pushNamed(context, '/anpSelectAmenities');
+              },
+            ),
+          )
         ],
       ),
     );
@@ -82,14 +85,19 @@ class AnpContacts extends StatelessWidget {
 }
 
 class CountryDropdownCustom extends StatefulWidget {
+  final TextEditingController controller;
+  CountryDropdownCustom({required this.controller});
+
   @override
   _CountryDropdownCustomState createState() => _CountryDropdownCustomState();
 }
 
 class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
+  final AddNewPropertyController addNewPropertyController = Get.find();
+
   final List<Map<String, String>> countries = [
     {
-      'name': 'Paakistan',
+      'name': 'Pakistan',
       'code': '+92',
       'image': 'assets/images/icons/pakistan.png'
     },
@@ -118,8 +126,6 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
   String? selectedCountry = "Pakistan";
   String? selectedFlag = 'assets/images/icons/pakistan.png';
   String? countryCode = '+92';
-  final TextEditingController textController = TextEditingController();
-
   final GlobalKey _flagKey = GlobalKey();
 
   void _showCustomDropdown() async {
@@ -139,9 +145,12 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
       items: countries.map((country) {
         return PopupMenuItem<String>(
           value: country['name'],
-          child: Image.asset(
-            country['image']!,
-            scale: 14,
+          child: Row(
+            children: [
+              Image.asset(country['image']!, scale: 14),
+              SizedBox(width: 8),
+              Text(country['name']!),
+            ],
           ),
         );
       }).toList(),
@@ -153,6 +162,14 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
         selectedCountry = matched['name'];
         selectedFlag = matched['image'];
         countryCode = matched['code'];
+
+        addNewPropertyController.selectedCountry.value = {
+          'name': matched['name'],
+          'code': matched['code'],
+          'image': matched['image'],
+        };
+
+        addNewPropertyController.printCountry();
       });
     }
   }
@@ -162,12 +179,12 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextFormField(
-        controller: textController,
+        controller: widget.controller,
+        keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           prefixIcon: GestureDetector(
             key: _flagKey,
             onTap: _showCustomDropdown,
-            behavior: HitTestBehavior.translucent,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
@@ -182,14 +199,9 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
                       : Icon(Icons.flag_outlined, size: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: Icon(
-                      Icons.keyboard_arrow_down,
-                      size: 18,
-                    ),
+                    child: Icon(Icons.keyboard_arrow_down, size: 18),
                   ),
-                  Text(
-                    countryCode!,
-                  ),
+                  Text(countryCode!),
                 ],
               ),
             ),
@@ -207,127 +219,3 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
     );
   }
 }
-
-
-
-// Padding(
-//   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//   child: Container(
-//     padding: EdgeInsets.symmetric(horizontal: 12),
-//     decoration: BoxDecoration(
-//       borderRadius: BorderRadius.circular(20),
-//       color: Color(0xFFF4F5F6),
-//     ),
-//     child: Row(
-//       children: [
-//         Obx(() => DropdownButtonHideUnderline(
-//               child: DropdownButton<Map<String, dynamic>>(
-//                 value: addNewPropertyController.selectedCountry.value,
-//                 icon: Icon(Icons.arrow_drop_down),
-//                 items: addNewPropertyController.countryPicker.map((country) {
-//                   return DropdownMenuItem<Map<String, dynamic>>(
-//                     value: country,
-//                     child: Image.asset(
-//                       country['flag'],
-//                       scale: 14,
-//                       width: 24,
-//                       height: 24,
-//                     ),
-//                   );
-//                 }).toList(),
-//                 onChanged: (value) {
-//                   if (value != null) {
-//                     addNewPropertyController.updateCountry(value);
-//                   }
-//                 },
-//               ),
-//             )),
-//         SizedBox(width: 12),
-//         Expanded(
-//           child: TextField(
-//             controller: numberController,
-//             keyboardType: TextInputType.number,
-//             decoration: InputDecoration(
-//               border: InputBorder.none,
-//               hintText: 'Phone number',
-//               hintStyle: TextStyle(color: Colors.grey.shade600),
-//             ),
-//           ),
-//         ),
-//       ],
-//     ),
-//   ),
-// ),
-
-
-
-
-
-  // Padding(
-  //               padding: EdgeInsets.symmetric(
-  //                   horizontal: width * 0.05, vertical: 20),
-  //               child: Column(
-  //                 crossAxisAlignment: CrossAxisAlignment.start,
-  //                 children: [
-  //                   Obx(() => DropdownButtonFormField<Map<String, dynamic>>(
-  //                         value:
-  //                             addNewPropertyController.countryPicker.firstWhere(
-  //                           (element) =>
-  //                               element['number'] ==
-  //                               addNewPropertyController
-  //                                   .selectedCountry['number'],
-  //                           orElse: () =>
-  //                               addNewPropertyController.countryPicker.first,
-  //                         ),
-  //                         items: 
-  //                         addNewPropertyController.countryPicker
-  //                             .map((country) {
-  //                           return DropdownMenuItem<Map<String, dynamic>>(
-  //                             value: country,
-  //                             child: Row(
-  //                               children: [
-  //                                 Image.asset(
-  //                                   country['flag'],
-  //                                   width: 24,
-  //                                   height: 24,
-  //                                 ),
-  //                                 SizedBox(width: 10),
-  //                                 Text(
-  //                                     '${country['number']} (${country['name'].toUpperCase()})'),
-  //                               ],
-  //                             ),
-  //                           );
-  //                         }).toList(),
-  //                         onChanged: (value) {
-  //                           if (value != null) {
-  //                             addNewPropertyController.updateCountry(value);
-  //                           }
-  //                         },
-  //                         decoration: InputDecoration(
-  //                           labelText: 'Select Country Code',
-  //                           border: OutlineInputBorder(),
-  //                           contentPadding:
-  //                               EdgeInsets.symmetric(horizontal: 10),
-  //                         ),
-  //                       )),
-  //                   SizedBox(height: 20),
-  //                   TextField(
-  //                     controller: numberController,
-  //                     keyboardType: TextInputType.number,
-  //                     decoration: InputDecoration(
-  //                       labelText: "Phone Number",
-  //                       prefixIcon: Obx(() => Padding(
-  //                             padding: const EdgeInsets.all(12.0),
-  //                             child: Text(
-  //                               addNewPropertyController
-  //                                   .selectedCountry['number'],
-  //                               style: TextStyle(fontSize: 16),
-  //                             ),
-  //                           )),
-  //                       border: OutlineInputBorder(),
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-            

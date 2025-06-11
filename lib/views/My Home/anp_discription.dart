@@ -71,6 +71,7 @@ class AnpDiscription extends StatelessWidget {
                   addNewPropertyController.updateDescription(
                       addNewPropertyController.discriptionController.text);
                   Navigator.pushNamed(context, '/anpHomeFacts');
+                  addNewPropertyController.discriptionController.clear();
                 },
               ))
         ],
