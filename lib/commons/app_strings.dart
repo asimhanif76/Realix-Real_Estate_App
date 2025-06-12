@@ -46,6 +46,7 @@ class AppStrings {
   static String generals = 'General';
   static String addNewProperty = 'Add New Property';
   static String address = 'Address';
+  static String meetWithAgent = 'Meet with a Agent';
   static String propertyAddress = 'Property Address';
   static String streetAddress = 'Street address';
   static String unitNumber = 'Unit number';
@@ -67,6 +68,17 @@ class AppStrings {
   static String discription = 'Decscription';
   static String tellUsAboutHome = 'Tell us about your home here';
   static String homeFacts ="Home Facts";
+  static String typeProperty ='Type Property';
+  static String selectType ='Select type';
+  static String  finishedSQ='Finished Sq. Ft.';
+  static String  zero='0';
+  static String  lotSize='Lot Size';
+  static String zeroSQ ='0 Sq. Ft.';
+  static String  yearBuild='Year Built';
+  static String  bedrooms='Bedrooms';
+  static String  fullBath='Full Baths';
+  static String  securityDeposit='Security Deposit';
+  static String  monthlyRent='Monthly Rent*';
   static String helpYourAgent = 'This helps your agent prepare the most accurate home estimate';
   static String commercial = 'Commercial';
   static String residential = 'Residential';
@@ -74,5 +86,7 @@ class AppStrings {
   static String selectAmenitites = 'Select Amenitites';
   static String tellUsAboutYourself = 'Tell us a little about yourself';
   static String isThereAnythingElse = 'Is there anything else we should know?';
+  static String pleaseEnterYourReasonForSelling = 'Please enter your reason for selling:';
+  static String egIAmHelping = 'E.g. I’m helping my parents sell their home.';
   static String a = '';
 }

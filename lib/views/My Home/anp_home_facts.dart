@@ -77,7 +77,7 @@ class AnpHomeFacts extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Type Property',
+                        AppStrings.typeProperty,
                         style: TextStyle(
                             fontSize: 13, fontWeight: FontWeight.w500),
                       ),
@@ -101,7 +101,7 @@ class AnpHomeFacts extends StatelessWidget {
                               elevation: 0,
                               borderRadius: BorderRadius.circular(width * 0.04),
                               dropdownColor: Color(0xFFF4F5F6),
-                              hint: Text('Select type'),
+                              hint: Text(AppStrings.selectType),
                               icon: Icon(Icons.keyboard_arrow_down_sharp),
                               isExpanded: true,
                               value: addNewPropertyController
@@ -138,15 +138,18 @@ class AnpHomeFacts extends StatelessWidget {
                     child: Row(
                       children: [
                         _customTextField(
-                          'Finished Sq. Ft.',
+                          AppStrings.finishedSQ,
                           true,
-                          '0',
+                          AppStrings.zero,
                           addNewPropertyController.finishedSqFtController,
                         ),
                         SizedBox(
                           width: width * 0.04,
                         ),
-                        _customTextField('Lot Size', false, '0 Sq. Ft.',
+                        _customTextField(
+                            AppStrings.lotSize,
+                            false,
+                            AppStrings.zeroSQ,
                             addNewPropertyController.lotSizeController),
                       ],
                     ),
@@ -155,12 +158,18 @@ class AnpHomeFacts extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: Row(
                       children: [
-                        _customTextField('Year Built', false, '0',
+                        _customTextField(
+                            AppStrings.yearBuild,
+                            false,
+                            AppStrings.zero,
                             addNewPropertyController.yearBuiltController),
                         SizedBox(
                           width: width * 0.04,
                         ),
-                        _customTextField('Bedrooms', false, '0',
+                        _customTextField(
+                            AppStrings.bedrooms,
+                            false,
+                            AppStrings.zero,
                             addNewPropertyController.bedroomsController),
                       ],
                     ),
@@ -169,12 +178,18 @@ class AnpHomeFacts extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: width * 0.05),
                     child: Row(
                       children: [
-                        _customTextField('Full Baths', true, '0',
+                        _customTextField(
+                            AppStrings.fullBath,
+                            true,
+                            AppStrings.zero,
                             addNewPropertyController.fullBathsController),
                         SizedBox(
                           width: width * 0.04,
                         ),
-                        _customTextField('Security Deposit', true, '0 \$',
+                        _customTextField(
+                            AppStrings.securityDeposit,
+                            true,
+                            '${AppStrings.zero} \$',
                             addNewPropertyController.securityDepositController),
                       ],
                     ),
@@ -186,14 +201,14 @@ class AnpHomeFacts extends StatelessWidget {
                         Container(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Monthly Rent*',
+                            AppStrings.monthlyRent,
                             style: TextStyle(
                                 fontSize: 13, fontWeight: FontWeight.w500),
                           ),
                         ),
                         MyTextField(
                             keyBoardType: TextInputType.number,
-                            labelText: '0 \$',
+                            labelText: '${AppStrings.zero} \$',
                             controller:
                                 addNewPropertyController.monthlyRentController),
                       ],

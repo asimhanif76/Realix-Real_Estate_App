@@ -272,8 +272,7 @@ class AddNewPropertyController extends GetxController {
     print(selectedCountry['image']);
   }
 
-
- RxList<String> facilities = <String>[
+  RxList<String> facilities = <String>[
     'Free WiFi',
     'Pool',
     'Apartment',
@@ -285,6 +284,4 @@ class AddNewPropertyController extends GetxController {
   ].obs;
 
   RxList<String> selectedFacilities = <String>[].obs;
-
-  
 }

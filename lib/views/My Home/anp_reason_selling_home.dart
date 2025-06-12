@@ -67,176 +67,28 @@ class AnpReasonSellingHome extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                        child: Obx(
-                          () => index ==
+                        child: Obx(() => index ==
+                                addNewPropertyController.reasonSelling.length -
+                                    1
+                            ? GestureDetector(
+                                onTap: () {
                                   addNewPropertyController
-                                          .reasonSelling.length -
-                                      1
-                              ? GestureDetector(
-                                  onTap: () {
-                                    addNewPropertyController
-                                        .reasonForSelling.value = index ==
-                                            addNewPropertyController
-                                                    .reasonSelling.length -
-                                                1
-                                        ? addNewPropertyController
-                                            .otherReasonController.text
-                                        : addNewPropertyController
-                                            .reasonSelling[index];
-                                    addNewPropertyController
-                                        .reasonSellingIndex.value = index;
-                                    print(addNewPropertyController
-                                        .reasonForSelling.value);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Color(0xFFE6E8EC)),
-                                        borderRadius:
-                                            BorderRadius.circular(width * 0.03),
-                                        color: Color(0xFFF9FAFB)),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          alignment: Alignment.topCenter,
-                                          width: width * 0.145,
-                                          height: height * 0.14,
-                                          // color: Colors.amber,
-                                          child: Icon(
-                                            addNewPropertyController
-                                                        .reasonSellingIndex
-                                                        .value ==
-                                                    index
-                                                ? Icons.check_box
-                                                : Icons.check_box_outline_blank,
-                                            color: addNewPropertyController
-                                                        .reasonSellingIndex
-                                                        .value ==
-                                                    index
-                                                ? Color(0xFF2FA2B9)
-                                                : Colors.grey,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: height * 0.017),
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: width * 0.05),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    addNewPropertyController
-                                                        .reasonSelling[index],
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600),
-                                                  ),
-                                                  SizedBox(
-                                                    height: height * 0.006,
-                                                  ),
-                                                  Text(
-                                                    'Please enter your reason for selling:',
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                  SizedBox(
-                                                    height: height * 0.006,
-                                                  ),
-                                                  TextField(
-                                                    onTap: () {
-                                                      addNewPropertyController
-                                                              .reasonSellingIndex
-                                                              .value =
-                                                          addNewPropertyController
-                                                                  .reasonSelling
-                                                                  .length -
-                                                              1;
-                                                    },
-                                                    controller:
-                                                        addNewPropertyController
-                                                            .otherReasonController,
-                                                    decoration: InputDecoration(
-                                                        border: OutlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                color: Color(
-                                                                    0xFFE6E8EC)),
-                                                            borderRadius: BorderRadius.circular(
-                                                                width * 0.02)),
-                                                        enabledBorder: OutlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                color: Color(
-                                                                    0xFFE6E8EC)),
-                                                            borderRadius:
-                                                                BorderRadius.circular(
-                                                                    width *
-                                                                        0.02)),
-                                                        focusedBorder: OutlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                color: Color(0xFFE6E8EC)),
-                                                            borderRadius: BorderRadius.circular(width * 0.02)),
-                                                        hintText: 'E.g. I’m helping my parents sell their home.',
-                                                        hintStyle: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w400)),
-                                                    maxLines: 2,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  decoration: BoxDecoration(
-                                      border:
-                                          Border.all(color: Color(0xFFE6E8EC)),
-                                      borderRadius:
-                                          BorderRadius.circular(width * 0.03),
-                                      color: Color(0xFFF9FAFB)),
-                                  child: ListTile(
-                                    onTap: () {
-                                      addNewPropertyController
-                                              .reasonForSelling.value =
+                                      .reasonForSelling.value = index ==
                                           addNewPropertyController
-                                              .reasonSelling[index];
-                                      addNewPropertyController
-                                          .reasonSellingIndex.value = index;
-                                      print(addNewPropertyController
-                                          .reasonForSelling.value);
-                                    },
-                                    leading: Icon(
-                                      addNewPropertyController
-                                                  .reasonSellingIndex.value ==
-                                              index
-                                          ? Icons.check_box
-                                          : Icons.check_box_outline_blank,
-                                      color: addNewPropertyController
-                                                  .reasonSellingIndex.value ==
-                                              index
-                                          ? Color(0xFF2FA2B9)
-                                          : Colors.grey,
-                                    ),
-                                    title: Text(
-                                      addNewPropertyController
-                                          .reasonSelling[index],
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                        ),
+                                                  .reasonSelling.length -
+                                              1
+                                      ? addNewPropertyController
+                                          .otherReasonController.text
+                                      : addNewPropertyController
+                                          .reasonSelling[index];
+                                  addNewPropertyController
+                                      .reasonSellingIndex.value = index;
+                                  print(addNewPropertyController
+                                      .reasonForSelling.value);
+                                },
+                                child: _otherReason(width, height, index),
+                              )
+                            : _reasonContainer(width, height, index)),
                       );
                     },
                   ),
@@ -259,6 +111,116 @@ class AnpReasonSellingHome extends StatelessWidget {
                   Navigator.pushNamed(context, '/anpDiscription');
                 },
               ))
+        ],
+      ),
+    );
+  }
+
+  Widget _reasonContainer(double width, double height, int index) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Color(0xFFE6E8EC)),
+          borderRadius: BorderRadius.circular(width * 0.03),
+          color: Color(0xFFF9FAFB)),
+      child: ListTile(
+        onTap: () {
+          addNewPropertyController.reasonForSelling.value =
+              addNewPropertyController.reasonSelling[index];
+          addNewPropertyController.reasonSellingIndex.value = index;
+          print(addNewPropertyController.reasonForSelling.value);
+        },
+        leading: Icon(
+          addNewPropertyController.reasonSellingIndex.value == index
+              ? Icons.check_box
+              : Icons.check_box_outline_blank,
+          color: addNewPropertyController.reasonSellingIndex.value == index
+              ? Color(0xFF2FA2B9)
+              : Colors.grey,
+        ),
+        title: Text(
+          addNewPropertyController.reasonSelling[index],
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        ),
+      ),
+    );
+  }
+
+  Widget _otherReason(double width, double height, int index) {
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Color(0xFFE6E8EC)),
+          borderRadius: BorderRadius.circular(width * 0.03),
+          color: Color(0xFFF9FAFB)),
+      child: Row(
+        children: [
+          Container(
+            alignment: Alignment.topCenter,
+            width: width * 0.145,
+            height: height * 0.14,
+            child: Icon(
+              addNewPropertyController.reasonSellingIndex.value == index
+                  ? Icons.check_box
+                  : Icons.check_box_outline_blank,
+              color: addNewPropertyController.reasonSellingIndex.value == index
+                  ? Color(0xFF2FA2B9)
+                  : Colors.grey,
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: height * 0.017),
+              child: Padding(
+                padding: EdgeInsets.only(right: width * 0.05),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      addNewPropertyController.reasonSelling[index],
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: height * 0.006,
+                    ),
+                    Text(
+                      AppStrings.pleaseEnterYourReasonForSelling,
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      height: height * 0.006,
+                    ),
+                    TextField(
+                      onTap: () {
+                        addNewPropertyController.reasonSellingIndex.value =
+                            addNewPropertyController.reasonSelling.length - 1;
+                      },
+                      controller:
+                          addNewPropertyController.otherReasonController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFE6E8EC)),
+                              borderRadius:
+                                  BorderRadius.circular(width * 0.02)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFE6E8EC)),
+                              borderRadius:
+                                  BorderRadius.circular(width * 0.02)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xFFE6E8EC)),
+                              borderRadius:
+                                  BorderRadius.circular(width * 0.02)),
+                          hintText: AppStrings.egIAmHelping,
+                          hintStyle: TextStyle(
+                              fontSize: 15.sp, fontWeight: FontWeight.w400)),
+                      maxLines: 2,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

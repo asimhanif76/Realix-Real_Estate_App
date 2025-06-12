@@ -29,232 +29,28 @@ class AnpMeetWithAgentPage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
+                child:
+                    PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
               SizedBox(
                 height: height * 0.04,
               ),
               MyLinearProgressIndicator(
-                  indicatorHeading: AppStrings.address, indicatorValue: 2),
+                  indicatorHeading: AppStrings.meetWithAgent,
+                  indicatorValue: 2),
               SizedBox(
                 height: height * 0.04,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: Container(
-                  height: 67,
-                  decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
-                      border: Border.all(color: Color(0xFFE6E8EC)),
-                      borderRadius: BorderRadius.circular(width * 0.03)),
-                  child: Center(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.black,
-                        child: Icon(
-                          Icons.location_on_rounded,
-                          size: 19.sp,
-                          color: Colors.white,
-                        ),
-                      ),
-                      title: Text(
-                        AppStrings.propertyAddress,
-                        style: TextStyle(
-                            fontSize: 15.5.sp, fontWeight: FontWeight.w700),
-                      ),
-                      subtitle: Text(
-                        addNewPropertyController.property.value.streetAddress,
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w300,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _propertyAddress(width, AppStrings.propertyAddress,
+                  addNewPropertyController.property.value.streetAddress),
               SizedBox(
                 height: height * 0.04,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Obx(
-                      () => Text(
-                        addNewPropertyController.months[
-                            addNewPropertyController.selectedMonth.value],
-                        style: TextStyle(
-                            fontSize: 17.5.sp, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        _buildButton(() {
-                          if (addNewPropertyController.selectedMonth.value >
-                              0) {
-                            addNewPropertyController.animateRight.value = true;
-                            addNewPropertyController.selectedMonth.value--;
-                          }
-                        }, Icons.arrow_back_ios_new_rounded, width),
-                        SizedBox(
-                          width: width * 0.04,
-                        ),
-                        _buildButton(() {
-                          if (addNewPropertyController.selectedMonth.value <
-                              11) {
-                            addNewPropertyController.animateRight.value = false;
-                            addNewPropertyController.selectedMonth.value++;
-                          }
-                        }, Icons.arrow_forward_ios_rounded, width),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              SizedBox(
-                height: height * 0.12,
-                child: Obx(
-                  () => ListView.separated(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: addNewPropertyController.daysOfMonth.length,
-                      separatorBuilder: (context, index) => SizedBox(
-                            width: width * 0.04,
-                          ),
-                      itemBuilder: (context, index) {
-                        DateTime date =
-                            addNewPropertyController.daysOfMonth[index];
-                        String dayName =
-                            DateFormat('EEEE').format(date).toUpperCase();
-                        String dayNum = DateFormat('d').format(date);
-                        String monthName =
-                            DateFormat('MMM').format(date).toUpperCase();
-
-                        return GestureDetector(
-                          onTap: () {
-                            addNewPropertyController.selectedDateIndex.value =
-                                index;
-                          },
-                          child: Obx(
-                            () => Container(
-                              width: width * 0.21,
-                              height: height * 0.15,
-                              padding:
-                                  EdgeInsets.symmetric(vertical: width * 0.02),
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: addNewPropertyController
-                                                .selectedDateIndex.value ==
-                                            index
-                                        ? Color(0xFF2FA2B9)
-                                        : Color(0xFFE6E8EC),
-                                  ),
-                                  borderRadius:
-                                      BorderRadius.circular(width * 0.02)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    dayName,
-                                    style: TextStyle(
-                                        fontSize: 13.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey),
-                                  ),
-                                  Text(
-                                    dayNum,
-                                    style: TextStyle(
-                                        fontSize: 20.sp,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black),
-                                  ),
-                                  Text(
-                                    monthName,
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-              ),
+              _pickMonth(width, height),
               SizedBox(
                 height: height * 0.04,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppStrings.pickATime,
-                    style: TextStyle(
-                        fontSize: 17.5.sp, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              SizedBox(
-                height: height * 0.05,
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                  shrinkWrap: true,
-                  itemCount: addNewPropertyController.time.length,
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: width * 0.04,
-                  ),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        addNewPropertyController.selectedTimeIndex.value =
-                            index;
-                      },
-                      child: Obx(
-                        () => Container(
-                          padding: EdgeInsets.symmetric(vertical: width * 0.02),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                color: addNewPropertyController
-                                            .selectedTimeIndex.value ==
-                                        index
-                                    ? Color(0xFF2FA2B9)
-                                    : Color(0xFFE6E8EC),
-                              ),
-                              borderRadius:
-                                  BorderRadius.circular(width * 0.02)),
-                          child: Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.05),
-                            child: Center(
-                              child: Text(
-                                addNewPropertyController.time[index],
-                                style: TextStyle(
-                                    fontSize: 15.5.sp,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              )
+              _pickTime(width, height)
             ],
           ),
           Positioned(
@@ -278,6 +74,220 @@ class AnpMeetWithAgentPage extends StatelessWidget {
                 },
               ))
         ],
+      ),
+    );
+  }
+
+  Widget _pickTime(double width, double height) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              AppStrings.pickATime,
+              style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: height * 0.02,
+        ),
+        SizedBox(
+          height: height * 0.05,
+          child: ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            shrinkWrap: true,
+            itemCount: addNewPropertyController.time.length,
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => SizedBox(
+              width: width * 0.04,
+            ),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  addNewPropertyController.selectedTimeIndex.value = index;
+                },
+                child: Obx(
+                  () => Container(
+                    padding: EdgeInsets.symmetric(vertical: width * 0.02),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: addNewPropertyController
+                                      .selectedTimeIndex.value ==
+                                  index
+                              ? Color(0xFF2FA2B9)
+                              : Color(0xFFE6E8EC),
+                        ),
+                        borderRadius: BorderRadius.circular(width * 0.02)),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                      child: Center(
+                        child: Text(
+                          addNewPropertyController.time[index],
+                          style: TextStyle(
+                              fontSize: 15.5.sp, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _pickMonth(double width, double height) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Obx(
+                () => Text(
+                  addNewPropertyController
+                      .months[addNewPropertyController.selectedMonth.value],
+                  style:
+                      TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Row(
+                children: [
+                  _buildButton(() {
+                    if (addNewPropertyController.selectedMonth.value > 0) {
+                      addNewPropertyController.animateRight.value = true;
+                      addNewPropertyController.selectedMonth.value--;
+                    }
+                  }, Icons.arrow_back_ios_new_rounded, width),
+                  SizedBox(
+                    width: width * 0.04,
+                  ),
+                  _buildButton(() {
+                    if (addNewPropertyController.selectedMonth.value < 11) {
+                      addNewPropertyController.animateRight.value = false;
+                      addNewPropertyController.selectedMonth.value++;
+                    }
+                  }, Icons.arrow_forward_ios_rounded, width),
+                ],
+              )
+            ],
+          ),
+        ),
+        SizedBox(
+          height: height * 0.02,
+        ),
+        SizedBox(
+          height: height * 0.12,
+          child: Obx(
+            () => ListView.separated(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+                scrollDirection: Axis.horizontal,
+                itemCount: addNewPropertyController.daysOfMonth.length,
+                separatorBuilder: (context, index) => SizedBox(
+                      width: width * 0.04,
+                    ),
+                itemBuilder: (context, index) {
+                  DateTime date = addNewPropertyController.daysOfMonth[index];
+                  String dayName =
+                      DateFormat('EEEE').format(date).toUpperCase();
+                  String dayNum = DateFormat('d').format(date);
+                  String monthName =
+                      DateFormat('MMM').format(date).toUpperCase();
+
+                  return GestureDetector(
+                    onTap: () {
+                      addNewPropertyController.selectedDateIndex.value = index;
+                    },
+                    child: Obx(
+                      () => Container(
+                        width: width * 0.21,
+                        height: height * 0.15,
+                        padding: EdgeInsets.symmetric(vertical: width * 0.02),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: addNewPropertyController
+                                          .selectedDateIndex.value ==
+                                      index
+                                  ? Color(0xFF2FA2B9)
+                                  : Color(0xFFE6E8EC),
+                            ),
+                            borderRadius: BorderRadius.circular(width * 0.02)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              dayName,
+                              style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                            Text(
+                              dayNum,
+                              style: TextStyle(
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              monthName,
+                              style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _propertyAddress(double width, String title, String address) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+      child: Container(
+        height: 67,
+        decoration: BoxDecoration(
+            color: Color(0xFFFFFFFF),
+            border: Border.all(color: Color(0xFFE6E8EC)),
+            borderRadius: BorderRadius.circular(width * 0.03)),
+        child: Center(
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.black,
+              child: Icon(
+                Icons.location_on_rounded,
+                size: 19.sp,
+                color: Colors.white,
+              ),
+            ),
+            title: Text(
+              title,
+              style: TextStyle(fontSize: 15.5.sp, fontWeight: FontWeight.w700),
+            ),
+            subtitle: Text(
+              address,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w300,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -104,8 +104,13 @@ class AnpSelectAmenities extends StatelessWidget {
               child: CustomBlackButtton(
                 buttonName: 'Next',
                 onTap: () {
-                  print('object');
-                  print(addNewPropertyController.selectedFacilities);
+                  addNewPropertyController.updateAmenities(
+                      addNewPropertyController.selectedFacilities.toList());
+                  Navigator.pushNamed(context, '/addNewPropertyDetailsPage');
+                  // Navigator.pushNamedAndRemoveUntil(
+                  //     context,
+                  //     '/addNewPropertyDetailsPage',
+                  //     ModalRoute.withName('/myHomePage'));
                 },
               ))
         ],
