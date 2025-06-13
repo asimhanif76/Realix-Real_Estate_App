@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_images.dart';
+import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
+import 'package:realix_real_estate_app/controllers/add_new_property_details_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddNewPropertyDetailsPage extends StatelessWidget {
@@ -10,6 +13,9 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
   AddNewPropertyController addNewPropertyController =
       Get.put(AddNewPropertyController());
 
+  AddNewPropertyDetailsController addNewPropertyDetailsController =
+      Get.put(AddNewPropertyDetailsController());
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -17,108 +23,170 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
-      body: Padding(
-        padding: EdgeInsets.all(width * 0.05),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 347,
-                  width: width,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(width * 0.05),
-                      color: Colors.black45,
-                      image: DecorationImage(
-                          image:
-                              AssetImage('assets/images/property_image.png'))),
-                ),
-                Positioned(
-                  left: width * 0.05,
-                  top: width * 0.05,
-                  child: Container(
-                    width: 27.sp,
-                    height: 27.sp,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(width * 0.05),
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Stack(
+                children: [
+                  Container(
+                    height: 347,
+                    width: width,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(width * 0.03),
-                      border: Border.all(
-                          color: Colors.grey.withOpacity(0.2), width: 4),
+                        borderRadius: BorderRadius.circular(width * 0.05),
+                        color: Colors.black45,
+                        image: DecorationImage(
+                            image: AssetImage(AppImages.property_image))),
+                  ),
+                  Positioned(
+                    left: width * 0.05,
+                    top: width * 0.05,
+                    child: Container(
+                      width: 27.sp,
+                      height: 27.sp,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(width * 0.03),
+                        border: Border.all(
+                            color: Colors.grey.withOpacity(0.2), width: 4),
+                      ),
+                      child: IconButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            size: 18.sp,
+                          )),
                     ),
-                    child: IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios_rounded,
-                          size: 18.sp,
-                        )),
+                  ),
+                  Positioned(
+                      bottom: 0,
+                      child: Padding(
+                        padding: EdgeInsets.all(width * 0.06),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppStrings.primaryApartment,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20.sp,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            Text(
+                              addNewPropertyController
+                                      .property.value.streetAddress +
+                                  addNewPropertyController.property.value.city,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.5.sp,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
+                      ))
+                ],
+              ),
+              SizedBox(
+                height: height * 0.03,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildInfoCard(AppImages.bath_room, AppStrings.bathRoom,
+                      '${addNewPropertyController.property.value.fullBaths} Rooms'),
+                  _buildInfoCard(AppImages.bed_room, AppStrings.bedRoom,
+                      '${addNewPropertyController.property.value.bedrooms} Rooms'),
+                  _buildInfoCard(AppImages.square, AppStrings.square,
+                      '${addNewPropertyController.property.value.lotSize} Ft'),
+                ],
+              ),
+              SizedBox(
+                height: height * 0.03,
+              ),
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(width * 0.04),
+                    color: Color(0xFFF1F2F4)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(AppImages.edit_details),
+                    SizedBox(width: 8),
+                    Text(
+                      AppStrings.editDetails,
+                      style: TextStyle(
+                          fontSize: 15.sp, fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: height * 0.03),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppStrings.information,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                   ),
                 ),
-                Positioned(
-                    bottom: 0,
-                    child: Padding(
-                      padding: EdgeInsets.all(width * 0.06),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Primary Apartment',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w800),
-                          ),
-                          Text(
-                            addNewPropertyController
-                                    .property.value.streetAddress +
-                                addNewPropertyController.property.value.city,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.5.sp,
-                                fontWeight: FontWeight.w300),
-                          ),
-                        ],
-                      ),
-                    ))
-              ],
-            ),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildInfoCard('assets/images/svg/bath_room.svg', 'Bath room',
-                    '${addNewPropertyController.property.value.fullBaths} Rooms'),
-                _buildInfoCard('assets/images/svg/bed_room.svg', 'Bed Room',
-                    '${addNewPropertyController.property.value.bedrooms} Rooms'),
-                _buildInfoCard('assets/images/svg/square.svg', 'Square',
-                    '${addNewPropertyController.property.value.lotSize} Ft'),
-              ],
-            ),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            Container(
-              height: 50,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(width * 0.04),
-                  color: Color(0xFFF1F2F4)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SvgPicture.asset('assets/images/svg/edit_details.svg'),
-                  SizedBox(width: 8),
-                  Text(
-                    'Edit Details',
-                    style:
-                        TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w700),
+                  buildStatCard(
+                    title: 'Estimate price',
+                    value:
+                        '\$ ${addNewPropertyDetailsController.estimatePrice.value}'
+                            .toString(),
+                    percent: addNewPropertyDetailsController
+                        .estimatePricePercent.value,
+                  ),
+                  SizedBox(
+                    width: width * 0.03,
+                  ),
+                  buildStatCard(
+                    title: 'Sale activity',
+                    value:
+                        '${addNewPropertyDetailsController.saleActivity.value} Sold',
+                    percent: addNewPropertyDetailsController
+                        .saleActivityPercent.value,
+                  ),
+                  SizedBox(
+                    width: width * 0.03,
+                  ),
+                  buildStatCard(
+                    title: 'Average price',
+                    value:
+                        '\$ ${addNewPropertyDetailsController.averagePrice.value}'
+                            .toString(),
+                    percent: addNewPropertyDetailsController
+                        .averagePricePercent.value,
                   ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: height * 0.02,
+              ),
+              _buildGraphContainer(height, width),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: height * 0.03),
+                child: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppStrings.nearbyProperties,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -154,6 +222,216 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Widget buildStatCard({
+    required String title,
+    required String value,
+    required double percent,
+  }) {
+    bool isNegative = percent < 0;
+
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade100,
+              blurRadius: 10,
+              offset: Offset(2, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 6),
+            Text(
+              value,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 6),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: isNegative ? Color(0xFFFFEBEB) : Color(0xFFE8F8EE),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                '${isNegative ? '' : '+'}${percent.toStringAsFixed(1)}%',
+                style: TextStyle(
+                  color: isNegative ? Colors.red : Colors.green,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGraphContainer(double height, double width) {
+    return Container(
+      padding: EdgeInsets.all(width * 0.05),
+      height: height * 0.4,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(width * 0.05),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black45,
+            blurRadius: 3,
+            spreadRadius: 0,
+            offset: Offset(0, 6),
+          ),
+        ],
+      ),
+      width: width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Realix Estimate',
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: Colors.grey.shade600),
+          ),
+          SizedBox(
+            height: height * 0.01,
+          ),
+          Text(
+            '\$6,345.00',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+          ),
+          SizedBox(
+            height: height * 0.01,
+          ),
+          Obx(
+            () => Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    addNewPropertyDetailsController.isOneYear.value = true;
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: addNewPropertyDetailsController.isOneYear.value
+                              ? Colors.grey
+                              : Colors.transparent),
+                      borderRadius: BorderRadius.circular(width * 0.025),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.035, vertical: width * 0.018),
+                      child: Text(
+                        '1 Year',
+                        style: TextStyle(
+                            color:
+                                addNewPropertyDetailsController.isOneYear.value
+                                    ? Colors.black
+                                    : Colors.grey),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: width * 0.06,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    addNewPropertyDetailsController.isOneYear.value = false;
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: addNewPropertyDetailsController.isOneYear.value
+                              ? Colors.transparent
+                              : Colors.grey),
+                      borderRadius: BorderRadius.circular(width * 0.025),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.035, vertical: width * 0.018),
+                      child: Text(
+                        '5 Year',
+                        style: TextStyle(
+                            color:
+                                addNewPropertyDetailsController.isOneYear.value
+                                    ? Colors.grey
+                                    : Colors.black),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: height * 0.02,
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/chart.png',
+                  scale: 4,
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: width * 0.022),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '\$4k',
+                          style:
+                              TextStyle(fontSize: 14.5.sp, color: Colors.grey),
+                        ),
+                        Text(
+                          '\$3k',
+                          style:
+                              TextStyle(fontSize: 14.5.sp, color: Colors.grey),
+                        ),
+                        Text(
+                          '\$2k',
+                          style:
+                              TextStyle(fontSize: 14.5.sp, color: Colors.grey),
+                        ),
+                        Text(
+                          '\$1k',
+                          style:
+                              TextStyle(fontSize: 14.5.sp, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

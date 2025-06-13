@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
+import 'package:realix_real_estate_app/widgets/custom_snackbar.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -82,57 +83,54 @@ class AnpAddressPage extends StatelessWidget {
                       child: DropdownButtonHideUnderline(
                         child: Container(
                           height: height * 0.07,
-                          width: width - width * 0.05,
                           decoration: BoxDecoration(
                               color: Color(0xFFF4F5F6),
                               borderRadius:
                                   BorderRadius.circular(width * 0.04)),
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.01),
-                              child: DropdownButton<String>(
-                                hint: Text(
-                                  AppStrings.selectState,
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                                value: addNewPropertyController
-                                        .property.value.state.isEmpty
-                                    ? null
-                                    : addNewPropertyController
-                                        .property.value.state,
-                                style: TextStyle(
-                                    fontSize: 16.5.sp, color: Colors.black),
-                                icon: Icon(Icons.keyboard_arrow_down),
-                                dropdownColor: Color(0xFFF4F5F6),
-                                borderRadius:
-                                    BorderRadius.circular(width * 0.05),
-                                isExpanded: true,
-                                elevation: 0,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: width * 0.05),
-                                items: [
-                                  DropdownMenuItem(
-                                      value: AppStrings.punjab,
-                                      child: Text(AppStrings.punjab)),
-                                  DropdownMenuItem(
-                                      value: AppStrings.Sindh,
-                                      child: Text(AppStrings.Sindh)),
-                                  DropdownMenuItem(
-                                      value: AppStrings.kpk,
-                                      child: Text(AppStrings.kpk)),
-                                  DropdownMenuItem(
-                                      value: AppStrings.balochistan,
-                                      child: Text(AppStrings.balochistan)),
-                                ],
-                                onChanged: (String? value) {
-                                  if (value != null) {
-                                    addNewPropertyController.property
-                                        .update((val) {
-                                      val?.state = value;
-                                    });
-                                  }
-                                },
-                              )),
+                            padding: EdgeInsets.only(
+                                left: width * 0.04, right: width * 0.057),
+                            child: DropdownButton<String>(
+                              hint: Text(
+                                AppStrings.selectState,
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              value: addNewPropertyController
+                                      .property.value.state.isEmpty
+                                  ? null
+                                  : addNewPropertyController
+                                      .property.value.state,
+                              style: TextStyle(
+                                  fontSize: 16.5.sp, color: Colors.black),
+                              icon: Icon(Icons.keyboard_arrow_down),
+                              dropdownColor: Color(0xFFF4F5F6),
+                              borderRadius: BorderRadius.circular(width * 0.05),
+                              isExpanded: true,
+                              elevation: 0,
+                              items: [
+                                DropdownMenuItem(
+                                    value: AppStrings.punjab,
+                                    child: Text(AppStrings.punjab)),
+                                DropdownMenuItem(
+                                    value: AppStrings.Sindh,
+                                    child: Text(AppStrings.Sindh)),
+                                DropdownMenuItem(
+                                    value: AppStrings.kpk,
+                                    child: Text(AppStrings.kpk)),
+                                DropdownMenuItem(
+                                    value: AppStrings.balochistan,
+                                    child: Text(AppStrings.balochistan)),
+                              ],
+                              onChanged: (String? value) {
+                                if (value != null) {
+                                  addNewPropertyController.property
+                                      .update((val) {
+                                    val?.state = value;
+                                  });
+                                }
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -154,43 +152,34 @@ class AnpAddressPage extends StatelessWidget {
           CustomBlackButtton(
             buttonName: AppStrings.next,
             onTap: () {
-              // if (addNewPropertyController.streetAddressController.text
-              //         .trim()
-              //         .isNotEmpty &&
-              //     addNewPropertyController.unitNumberController.text
-              //         .trim()
-              //         .isNotEmpty &&
-              //     addNewPropertyController.cityNameController.text
-              //         .trim()
-              //         .isNotEmpty &&
-              //     addNewPropertyController.property.value.state.isNotEmpty &&
-              //     addNewPropertyController.zipCodeController.text
-              //         .trim()
-              //         .isNotEmpty) {
-              addNewPropertyController.updateAddress(
-                  street:
-                      addNewPropertyController.streetAddressController.text +
-                          ", " +
-                          addNewPropertyController.unitNumberController.text,
-                  city: addNewPropertyController.cityNameController.text,
-                  state: addNewPropertyController.property.value.state,
-                  zip: addNewPropertyController.zipCodeController.text);
-              addNewPropertyController.clearTextFields();
-              Navigator.pushNamed(context, '/anpMeetWithAgentPage');
-              // } else {
-              //   Get.snackbar(
-              //     AppStrings.missingFields,
-              //     AppStrings.fillAllFields,
-              //     snackPosition: SnackPosition.TOP,
-              //     backgroundColor: Colors.redAccent,
-              //     colorText: Colors.white,
-              //     dismissDirection: DismissDirection.startToEnd,
-              //     isDismissible: true,
-              //     duration: Duration(seconds: 2),
-              //     margin: EdgeInsets.all(10),
-              //     borderRadius: 8,
-              //   );
-              // }
+              if (addNewPropertyController.streetAddressController.text
+                      .trim()
+                      .isNotEmpty &&
+                  addNewPropertyController.unitNumberController.text
+                      .trim()
+                      .isNotEmpty &&
+                  addNewPropertyController.cityNameController.text
+                      .trim()
+                      .isNotEmpty &&
+                  addNewPropertyController.property.value.state.isNotEmpty &&
+                  addNewPropertyController.zipCodeController.text
+                      .trim()
+                      .isNotEmpty) {
+                addNewPropertyController.updateAddress(
+                    street:
+                        addNewPropertyController.streetAddressController.text +
+                            ", " +
+                            addNewPropertyController.unitNumberController.text,
+                    city: addNewPropertyController.cityNameController.text,
+                    state: addNewPropertyController.property.value.state,
+                    zip: addNewPropertyController.zipCodeController.text);
+                addNewPropertyController.clearTextFields();
+                Navigator.pushNamed(context, '/anpMeetWithAgentPage');
+              } else {
+                CustomSnackbar.show(
+                    title: AppStrings.missingFields,
+                    message: AppStrings.fillAllFields);
+              }
             },
           )
         ],

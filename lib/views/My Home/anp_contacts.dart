@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
+import 'package:realix_real_estate_app/widgets/custom_snackbar.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -66,15 +67,23 @@ class AnpContacts extends StatelessWidget {
             left: 0,
             right: 0,
             child: CustomBlackButtton(
-              buttonName: 'Next',
+              buttonName: AppStrings.next,
               onTap: () {
-                addNewPropertyController.updateContact(
-                  addNewPropertyController.selectedCountry['code'] +
-                      addNewPropertyController.mobileNumberController.text,
-                  addNewPropertyController.aboutController.text,
-                );
+                if (addNewPropertyController.mobileNumberController.text
+                    .trim()
+                    .isNotEmpty) {
+                  addNewPropertyController.updateContact(
+                    addNewPropertyController.selectedCountry['code'] +
+                        addNewPropertyController.mobileNumberController.text,
+                    addNewPropertyController.aboutController.text,
+                  );
 
-                Navigator.pushNamed(context, '/anpSelectAmenities');
+                  Navigator.pushNamed(context, '/anpSelectAmenities');
+                } else {
+                  CustomSnackbar.show(
+                      title: AppStrings.missingFields,
+                      message: AppStrings.fillAllFields);
+                }
               },
             ),
           )
@@ -145,15 +154,20 @@ class _CountryDropdownCustomState extends State<CountryDropdownCustom> {
       items: countries.map((country) {
         return PopupMenuItem<String>(
           value: country['name'],
-          child: Row(
-            children: [
-              Image.asset(country['image']!, scale: 14),
-              SizedBox(width: 8),
-              Text(country['name']!),
-            ],
+          child: Container(
+            color: Colors.transparent,
+            child: Row(
+              children: [
+                Image.asset(country['image']!, scale: 14),
+                SizedBox(width: 15),
+                Text(country['name']!),
+              ],
+            ),
           ),
         );
       }).toList(),
+      elevation: 4,
+      color: Color(0xFFF4F5F6),
     );
 
     if (selected != null) {

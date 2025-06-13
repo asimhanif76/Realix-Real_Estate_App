@@ -52,7 +52,7 @@ class OnboardingPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-           AppStrings.enjoyBeautiful   ,
+              AppStrings.enjoyBeautiful,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
@@ -62,7 +62,7 @@ class OnboardingPage extends StatelessWidget {
               height: 1.5.h,
             ),
             Text(
-             AppStrings.loremIpsum ,
+              AppStrings.loremIpsum,
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 14,
@@ -114,7 +114,7 @@ class OnboardingPage extends StatelessWidget {
                     color: Color(0xFF2FA2B9)),
                 child: Center(
                   child: Text(
-                  AppStrings.getStarted  ,
+                    AppStrings.getStarted,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,

@@ -30,4 +30,9 @@ class AppImages {
   static String camera = 'assets/images/svg/Camera.svg';
   static String edit = 'assets/images/svg/edit.svg';
   static String myNotificationEmpty = 'assets/images/my_notification_empty.png';
+  static String property_image = 'assets/images/property_image.png';
+  static String bath_room = 'assets/images/svg/bath_room.svg';
+  static String bed_room = 'assets/images/svg/bed_room.svg';
+  static String square = 'assets/images/svg/square.svg';
+  static String edit_details = 'assets/images/svg/edit_details.svg';
 }

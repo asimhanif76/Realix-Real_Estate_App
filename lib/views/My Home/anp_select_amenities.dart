@@ -102,7 +102,7 @@ class AnpSelectAmenities extends StatelessWidget {
               left: 0,
               right: 0,
               child: CustomBlackButtton(
-                buttonName: 'Next',
+                buttonName: AppStrings.next,
                 onTap: () {
                   addNewPropertyController.updateAmenities(
                       addNewPropertyController.selectedFacilities.toList());

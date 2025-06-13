@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
+import 'package:realix_real_estate_app/views/message/full_image_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MessagePage extends StatelessWidget {
@@ -61,35 +62,46 @@ class MessagePage extends StatelessWidget {
                                 : CrossAxisAlignment.start,
                             children: [
                               chat.isImage
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                        border: Border.all(),
-                                        borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(
-                                                chat.isMe ? width * 0.05 : 0.0),
-                                            bottomRight:
-                                                Radius.circular(width * 0.05),
-                                            topLeft:
-                                                Radius.circular(width * 0.05),
-                                            topRight: Radius.circular(chat.isMe
-                                                ? 0.0
-                                                : width * 0.05)),
-                                      ),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(
-                                                chat.isMe ? width * 0.05 : 0.0),
-                                            bottomRight:
-                                                Radius.circular(width * 0.05),
-                                            topLeft:
-                                                Radius.circular(width * 0.05),
-                                            topRight: Radius.circular(chat.isMe
-                                                ? 0.0
-                                                : width * 0.05)),
-                                        child: Image.file(
-                                          File(chat.imagePath!),
-                                          width: width * 0.7,
-                                          fit: BoxFit.cover,
+                                  ? InkWell(
+                                      onTap: () => Get.to(FullImageView(
+                                          imagePath: chat.imagePath!)),
+                                      child: Container(
+                                        height: height * 0.3,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(),
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(
+                                                  chat.isMe
+                                                      ? width * 0.05
+                                                      : 0.0),
+                                              bottomRight:
+                                                  Radius.circular(width * 0.05),
+                                              topLeft:
+                                                  Radius.circular(width * 0.05),
+                                              topRight: Radius.circular(
+                                                  chat.isMe
+                                                      ? 0.0
+                                                      : width * 0.05)),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(
+                                                  chat.isMe
+                                                      ? width * 0.05
+                                                      : 0.0),
+                                              bottomRight:
+                                                  Radius.circular(width * 0.05),
+                                              topLeft:
+                                                  Radius.circular(width * 0.05),
+                                              topRight: Radius.circular(
+                                                  chat.isMe
+                                                      ? 0.0
+                                                      : width * 0.05)),
+                                          child: Image.file(
+                                            File(chat.imagePath!),
+                                            width: width * 0.7,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
                                     )

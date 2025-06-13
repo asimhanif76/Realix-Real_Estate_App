@@ -21,6 +21,7 @@ class NotificationPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Color(0xFFFDFDFD),
       body: Obx(
         () => notificationPageController.notifications.isEmpty
             ? _emptyNotificationPage(width, height)
@@ -221,7 +222,7 @@ class NotificationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-             AppImages.myNotificationEmpty ,
+              AppImages.myNotificationEmpty,
               scale: 4,
             ),
             SizedBox(

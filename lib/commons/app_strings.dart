@@ -88,5 +88,12 @@ class AppStrings {
   static String isThereAnythingElse = 'Is there anything else we should know?';
   static String pleaseEnterYourReasonForSelling = 'Please enter your reason for selling:';
   static String egIAmHelping = 'E.g. I’m helping my parents sell their home.';
+  static String primaryApartment = 'Primary Apartment';
+  static String bathRoom = 'Bath room';
+  static String bedRoom = 'Bed Room';
+  static String square = 'Square';
+  static String editDetails = 'Edit Details';
+  static String information = 'Information';
+  static String nearbyProperties = 'Nearby Properties';
   static String a = '';
 }

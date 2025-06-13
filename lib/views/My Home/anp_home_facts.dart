@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
+import 'package:realix_real_estate_app/widgets/custom_snackbar.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -95,8 +96,8 @@ class AnpHomeFacts extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.circular(width * 0.04)),
                           child: Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: width * 0.05),
+                            padding: EdgeInsets.only(
+                                left: width * 0.04, right: width * 0.057),
                             child: DropdownButton(
                               elevation: 0,
                               borderRadius: BorderRadius.circular(width * 0.04),
@@ -228,28 +229,53 @@ class AnpHomeFacts extends StatelessWidget {
               child: CustomBlackButtton(
                 buttonName: AppStrings.next,
                 onTap: () {
-                  addNewPropertyController.updateHomeFacts(
-                    lotSize: double.tryParse(
-                            addNewPropertyController.lotSizeController.text) ??
-                        0.0,
-                    yearBuilt: int.tryParse(addNewPropertyController
-                            .yearBuiltController.text) ??
-                        0,
-                    fullBaths: int.tryParse(addNewPropertyController
-                            .fullBathsController.text) ??
-                        0,
-                    bedrooms: int.tryParse(
-                            addNewPropertyController.bedroomsController.text) ??
-                        0,
-                    monthlyRent: double.tryParse(addNewPropertyController
-                            .monthlyRentController.text) ??
-                        0.0,
-                    securityDeposit: double.tryParse(addNewPropertyController
-                            .securityDepositController.text) ??
-                        0.0,
-                  );
-                  Navigator.pushNamed(context, '/anpContacts');
-                  addNewPropertyController.clearHomeFactsFields();
+                  if (addNewPropertyController.property.value.propertyType !=
+                          '' &&
+                      addNewPropertyController.lotSizeController.text
+                          .trim()
+                          .isNotEmpty &&
+                      addNewPropertyController.yearBuiltController.text
+                          .trim()
+                          .isNotEmpty &&
+                      addNewPropertyController.fullBathsController.text
+                          .trim()
+                          .isNotEmpty &&
+                      addNewPropertyController.bedroomsController.text
+                          .trim()
+                          .isNotEmpty &&
+                      addNewPropertyController.monthlyRentController.text
+                          .trim()
+                          .isNotEmpty &&
+                      addNewPropertyController.securityDepositController.text
+                          .trim()
+                          .isNotEmpty) {
+                    addNewPropertyController.updateHomeFacts(
+                      lotSize: double.tryParse(addNewPropertyController
+                              .lotSizeController.text) ??
+                          0.0,
+                      yearBuilt: int.tryParse(addNewPropertyController
+                              .yearBuiltController.text) ??
+                          0,
+                      fullBaths: int.tryParse(addNewPropertyController
+                              .fullBathsController.text) ??
+                          0,
+                      bedrooms: int.tryParse(addNewPropertyController
+                              .bedroomsController.text) ??
+                          0,
+                      monthlyRent: double.tryParse(addNewPropertyController
+                              .monthlyRentController.text) ??
+                          0.0,
+                      securityDeposit: double.tryParse(addNewPropertyController
+                              .securityDepositController.text) ??
+                          0.0,
+                    );
+                    Navigator.pushNamed(context, '/anpContacts');
+                    addNewPropertyController.clearHomeFactsFields();
+                  } else {
+                    CustomSnackbar.show(
+                        title: AppStrings.missingFields,
+                        message: AppStrings.fillAllFields);
+                  }
                 },
               )),
         ],

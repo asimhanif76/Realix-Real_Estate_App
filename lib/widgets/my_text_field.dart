@@ -64,7 +64,7 @@ class _MyTextFieldState extends State<MyTextField> {
         padding: EdgeInsets.only(left: width * 0.01, right: width * 0.01),
         height: height * 0.07,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(width * 0.04),
           border: Border.all(
             color: isFocused
                 ? Color(0xFF2FA2B9)
@@ -93,7 +93,6 @@ class _MyTextFieldState extends State<MyTextField> {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                
                 prefixIcon:
                     widget.prefixIcon != null ? widget.prefixIcon : null,
                 suffixIcon: widget.trailingIcon != null

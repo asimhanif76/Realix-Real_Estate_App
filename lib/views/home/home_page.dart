@@ -17,33 +17,39 @@ class HomePage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 5.h,
-              ),
-              _buildFirstRow(context),
-              SizedBox(
-                height: height * 0.012,
-              ),
-              _myTextField(width),
-              ListView.separated(
-                padding: EdgeInsets.symmetric(vertical: width * 0.03),
-                separatorBuilder: (context, index) => SizedBox(
-                  height: width * 0.05,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 5.h,
+            ),
+            _buildFirstRow(context),
+            SizedBox(
+              height: height * 0.012,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _myTextField(width),
+                    ListView.separated(
+                      padding: EdgeInsets.symmetric(vertical: width * 0.03),
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: width * 0.05,
+                      ),
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      itemCount: homePageController.ProductList.length,
+                      itemBuilder: (context, index) {
+                        return _buildProductCard(context, index);
+                      },
+                    )
+                  ],
                 ),
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                itemCount: homePageController.ProductList.length,
-                itemBuilder: (context, index) {
-                  return _buildProductCard(context, index);
-                },
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
+import 'package:realix_real_estate_app/widgets/custom_snackbar.dart';
 import 'package:realix_real_estate_app/widgets/my_linear_progress_indicator.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
@@ -68,10 +69,18 @@ class AnpDiscription extends StatelessWidget {
               child: CustomBlackButtton(
                 buttonName: AppStrings.next,
                 onTap: () {
-                  addNewPropertyController.updateDescription(
-                      addNewPropertyController.discriptionController.text);
-                  Navigator.pushNamed(context, '/anpHomeFacts');
-                  addNewPropertyController.discriptionController.clear();
+                  if (addNewPropertyController.discriptionController.text
+                      .trim()
+                      .isNotEmpty) {
+                    addNewPropertyController.updateDescription(
+                        addNewPropertyController.discriptionController.text);
+                    Navigator.pushNamed(context, '/anpHomeFacts');
+                    addNewPropertyController.discriptionController.clear();
+                  } else {
+                    CustomSnackbar.show(
+                        title: AppStrings.missingFields,
+                        message: AppStrings.fillAllFields);
+                  }
                 },
               ))
         ],

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/login_page_controller.dart';
-import 'package:realix_real_estate_app/views/onboarding/sign_up_page.dart';
 import 'package:realix_real_estate_app/widgets/my_container_button.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:realix_real_estate_app/widgets/sign_up_with_social_acc.dart';
@@ -36,6 +34,7 @@ class SignInPage extends StatelessWidget {
               MyTextField(
                 controller: loginPageController.phoneController,
                 labelText: AppStrings.phoneNumber,
+                keyBoardType: TextInputType.phone,
               ),
               MyTextField(
                 controller: loginPageController.passwordController,
@@ -77,23 +76,29 @@ class SignInPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.015,
               ),
-              InkWell(
-                onTap: () => Get.toNamed('/signUpPage'),
-                child: RichText(
-                  text: TextSpan(
-                    text: AppStrings.dontAccount,
-                    style: TextStyle(color: Color(0xFF777E90), fontSize: 16),
-                    children: [
-                      TextSpan(
-                        text: AppStrings.signUp,
-                        style: TextStyle(
-                          color: Color(0xFF2FA2B9),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    AppStrings.dontAccount,
+                    style: TextStyle(
+                      color: Color(0xFF777E90),
+                      fontSize: 16.sp,
+                    ),
                   ),
-                ),
+                  SizedBox(width: width * 0.01),
+                  InkWell(
+                    onTap: () => Get.toNamed('/signUpPage'),
+                    child: Text(
+                      AppStrings.signUp,
+                      style: TextStyle(
+                        color: Color(0xFF2FA2B9),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

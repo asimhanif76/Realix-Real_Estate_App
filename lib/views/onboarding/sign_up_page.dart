@@ -39,6 +39,7 @@ class SignUpPage extends StatelessWidget {
               ),
               MyTextField(
                   labelText: AppStrings.phoneNumber,
+                  keyBoardType: TextInputType.phone,
                   controller: loginPageController.signUpPhoneNumController),
               MyTextField(
                   labelText: AppStrings.password,
@@ -78,22 +79,29 @@ class SignUpPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.015,
               ),
-              InkWell(
-                onTap: () => Navigator.pop(context),
-                child: RichText(
-                    text: TextSpan(
-                        style:
-                            TextStyle(color: Color(0xFF777E90), fontSize: 16),
-                        children: [
-                      TextSpan(text: AppStrings.alreadyHaveAcc),
-                      TextSpan(
-                        text: AppStrings.signIn,
-                        style: TextStyle(
-                            color: Color(0xFF2FA2B9),
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    AppStrings.alreadyHaveAcc,
+                    style: TextStyle(
+                      color: Color(0xFF777E90),
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(width: width * 0.01),
+                  InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Text(
+                      AppStrings.signIn,
+                      style: TextStyle(
+                        color: Color(0xFF2FA2B9),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
-                    ])),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

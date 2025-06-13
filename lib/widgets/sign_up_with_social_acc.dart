@@ -27,7 +27,7 @@ class SignUpWithSocialAcc extends StatelessWidget {
           height: height * 0.015,
         ),
         MyContainerButton(
-            onTap: () {},
+            onTap: onTapGoogle,
             color: Colors.white,
             widget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +43,7 @@ class SignUpWithSocialAcc extends StatelessWidget {
               ],
             )),
         MyContainerButton(
-            onTap: () {},
+            onTap: onTapFacebook,
             color: Colors.white,
             widget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
