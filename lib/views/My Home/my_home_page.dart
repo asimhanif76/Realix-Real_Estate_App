@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/widgets/my_container_button.dart';
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
@@ -16,9 +17,12 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: height * 0.04,
+            height: height * 0.05,
           ),
-          PageHeadingRow(pageHeadingText: AppStrings.myHome),
+          Text(
+            AppStrings.myHome,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w800),
+          ),
           SizedBox(
             height: height * 0.04,
           ),

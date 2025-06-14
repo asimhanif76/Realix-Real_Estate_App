@@ -27,9 +27,9 @@ class ChatPage extends StatelessWidget {
           SizedBox(
             height: height * 0.05,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: PageHeadingRow(pageHeadingText: AppStrings.message),
+          Text(
+            AppStrings.message,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w800),
           ),
           Obx(
             () => ListView.separated(

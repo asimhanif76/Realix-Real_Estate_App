@@ -62,28 +62,24 @@ class AnpDiscription extends StatelessWidget {
               )
             ],
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  if (addNewPropertyController.discriptionController.text
-                      .trim()
-                      .isNotEmpty) {
-                    addNewPropertyController.updateDescription(
-                        addNewPropertyController.discriptionController.text);
-                    Navigator.pushNamed(context, '/anpHomeFacts');
-                    addNewPropertyController.discriptionController.clear();
-                  } else {
-                    CustomSnackbar.show(
-                        title: AppStrings.missingFields,
-                        message: AppStrings.fillAllFields);
-                  }
-                },
-              ))
         ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+          if (addNewPropertyController.discriptionController.text
+              .trim()
+              .isNotEmpty) {
+            addNewPropertyController.updateDescription(
+                addNewPropertyController.discriptionController.text);
+            Navigator.pushNamed(context, '/anpHomeFacts');
+            addNewPropertyController.discriptionController.clear();
+          } else {
+            CustomSnackbar.show(
+                title: AppStrings.missingFields,
+                message: AppStrings.fillAllFields);
+          }
+        },
       ),
     );
   }

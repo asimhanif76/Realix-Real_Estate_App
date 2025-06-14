@@ -5,6 +5,8 @@ import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_details_controller.dart';
+import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
+import 'package:realix_real_estate_app/widgets/custom_black_buttton.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddNewPropertyDetailsPage extends StatelessWidget {
@@ -16,6 +18,8 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
   AddNewPropertyDetailsController addNewPropertyDetailsController =
       Get.put(AddNewPropertyDetailsController());
 
+  HomePageController homePageController = Get.put(HomePageController());
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -23,6 +27,10 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.contact_agent,
+        onTap: () {},
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(width * 0.05),
@@ -185,10 +193,134 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
+              ListView.separated(
+                padding: EdgeInsets.symmetric(vertical: width * 0.03),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: width * 0.05,
+                ),
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: homePageController.ProductList.length,
+                itemBuilder: (context, index) {
+                  return _buildProductCard(context, index);
+                },
+              )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildProductCard(BuildContext context, int index) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var product = homePageController.ProductList[index];
+    return Column(
+      children: [
+        Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: height * 0.25,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(width * 0.05)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(width * 0.05),
+                child: Image.asset(
+                  product.imagePath,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Positioned(
+                right: width * 0.04,
+                top: width * 0.04,
+                child: InkWell(
+                  onTap: () {
+                    product.isFavourite.toggle();
+                  },
+                  child: CircleAvatar(
+                      backgroundColor: Color(0xFF353945),
+                      radius: 17.5.sp,
+                      child: Obx(
+                        () => SvgPicture.asset(
+                          product.isFavourite.value
+                              ? AppImages.favourite
+                              : AppImages.favourite_outline,
+                          width: 17.5.sp,
+                          color: product.isFavourite.value
+                              ? Colors.red
+                              : Colors.white,
+                        ),
+                      )),
+                )),
+          ],
+        ),
+        Container(
+          height: height * 0.1,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(width * 0.05),
+          ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.0, vertical: width * 0.03),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      product.name,
+                      style: TextStyle(
+                          fontSize: 17.5.sp,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.black),
+                    ),
+                    Text(
+                      'price',
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w300,
+                          color: Color(0xFF777E90)),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on_outlined,
+                          color: Color(0xFF2FA2B9),
+                          size: 16.sp,
+                        ),
+                        Text(
+                          product.address,
+                          style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '\$${product.price}',
+                      style: TextStyle(
+                          fontSize: 17.5.sp,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFF2FA2B9)),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 

@@ -28,7 +28,8 @@ class AnpTimeToSell extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-                child: PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
+                child:
+                    PageHeadingRow(pageHeadingText: AppStrings.addNewProperty),
               ),
               SizedBox(
                 height: height * 0.04,
@@ -92,19 +93,15 @@ class AnpTimeToSell extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  addNewPropertyController.updateTimeToSell(
-                      addNewPropertyController.timePeriodForSell.value);
-                  Navigator.pushNamed(context, '/anpReasonSellingHome');
-                },
-              ))
         ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+          addNewPropertyController.updateTimeToSell(
+              addNewPropertyController.timePeriodForSell.value);
+          Navigator.pushNamed(context, '/anpReasonSellingHome');
+        },
       ),
     );
   }

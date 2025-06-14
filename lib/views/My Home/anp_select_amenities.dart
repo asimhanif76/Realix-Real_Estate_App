@@ -97,23 +97,20 @@ class AnpSelectAmenities extends StatelessWidget {
                   ))
             ],
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  addNewPropertyController.updateAmenities(
+         
+        ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+             addNewPropertyController.updateAmenities(
                       addNewPropertyController.selectedFacilities.toList());
                   Navigator.pushNamed(context, '/addNewPropertyDetailsPage');
                   // Navigator.pushNamedAndRemoveUntil(
                   //     context,
                   //     '/addNewPropertyDetailsPage',
                   //     ModalRoute.withName('/myHomePage'));
-                },
-              ))
-        ],
+        },
       ),
     );
   }

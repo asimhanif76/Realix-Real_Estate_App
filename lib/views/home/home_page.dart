@@ -63,9 +63,16 @@ class HomePage extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
+          height: height * 0.45,
           decoration:
               BoxDecoration(borderRadius: BorderRadius.circular(width * 0.05)),
-          child: Image.asset(product.imagePath),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(width * 0.05),
+            child: Image.asset(
+              product.imagePath,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         Positioned(
           bottom: 0,
@@ -91,14 +98,14 @@ class HomePage extends StatelessWidget {
                         Text(
                           product.name,
                           style: TextStyle(
-                              fontSize: 18.sp,
+                              fontSize: 17.5.sp,
                               fontWeight: FontWeight.w800,
                               color: Colors.black),
                         ),
                         Text(
                           '\$${product.price}',
                           style: TextStyle(
-                              fontSize: 18.sp,
+                              fontSize: 17.5.sp,
                               fontWeight: FontWeight.w800,
                               color: Color(0xFF2FA2B9)),
                         ),
@@ -147,11 +154,13 @@ class HomePage extends StatelessWidget {
               },
               child: CircleAvatar(
                   backgroundColor: Color(0xFF353945),
+                  radius: 17.5.sp,
                   child: Obx(
                     () => SvgPicture.asset(
                       product.isFavourite.value
                           ? AppImages.favourite
                           : AppImages.favourite_outline,
+                      width: 17.5.sp,
                       color:
                           product.isFavourite.value ? Colors.red : Colors.white,
                     ),

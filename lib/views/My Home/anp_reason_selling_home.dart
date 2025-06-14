@@ -92,26 +92,19 @@ class AnpReasonSellingHome extends StatelessWidget {
                       );
                     },
                   ),
-                  SizedBox(
-                    height: height * 0.1,
-                  ),
                 ],
               ),
             ),
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  addNewPropertyController.updateReason(
-                      addNewPropertyController.reasonForSelling.value);
-                  Navigator.pushNamed(context, '/anpDiscription');
-                },
-              ))
         ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+          addNewPropertyController
+              .updateReason(addNewPropertyController.reasonForSelling.value);
+          Navigator.pushNamed(context, '/anpDiscription');
+        },
       ),
     );
   }

@@ -62,14 +62,11 @@ class AnpContacts extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: CustomBlackButtton(
-              buttonName: AppStrings.next,
-              onTap: () {
-                if (addNewPropertyController.mobileNumberController.text
+    ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () { if (addNewPropertyController.mobileNumberController.text
                     .trim()
                     .isNotEmpty) {
                   addNewPropertyController.updateContact(
@@ -83,11 +80,7 @@ class AnpContacts extends StatelessWidget {
                   CustomSnackbar.show(
                       title: AppStrings.missingFields,
                       message: AppStrings.fillAllFields);
-                }
-              },
-            ),
-          )
-        ],
+                }},
       ),
     );
   }

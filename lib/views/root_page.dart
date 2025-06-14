@@ -34,7 +34,6 @@ class RootPage extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.black,
             unselectedItemColor: Colors.grey,
-            // elevation: 20,
             key: GlobalKey(),
             selectedLabelStyle:
                 TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
@@ -44,6 +43,7 @@ class RootPage extends StatelessWidget {
               bottomBarController.selectedIndex.value = value;
             },
             currentIndex: bottomBarController.selectedIndex.value,
+            
             items: [
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(

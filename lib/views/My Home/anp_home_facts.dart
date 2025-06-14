@@ -216,69 +216,64 @@ class AnpHomeFacts extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: height * 0.12,
+                    height: height * 0.01,
                   )
                 ],
               ),
             ),
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  if (addNewPropertyController.property.value.propertyType !=
-                          '' &&
-                      addNewPropertyController.lotSizeController.text
-                          .trim()
-                          .isNotEmpty &&
-                      addNewPropertyController.yearBuiltController.text
-                          .trim()
-                          .isNotEmpty &&
-                      addNewPropertyController.fullBathsController.text
-                          .trim()
-                          .isNotEmpty &&
-                      addNewPropertyController.bedroomsController.text
-                          .trim()
-                          .isNotEmpty &&
-                      addNewPropertyController.monthlyRentController.text
-                          .trim()
-                          .isNotEmpty &&
-                      addNewPropertyController.securityDepositController.text
-                          .trim()
-                          .isNotEmpty) {
-                    addNewPropertyController.updateHomeFacts(
-                      lotSize: double.tryParse(addNewPropertyController
-                              .lotSizeController.text) ??
-                          0.0,
-                      yearBuilt: int.tryParse(addNewPropertyController
-                              .yearBuiltController.text) ??
-                          0,
-                      fullBaths: int.tryParse(addNewPropertyController
-                              .fullBathsController.text) ??
-                          0,
-                      bedrooms: int.tryParse(addNewPropertyController
-                              .bedroomsController.text) ??
-                          0,
-                      monthlyRent: double.tryParse(addNewPropertyController
-                              .monthlyRentController.text) ??
-                          0.0,
-                      securityDeposit: double.tryParse(addNewPropertyController
-                              .securityDepositController.text) ??
-                          0.0,
-                    );
-                    Navigator.pushNamed(context, '/anpContacts');
-                    addNewPropertyController.clearHomeFactsFields();
-                  } else {
-                    CustomSnackbar.show(
-                        title: AppStrings.missingFields,
-                        message: AppStrings.fillAllFields);
-                  }
-                },
-              )),
         ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+          if (addNewPropertyController.property.value.propertyType != '' &&
+              addNewPropertyController.lotSizeController.text
+                  .trim()
+                  .isNotEmpty &&
+              addNewPropertyController.yearBuiltController.text
+                  .trim()
+                  .isNotEmpty &&
+              addNewPropertyController.fullBathsController.text
+                  .trim()
+                  .isNotEmpty &&
+              addNewPropertyController.bedroomsController.text
+                  .trim()
+                  .isNotEmpty &&
+              addNewPropertyController.monthlyRentController.text
+                  .trim()
+                  .isNotEmpty &&
+              addNewPropertyController.securityDepositController.text
+                  .trim()
+                  .isNotEmpty) {
+            addNewPropertyController.updateHomeFacts(
+              lotSize: double.tryParse(
+                      addNewPropertyController.lotSizeController.text) ??
+                  0.0,
+              yearBuilt: int.tryParse(
+                      addNewPropertyController.yearBuiltController.text) ??
+                  0,
+              fullBaths: int.tryParse(
+                      addNewPropertyController.fullBathsController.text) ??
+                  0,
+              bedrooms: int.tryParse(
+                      addNewPropertyController.bedroomsController.text) ??
+                  0,
+              monthlyRent: double.tryParse(
+                      addNewPropertyController.monthlyRentController.text) ??
+                  0.0,
+              securityDeposit: double.tryParse(addNewPropertyController
+                      .securityDepositController.text) ??
+                  0.0,
+            );
+            Navigator.pushNamed(context, '/anpContacts');
+            addNewPropertyController.clearHomeFactsFields();
+          } else {
+            CustomSnackbar.show(
+                title: AppStrings.missingFields,
+                message: AppStrings.fillAllFields);
+          }
+        },
       ),
     );
   }

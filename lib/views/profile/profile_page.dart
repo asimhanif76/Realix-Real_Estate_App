@@ -25,9 +25,9 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             height: height * 0.05,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-            child: PageHeadingRow(pageHeadingText: AppStrings.profile),
+          Text(
+            AppStrings.profile,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w800),
           ),
           SizedBox(
             height: height * 0.05,
@@ -43,18 +43,32 @@ class ProfilePage extends StatelessWidget {
               return index == 0
                   ? Column(
                       children: [
-                        _buildProfileOptionHeading(width,AppStrings.homeSearch ),
-                        _buildProfileTile(item, height)
+                        _buildProfileOptionHeading(
+                            width, AppStrings.homeSearch),
+                        _buildProfileTile(
+                          item,
+                          height,
+                          () {},
+                        )
                       ],
                     )
                   : index == 3
                       ? Column(
                           children: [
-                            _buildProfileOptionHeading(width,AppStrings.generals ),
-                            _buildProfileTile(item, height)
+                            _buildProfileOptionHeading(
+                                width, AppStrings.generals),
+                            _buildProfileTile(
+                              item,
+                              height,
+                              () {},
+                            )
                           ],
                         )
-                      : _buildProfileTile(item, height);
+                      : _buildProfileTile(
+                          item,
+                          height,
+                          () {},
+                        );
             },
           )
         ],
@@ -62,12 +76,12 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildProfileTile(var item, double height) {
+  Widget _buildProfileTile(var item, double height, VoidCallback onTap) {
     return Padding(
       padding: EdgeInsets.only(top: height * 0.01),
       child: ListTile(
         contentPadding: EdgeInsets.all(0),
-        onTap: () {},
+        onTap: onTap,
         leading: Container(
           height: 28.sp,
           width: 28.sp,

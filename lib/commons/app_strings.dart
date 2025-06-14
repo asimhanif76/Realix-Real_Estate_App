@@ -95,5 +95,7 @@ class AppStrings {
   static String editDetails = 'Edit Details';
   static String information = 'Information';
   static String nearbyProperties = 'Nearby Properties';
+  static String contact_agent = 'Contact Agent';
   static String a = '';
+  static String i_am_alone_at_home_i_cant_work_now="i am alone at home i cant work now";
 }

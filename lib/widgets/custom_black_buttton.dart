@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:realix_real_estate_app/widgets/my_container_button.dart';
 
 class CustomBlackButtton extends StatelessWidget {
-  String buttonName;
-  VoidCallback onTap;
-  CustomBlackButtton({super.key,required this.buttonName,required this.onTap});
+  final String buttonName;
+  final VoidCallback onTap;
+
+  CustomBlackButtton({
+    super.key,
+    required this.buttonName,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
     return Container(
@@ -16,27 +19,38 @@ class CustomBlackButtton extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            offset: Offset(0, -2), // upward shadow
-            blurRadius: 5,
-            spreadRadius: 0,
+            color: Colors.black12,
+            offset: Offset(0, -4),
+            blurRadius: 10,
+            spreadRadius: 1,
           ),
         ],
       ),
-      child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: width * 0.05, vertical: width * 0.025),
-          child: MyContainerButton(
-            color: Color(0xFF111827),
-            widget: Text(
-              buttonName,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Material(
+        color: Colors.transparent, // Needed for ripple effect
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(width * 0.05),
+          child: Ink(
+            height: 55,
+            decoration: BoxDecoration(
+              color: Color(0xFF0C0D20),
+              borderRadius: BorderRadius.circular(width * 0.05),
             ),
-            onTap: onTap,
-          )),
+            child: Center(
+              child: Text(
+                buttonName,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

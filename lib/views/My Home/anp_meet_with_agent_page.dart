@@ -53,27 +53,23 @@ class AnpMeetWithAgentPage extends StatelessWidget {
               _pickTime(width, height)
             ],
           ),
-          Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: CustomBlackButtton(
-                buttonName: AppStrings.next,
-                onTap: () {
-                  DateTime selectedDate = addNewPropertyController.daysOfMonth[
-                      addNewPropertyController.selectedDateIndex.value];
-
-                  String selectedTime = addNewPropertyController
-                      .time[addNewPropertyController.selectedTimeIndex.value];
-
-                  addNewPropertyController.updateMeeting(
-                    selectedDate,
-                    selectedTime,
-                  );
-                  Navigator.pushNamed(context, '/anpTimeToSell');
-                },
-              ))
         ],
+      ),
+      bottomNavigationBar: CustomBlackButtton(
+        buttonName: AppStrings.next,
+        onTap: () {
+          DateTime selectedDate = addNewPropertyController
+              .daysOfMonth[addNewPropertyController.selectedDateIndex.value];
+
+          String selectedTime = addNewPropertyController
+              .time[addNewPropertyController.selectedTimeIndex.value];
+
+          addNewPropertyController.updateMeeting(
+            selectedDate,
+            selectedTime,
+          );
+          Navigator.pushNamed(context, '/anpTimeToSell');
+        },
       ),
     );
   }
