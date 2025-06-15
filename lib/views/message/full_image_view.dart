@@ -15,6 +15,6 @@ class FullImageView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: PhotoView(imageProvider: AssetImage(imagePath)));
+        body: PhotoView(imageProvider: FileImage(File(imagePath))));
   }
 }
