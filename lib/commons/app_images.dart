@@ -35,4 +35,12 @@ class AppImages {
   static String bed_room = 'assets/images/svg/bed_room.svg';
   static String square = 'assets/images/svg/square.svg';
   static String edit_details = 'assets/images/svg/edit_details.svg';
+  static String map = 'assets/images/svg/map.svg';
+  static String map_sattelite = 'assets/images/svg/map_sattelite.svg';
+  static String draw = 'assets/images/svg/draw.svg';
+  static String draw_cross = 'assets/images/svg/draw_cross.svg';
+  static String nearby = 'assets/images/svg/nearby.svg';
+  static String map_satellite_image = 'assets/images/map_satellite.png';
+  static String map_image = 'assets/images/map.png';
+  static String map_draw = 'assets/images/map_draw.png';
 }
