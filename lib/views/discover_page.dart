@@ -110,6 +110,7 @@ class DiscoverPage extends StatelessWidget {
                   showModalBottomSheet(
                     context: context,
                     elevation: 10,
+                    backgroundColor: Colors.white,
                     isScrollControlled: true,
                     // showDragHandle: true,
 
