@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
+import 'package:realix_real_estate_app/views/profile/constants/show_all_ammenities.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FilterBottomSheet extends StatelessWidget {
@@ -13,11 +14,6 @@ class FilterBottomSheet extends StatelessWidget {
   AddNewPropertyController addNewPropertyController =
       Get.put(AddNewPropertyController());
 
-  TextEditingController minSquareFeetController = TextEditingController();
-  TextEditingController maxSquareFeetController = TextEditingController();
-  TextEditingController minLotSizeController = TextEditingController();
-  TextEditingController maxLotSizeController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -25,52 +21,93 @@ class FilterBottomSheet extends StatelessWidget {
 
     return Container(
       height: height * 0.9,
-      child: Column(
-        children: [
-          Divider(
-            indent: width * 0.43,
-            endIndent: width * 0.43,
-            color: Colors.grey.shade300,
-            thickness: 5,
-            height: width * 0.07,
-          ),
-          _heaadingRow(width),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _forSale_forRent(width, height),
-                  SizedBox(height: height * 0.02),
-                  _PriceRange(width, height),
-                  _features(width, height),
-                  SizedBox(
-                    height: height * 0.02,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(width * 0.07),
+        ),
+        child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Column(
+              children: [
+                Divider(
+                  indent: width * 0.43,
+                  endIndent: width * 0.43,
+                  color: Colors.grey.shade300,
+                  thickness: 5,
+                  height: width * 0.07,
+                ),
+                _heaadingRow(width),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _forSale_forRent(width, height),
+                        SizedBox(height: height * 0.02),
+                        _PriceRange(width, height),
+                        _features(width, height),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        _propertyFacts(width, height),
+                        SizedBox(
+                          height: width * 0.06,
+                        ),
+                        _propertyType(width, height),
+                        // SizedBox(
+                        //   height: width * 0.06,
+                        // ),
+                        _ammenities(
+                          width,
+                          height,
+                          infoOnTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Container(
+                                    height: height * 0.2,
+                                    width: width * 0.7,
+                                    padding: const EdgeInsets.all(16),
+                                    child: Center(
+                                      child: Text(
+                                        'Select Ammenities',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          seeMoreOnTap: () {},
+                        ),
+                        // SizedBox(
+                        //   height: width * 0.06,
+                        // ),
+                      ],
+                    ),
                   ),
-                  _propertyFacts(width, height),
-                  SizedBox(
-                    height: width * 0.06,
-                  ),
-                  _propertyType(width, height),
-                  SizedBox(
-                    height: width * 0.06,
-                  ),
-                  _ammenities(
-                    width,
-                    height,
-                    infoOnTap: () {},
-                    seeMoreOnTap: () {},
-                  ),
-                  SizedBox(
-                    height: width * 0.06,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
+            bottomNavigationBar: _resetAndApply(
+              width,
+              height,
+              resetOnTap: () {
+                discoverPageController.resetOnTap();
+              },
+              applyOnTap: () {
+                discoverPageController.applyOnTap();
+              },
+            )),
       ),
     );
   }
@@ -82,7 +119,8 @@ class FilterBottomSheet extends StatelessWidget {
     required VoidCallback seeMoreOnTap,
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.05, vertical: width * 0.06),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -119,7 +157,9 @@ class FilterBottomSheet extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Wrap(
                   spacing: 10,
-                  children: addNewPropertyController.facilities.map((ammenity) {
+                  children: addNewPropertyController.facilities
+                      .take(8)
+                      .map((ammenity) {
                     final isSelected = discoverPageController.selectedAmmenities
                         .contains(ammenity);
 
@@ -160,7 +200,9 @@ class FilterBottomSheet extends StatelessWidget {
             height: width * 0.03,
           ),
           InkWell(
-            onTap: seeMoreOnTap,
+            onTap: () {
+              Get.to(() => ShowAllAmmenities());
+            },
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -273,7 +315,7 @@ class FilterBottomSheet extends StatelessWidget {
             children: [
               _customField(
                   width: width,
-                  controller: minSquareFeetController,
+                  controller: discoverPageController.minSquareFeetController,
                   hintText: 'Min'),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
@@ -285,7 +327,7 @@ class FilterBottomSheet extends StatelessWidget {
               ),
               _customField(
                   width: width,
-                  controller: maxSquareFeetController,
+                  controller: discoverPageController.maxSquareFeetController,
                   hintText: 'Max'),
             ],
           ),
@@ -300,7 +342,7 @@ class FilterBottomSheet extends StatelessWidget {
             children: [
               _customField(
                   width: width,
-                  controller: minLotSizeController,
+                  controller: discoverPageController.minLotSizeController,
                   hintText: 'Min'),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: width * 0.04),
@@ -312,7 +354,7 @@ class FilterBottomSheet extends StatelessWidget {
               ),
               _customField(
                   width: width,
-                  controller: maxLotSizeController,
+                  controller: discoverPageController.maxLotSizeController,
                   hintText: 'Max'),
             ],
           ),
@@ -641,59 +683,84 @@ class FilterBottomSheet extends StatelessWidget {
       ),
     );
   }
-}
 
-class PriceRangeSlider extends StatefulWidget {
-  @override
-  _PriceRangeSliderState createState() => _PriceRangeSliderState();
-}
-
-class _PriceRangeSliderState extends State<PriceRangeSlider> {
-  RangeValues _rangeValues = RangeValues(200, 15000);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Top Text Row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget _resetAndApply(
+    double width,
+    double height, {
+    required VoidCallback resetOnTap,
+    required VoidCallback applyOnTap,
+  }) {
+    return Container(
+      height: height * 0.09,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            offset: Offset(0, -2),
+            blurRadius: 5,
+            spreadRadius: 0,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: width * 0.05, vertical: height * 0.015),
+        child: Row(
           children: [
-            Text(
-              "Price Range",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                color: Color(0xFF141416),
+            Expanded(
+                child: Material(
+              borderRadius: BorderRadius.circular(
+                width * 0.04,
               ),
-            ),
-            Text(
-              "\$${_rangeValues.start.toInt()} - \$${_rangeValues.end.toInt()}",
-              style: TextStyle(
-                color: Color(0xFF2FA2B9),
-                fontWeight: FontWeight.w500,
+              color: Color(0xFFE6E8EC),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(
+                  width * 0.04,
+                ),
+                onTap: resetOnTap,
+                child: Container(
+                  decoration: BoxDecoration(),
+                  child: Center(
+                    child: Text(
+                      'Reset',
+                      style: TextStyle(
+                          fontSize: 16.sp, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
               ),
+            )),
+            SizedBox(
+              width: width * 0.04,
             ),
+            Expanded(
+                child: Material(
+              borderRadius: BorderRadius.circular(
+                width * 0.04,
+              ),
+              color: Colors.black,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(
+                  width * 0.04,
+                ),
+                onTap: applyOnTap,
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      'Apply',
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ))
           ],
         ),
-        SizedBox(height: 20),
-
-        // Slider
-        RangeSlider(
-          values: _rangeValues,
-          min: 0,
-          max: 20000,
-          divisions: 200,
-          onChanged: (values) {
-            setState(() {
-              _rangeValues = values;
-            });
-          },
-          activeColor: Colors.black,
-          inactiveColor: Color(0xFFE6E8EC),
-        ),
-      ],
+      ),
     );
   }
 }

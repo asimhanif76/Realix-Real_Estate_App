@@ -60,6 +60,7 @@ class AnpSelectAmenities extends StatelessWidget {
                         addNewPropertyController.facilities.map((facility) {
                       final isSelected = addNewPropertyController
                           .selectedFacilities
+                          .take(8)
                           .contains(facility);
 
                       return ChoiceChip(
@@ -97,19 +98,18 @@ class AnpSelectAmenities extends StatelessWidget {
                   ))
             ],
           ),
-         
         ],
       ),
       bottomNavigationBar: CustomBlackButtton(
         buttonName: AppStrings.next,
         onTap: () {
-             addNewPropertyController.updateAmenities(
-                      addNewPropertyController.selectedFacilities.toList());
-                  Navigator.pushNamed(context, '/addNewPropertyDetailsPage');
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //     context,
-                  //     '/addNewPropertyDetailsPage',
-                  //     ModalRoute.withName('/myHomePage'));
+          addNewPropertyController.updateAmenities(
+              addNewPropertyController.selectedFacilities.toList());
+          Navigator.pushNamed(context, '/addNewPropertyDetailsPage');
+          // Navigator.pushNamedAndRemoveUntil(
+          //     context,
+          //     '/addNewPropertyDetailsPage',
+          //     ModalRoute.withName('/myHomePage'));
         },
       ),
     );
