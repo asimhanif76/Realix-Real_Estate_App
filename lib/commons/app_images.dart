@@ -44,4 +44,6 @@ class AppImages {
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';
+  static String img = 'assets/images/img.png';
+  static String img2 = 'assets/images/img2.png';
 }

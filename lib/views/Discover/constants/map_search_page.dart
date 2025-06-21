@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
-import 'package:realix_real_estate_app/views/profile/constants/filter_bottom_sheet.dart';
+import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/filter_bottom_sheet.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MapSearchPage extends StatelessWidget {
   MapSearchPage({super.key});
+
+  DiscoverPageController discoverPageController =
+      Get.put(DiscoverPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +23,10 @@ class MapSearchPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30,
+            height: height * 0.035,
           ),
           _customTextField(
+            searchController: discoverPageController.searchController,
             onTapFilter: () {
               showModalBottomSheet(
                 context: context,
@@ -58,34 +64,39 @@ class MapSearchPage extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w600, color: Colors.grey),
             ),
           ),
-          ListTile(
-            leading: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(AppImages.property_image)),
-                borderRadius: BorderRadius.circular(width * 0.025),
-                color: Colors.amber,
-              ),
-            ),
-            title: Padding(
-              padding: EdgeInsets.only(bottom: width * 0.02),
-              child: Text(
-                'Mighty Cinco Family',
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: discoverPageController.searchResult.length,
+            itemBuilder: (context, index) {
+              var search = discoverPageController.searchResult[index];
+              return ListTile(
+                leading: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(search['imagePath']),
+                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(width * 0.025),
+                    color: Colors.amber,
+                  ),
                 ),
-              ),
-            ),
-            subtitle: Text(
-              '360 Stillwater Rd troutman',
-              style: TextStyle(
-                fontSize: 14.5.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+                title: Padding(
+                  padding: EdgeInsets.only(bottom: width * 0.02),
+                  child: Text(
+                    search['name'],
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                subtitle: Obx(
+                  () => buildSubtitle(search['address'],
+                      discoverPageController.searchText.value),
+                ),
+              );
+            },
           )
         ],
       ),
@@ -94,6 +105,7 @@ class MapSearchPage extends StatelessWidget {
 
   Widget _customTextField({
     required VoidCallback onTapFilter,
+    required TextEditingController searchController,
   }) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -108,6 +120,7 @@ class MapSearchPage extends StatelessWidget {
               ),
               child: TextField(
                 onTap: () {},
+                controller: searchController,
                 decoration: InputDecoration(
                   hintText: '360 Stillwater Rd...',
                   hintStyle: TextStyle(
@@ -116,7 +129,11 @@ class MapSearchPage extends StatelessWidget {
                   ),
                   prefixIcon:
                       Icon(Icons.location_on_rounded, color: Color(0xFF353945)),
-                  suffixIcon: Icon(Icons.close, color: Colors.black38),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        discoverPageController.searchController.clear();
+                      },
+                      icon: Icon(Icons.close, color: Colors.black38)),
                   contentPadding: EdgeInsets.symmetric(vertical: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -157,6 +174,28 @@ class MapSearchPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buildSubtitle(String fullText, String inputText) {
+    final inputWords = inputText.toLowerCase().split(' ');
+    final words = fullText.split(' ');
+
+    return RichText(
+      text: TextSpan(
+        children: words.map((word) {
+          final isMatch = inputWords.contains(word.toLowerCase());
+
+          return TextSpan(
+            text: '$word ',
+            style: TextStyle(
+              color: isMatch ? Colors.green : Colors.black,
+              fontWeight: FontWeight.w300,
+              fontSize: 14.5,
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -48,7 +48,8 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(width * 0.05),
                         color: Colors.black45,
                         image: DecorationImage(
-                            image: AssetImage(AppImages.property_image))),
+                            image: AssetImage(AppImages.property_image),
+                            fit: BoxFit.cover)),
                   ),
                   Positioned(
                     left: width * 0.05,
@@ -104,14 +105,23 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
                 height: height * 0.03,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildInfoCard(AppImages.bath_room, AppStrings.bathRoom,
-                      '${addNewPropertyController.property.value.fullBaths} Rooms'),
-                  _buildInfoCard(AppImages.bed_room, AppStrings.bedRoom,
-                      '${addNewPropertyController.property.value.bedrooms} Rooms'),
-                  _buildInfoCard(AppImages.square, AppStrings.square,
-                      '${addNewPropertyController.property.value.lotSize} Ft'),
+                  _buildInfoCard(
+                      AppImages.bath_room,
+                      AppStrings.bathRoom,
+                      '${addNewPropertyController.property.value.fullBaths} Rooms',
+                      width),
+                  _buildInfoCard(
+                      AppImages.bed_room,
+                      AppStrings.bedRoom,
+                      '${addNewPropertyController.property.value.bedrooms} Rooms',
+                      width),
+                  _buildInfoCard(
+                      AppImages.square,
+                      AppStrings.square,
+                      '${addNewPropertyController.property.value.lotSize} Ft',
+                      width),
                 ],
               ),
               SizedBox(
@@ -324,12 +334,13 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoCard(String svgPath, String title, String value) {
+  Widget _buildInfoCard(
+      String svgPath, String title, String value, double width) {
     return Row(
       children: [
         Container(
-          width: 34,
-          height: 34,
+          width: width * 0.1,
+          height: width * 0.1,
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Color(0xFF1A1C22),
@@ -344,12 +355,12 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
             Text(title,
                 style: TextStyle(
                     color: Colors.grey.shade400,
-                    fontSize: 13.sp,
+                    fontSize: 13.5.sp,
                     fontWeight: FontWeight.w500)),
             Text(value,
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: 14.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.bold)),
           ],
         ),

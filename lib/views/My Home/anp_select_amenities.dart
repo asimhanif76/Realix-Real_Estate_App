@@ -56,11 +56,11 @@ class AnpSelectAmenities extends StatelessWidget {
               Obx(() => Wrap(
                     spacing: 10,
                     runSpacing: 0,
-                    children:
-                        addNewPropertyController.facilities.map((facility) {
+                    children: addNewPropertyController.facilities
+                        .take(8)
+                        .map((facility) {
                       final isSelected = addNewPropertyController
                           .selectedFacilities
-                          .take(8)
                           .contains(facility);
 
                       return ChoiceChip(

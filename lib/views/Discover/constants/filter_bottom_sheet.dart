@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/controllers/add_new_property_controller.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
-import 'package:realix_real_estate_app/views/profile/constants/show_all_ammenities.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/show_all_ammenities.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class FilterBottomSheet extends StatelessWidget {

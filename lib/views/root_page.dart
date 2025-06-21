@@ -5,7 +5,7 @@ import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/bottom_bar_controller.dart';
 import 'package:realix_real_estate_app/views/My%20Home/my_home_page.dart';
-import 'package:realix_real_estate_app/views/discover_page.dart';
+import 'package:realix_real_estate_app/views/Discover/discover_page.dart';
 import 'package:realix_real_estate_app/views/home/home_page.dart';
 import 'package:realix_real_estate_app/views/message/chat_page.dart';
 import 'package:realix_real_estate_app/views/profile/profile_page.dart';

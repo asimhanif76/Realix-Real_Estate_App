@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_images.dart';
 
 class DiscoverPageController extends GetxController {
   // RxBool isReadOnly = true.obs;
@@ -61,7 +62,41 @@ class DiscoverPageController extends GetxController {
     Get.back();
   }
 
+    TextEditingController searchController = TextEditingController();
+     RxString searchText = ''.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Listen to the text controller
+    searchController.addListener(() {
+      searchText.value = searchController.text;
+    });
+  }
+
+  // Optional: dispose controller if needed
+  @override
+  void onClose() {
+    searchController.dispose();
+    super.onClose();
+  }
+
+
   List searchResult = [
-    
+    {
+      'name': 'Mighty Cinco Family',
+      'address': '360 Stillwater Rd troutman',
+      'imagePath': AppImages.property_image,
+    },
+    {
+      'name': 'Cassablanca Ground',
+      'address': 'Russian Hill, 360 Lombard Street',
+      'imagePath': AppImages.img,
+    },
+    {
+      'name': 'Primary Apartment',
+      'address': 'Mojosongo street no 123, 360',
+      'imagePath': AppImages.img2,
+    },
   ];
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
-import 'package:realix_real_estate_app/views/profile/constants/filter_bottom_sheet.dart';
-import 'package:realix_real_estate_app/views/profile/constants/map_search_page.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/filter_bottom_sheet.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/map_search_page.dart';
 
 class DiscoverPage extends StatelessWidget {
   DiscoverPage({super.key});
@@ -102,10 +100,17 @@ class DiscoverPage extends StatelessWidget {
             ),
           ),
           Positioned(
-              top: 30,
+              top: height * 0.035,
               left: 0,
               right: 0,
               child: _customTextField(
+                onTapTextField: () {
+                  Get.to(
+                    () => MapSearchPage(),
+                    transition: Transition.fadeIn,
+                    duration: Duration(milliseconds: 500),
+                  );
+                },
                 onTapFilter: () {
                   showModalBottomSheet(
                     context: context,
@@ -127,6 +132,7 @@ class DiscoverPage extends StatelessWidget {
 
   Widget _customTextField({
     required VoidCallback onTapFilter,
+    required VoidCallback onTapTextField,
   }) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -139,33 +145,29 @@ class DiscoverPage extends StatelessWidget {
                 color: Colors.amber,
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Obx(
-                () => TextField(
-                  onTap: () {
-                    Get.to(
-                      () => MapSearchPage(),
-                      transition: Transition.fadeIn,
-                      duration: Duration(milliseconds: 400),
-                    );
-                  },
-                  readOnly: true,
-                  decoration: InputDecoration(
-                    hintText: '360 Stillwater Rd...',
-                    hintStyle: TextStyle(
-                      color: Color(0xFF141416),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    prefixIcon: Icon(Icons.location_on_rounded,
-                        color: Color(0xFF353945)),
-                    suffixIcon: Icon(Icons.close, color: Colors.black38),
-                    contentPadding: EdgeInsets.symmetric(vertical: 14),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                      borderSide: BorderSide.none,
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
+              child: TextField(
+                onTap: onTapTextField,
+                readOnly: true,
+                decoration: InputDecoration(
+                  hintText: '360 Stillwater Rd...',
+                  hintStyle: TextStyle(
+                    color: Color(0xFF141416),
+                    fontWeight: FontWeight.w300,
                   ),
+                  prefixIcon:
+                      Icon(Icons.location_on_rounded, color: Color(0xFF353945)),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        discoverPageController.searchController.clear();
+                      },
+                      icon: Icon(Icons.close, color: Colors.black38)),
+                  contentPadding: EdgeInsets.symmetric(vertical: 14),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
                 ),
               ),
             ),

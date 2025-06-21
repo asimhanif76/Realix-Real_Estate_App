@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
+import 'package:realix_real_estate_app/views/My%20Home/add_new_property_details_page.dart';
 import 'package:realix_real_estate_app/widgets/circle_icon.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -42,7 +43,13 @@ class HomePage extends StatelessWidget {
                       physics: ScrollPhysics(),
                       itemCount: homePageController.ProductList.length,
                       itemBuilder: (context, index) {
-                        return _buildProductCard(context, index);
+                        return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, '/productDetailPage');
+                            },
+                            borderRadius: BorderRadius.circular(width * 0.6),
+                            child: _buildProductCard(context, index));
                       },
                     )
                   ],
