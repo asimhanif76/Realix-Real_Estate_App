@@ -4,8 +4,6 @@ import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/chat_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
 import 'package:realix_real_estate_app/model/message_model.dart';
-import 'package:realix_real_estate_app/views/message/message_page.dart';
-import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ChatPage extends StatelessWidget {

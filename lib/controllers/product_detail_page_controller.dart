@@ -8,11 +8,9 @@ class ProductDetailPageController extends GetxController {
     AppImages.property_image,
     AppImages.property_image,
     AppImages.property_image,
-    AppImages.property_image,
-    AppImages.property_image,
   ];
 
-  RxInt currentImage = 1.obs;
+  RxInt currentImage = 0.obs;
 
   PageController pageController = PageController();
 }

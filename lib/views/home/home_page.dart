@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/filter_bottom_sheet.dart';
 import 'package:realix_real_estate_app/views/My%20Home/add_new_property_details_page.dart';
 import 'package:realix_real_estate_app/widgets/circle_icon.dart';
 import 'package:realix_real_estate_app/widgets/my_text_field.dart';
@@ -33,7 +34,7 @@ class HomePage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    _myTextField(width),
+                    _myTextField(width, context),
                     ListView.separated(
                       padding: EdgeInsets.symmetric(vertical: width * 0.03),
                       separatorBuilder: (context, index) => SizedBox(
@@ -45,8 +46,10 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return InkWell(
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context, '/productDetailPage');
+                              Navigator.pushNamed(context, '/productDetailPage',
+                                  arguments: {
+                                    'index': index,
+                                  });
                             },
                             borderRadius: BorderRadius.circular(width * 0.6),
                             child: _buildProductCard(context, index));
@@ -128,12 +131,14 @@ class HomePage extends StatelessWidget {
                               color: Color(0xFF2FA2B9),
                               size: 16.sp,
                             ),
+                            // OverFlow ho rha ha ..........................................
                             Text(
                               product.address,
                               style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w300,
-                                  color: Colors.black),
+                                  color: Colors.black,
+                                  overflow: TextOverflow.ellipsis),
                             ),
                           ],
                         ),
@@ -177,7 +182,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _myTextField(width) {
+  Widget _myTextField(width, BuildContext context) {
     return MyTextField(
         color: Colors.white,
         border: true,
@@ -187,7 +192,15 @@ class HomePage extends StatelessWidget {
         ),
         trailingIcon: InkWell(
           onTap: () {
-            print('Suffix Ontap');
+            showModalBottomSheet(
+              context: context,
+              elevation: 10,
+              backgroundColor: Colors.white,
+              isScrollControlled: true,
+              builder: (context) {
+                return FilterBottomSheet();
+              },
+            );
           },
           child: Container(
             height: width * 0.06,

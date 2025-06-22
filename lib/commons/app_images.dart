@@ -41,6 +41,7 @@ class AppImages {
   static String draw_cross = 'assets/images/svg/draw_cross.svg';
   static String nearby = 'assets/images/svg/nearby.svg';
   static String loction_search = 'assets/images/svg/loction_search.svg';
+  static String gallery_add = 'assets/images/svg/gallery_add.svg';
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';
