@@ -28,6 +28,8 @@ class ProductDetailPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
+    var product = homePageController.ProductList[index];
+
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
       body: Padding(
@@ -54,11 +56,11 @@ class ProductDetailPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildInfoCard(AppImages.bath_room, AppStrings.bathRoom,
-                    '${discoverPageController.bathCount.value} Rooms', width),
+                    '${product.fullBaths} Rooms', width),
                 _buildInfoCard(AppImages.bed_room, AppStrings.bedRoom,
-                    '${discoverPageController.bedCount.value} Rooms', width),
-                _buildInfoCard(
-                    AppImages.square, AppStrings.square, '${'000'} Ft', width),
+                    '${product.bedrooms} Rooms', width),
+                _buildInfoCard(AppImages.square, AppStrings.square,
+                    '${product.lotSize} Ft', width),
               ],
             ),
             SizedBox(
@@ -71,6 +73,7 @@ class ProductDetailPage extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
               ),
             ),
+            Text(product.description),
           ],
         ),
       ),

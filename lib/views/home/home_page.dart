@@ -131,14 +131,17 @@ class HomePage extends StatelessWidget {
                               color: Color(0xFF2FA2B9),
                               size: 16.sp,
                             ),
-                            // OverFlow ho rha ha ..........................................
-                            Text(
-                              product.address,
-                              style: TextStyle(
+                            SizedBox(
+                              width: width * 0.45,
+                              child: Text(
+                                product.address,
+                                style: TextStyle(
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w300,
                                   color: Colors.black,
-                                  overflow: TextOverflow.ellipsis),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ),
                           ],
                         ),

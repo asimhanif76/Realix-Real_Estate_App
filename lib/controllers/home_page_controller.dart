@@ -13,7 +13,7 @@ class HomePageController extends GetxController {
       price: 436.0,
       isFavourite: false,
       description:
-          'A spacious family apartment located in the heart of Jakarta.',
+          'A spacious family apartment located in the heart of Jakarta. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
       fullBaths: 2,
       bedrooms: 3,
       lotSize: 2000.0,
@@ -34,7 +34,7 @@ class HomePageController extends GetxController {
       price: 436.0,
       isFavourite: true,
       description:
-          'Modern home with stylish interior and nearby public transport.',
+          'Modern home with stylish interior and nearby public transport. ',
       fullBaths: 1,
       bedrooms: 2,
       lotSize: 1800.0,
@@ -54,7 +54,8 @@ class HomePageController extends GetxController {
       address: 'Mojosongo street no 123, 360',
       price: 436.0,
       isFavourite: false,
-      description: 'Comfortable house suitable for small families or couples.',
+      description:
+          'Comfortable house suitable for small families or couples. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
       fullBaths: 1,
       bedrooms: 2,
       lotSize: 1600.0,
@@ -74,7 +75,8 @@ class HomePageController extends GetxController {
       address: 'Jakarta, Indonesia',
       price: 436.0,
       isFavourite: false,
-      description: 'An elegant home offering a peaceful living experience.',
+      description:
+          'An elegant home offering a peaceful living experience. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
       fullBaths: 2,
       bedrooms: 4,
       lotSize: 2400.0,
