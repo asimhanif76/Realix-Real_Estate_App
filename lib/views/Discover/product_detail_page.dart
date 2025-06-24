@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:readmore/readmore.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/product_detail_page_controller.dart';
+import 'package:realix_real_estate_app/model/product_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -28,67 +30,230 @@ class ProductDetailPage extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    var product = homePageController.ProductList[index];
+    ProductModel product = homePageController.ProductList[index];
 
-    return Scaffold(
-      backgroundColor: Color(0xFFFDFDFD),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height * 0.04,
-            ),
-            _imageContainer(width, homePageController.ProductList[index].name,
-                homePageController.ProductList[index].address),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: width * 0.04),
-              child: Text(
-                'Description',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0xFFFDFDFD),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildInfoCard(AppImages.bath_room, AppStrings.bathRoom,
-                    '${product.fullBaths} Rooms', width),
-                _buildInfoCard(AppImages.bed_room, AppStrings.bedRoom,
-                    '${product.bedrooms} Rooms', width),
-                _buildInfoCard(AppImages.square, AppStrings.square,
-                    '${product.lotSize} Ft', width),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                _imageContainer(
+                    width,
+                    height,
+                    homePageController.ProductList[index].name,
+                    homePageController.ProductList[index].address,
+                    product.imagePath),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: width * 0.04),
+                  child: Text(
+                    'Description',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildInfoCard(AppImages.bath_room, AppStrings.bathRoom,
+                        '${product.fullBaths} Rooms', width),
+                    _buildInfoCard(AppImages.bed_room, AppStrings.bedRoom,
+                        '${product.bedrooms} Rooms', width),
+                    _buildInfoCard(AppImages.square, AppStrings.square,
+                        '${product.lotSize} Ft', width),
+                  ],
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: width * 0.04),
+                  child: Text(
+                    'About',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                ReadMoreText(
+                  product.description,
+                  trimMode: TrimMode.Line,
+                  trimLines: 3,
+                  colorClickableText: Colors.pink,
+                  trimCollapsedText: 'Show more',
+                  trimExpandedText: 'Show less',
+                  moreStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2FA2B9)),
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                _galleryView(width, height, product),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: width * 0.04),
+                  child: Text(
+                    'Location',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Image.asset(AppImages.map_location),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                Container(
+                  height: 278,
+                  width: width,
+                  padding: EdgeInsets.all(width * 0.05),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey.shade300,
+                    ),
+                    borderRadius: BorderRadius.circular(width * 0.05),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Contact to Buyer’s Agent',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w700),
+                      ),
+                      ListTile(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: width * 0.05),
+                        leading: CircleAvatar(
+                          radius: 25,
+                          backgroundImage: AssetImage(AppImages.profile_image),
+                        ),
+                        title: Text(
+                          'Diana Richards',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                        subtitle: Text(
+                          'Rich Capital Properties LLC',
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF777E90)),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          _buyerContinerButton(
+                            width,
+                            height,
+                            AppImages.chat,
+                            'Message',
+                            () {},
+                          ),
+                          SizedBox(
+                            width: width * 0.03,
+                          ),
+                          _buyerContinerButton(
+                              width, height, AppImages.phone, 'Phone', () {}),
+                        ],
+                      ),
+                      SizedBox(
+                        height: height * 0.015,
+                      ),
+                      _buyerContinerButton(width, height,
+                          AppImages.ask_question, 'Ask a question', () {}),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
               ],
             ),
-            SizedBox(
-              height: height * 0.03,
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: width * 0.04),
-              child: Text(
-                'About',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-              ),
-            ),
-            Text(product.description),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _imageContainer(
-    double width,
-    String propertyName,
-    String propertyAddress,
-  ) {
+  Widget _galleryView(double width, double height, ProductModel product) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: width * 0.04),
+          child: Text(
+            'Gallery',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
+        ),
+        SizedBox(
+          height: height * 0.155,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount:
+                product.imagePath.length > 3 ? 3 : product.imagePath.length,
+            separatorBuilder: (context, index) => SizedBox(
+              width: width * 0.03,
+            ),
+            itemBuilder: (context, index) {
+              final total = product.imagePath.length;
+              final remaining = total - 3;
+
+              return Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      product.imagePath[index],
+                      width: (width - width * 0.16) / 3,
+                      height: height * 0.155,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  // Show +N on the last visible image if more images exist
+                  if (index == 2 && total > 3)
+                    Container(
+                      width: (width - width * 0.16) / 3,
+                      height: height * 0.155,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                      child: Center(
+                        child: Text(
+                          '+$remaining',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _imageContainer(double width, double height, String propertyName,
+      String propertyAddress, List<String> productImages) {
     return Stack(
       children: [
         Container(
-          height: 347,
+          height: height * 0.41,
           width: width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(width * 0.05),
@@ -97,14 +262,14 @@ class ProductDetailPage extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: PageView.builder(
             controller: productDetailPageController.pageController,
-            itemCount: productDetailPageController.images.length,
+            itemCount: productImages.length,
             onPageChanged: (index) {
               productDetailPageController.currentImage.value = index;
               print(productDetailPageController.currentImage.value);
             },
             itemBuilder: (context, index) {
               return Image.asset(
-                productDetailPageController.images[index],
+                productImages[index],
                 fit: BoxFit.cover,
               );
             },
@@ -118,7 +283,7 @@ class ProductDetailPage extends StatelessWidget {
               () => Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
-                  productDetailPageController.images.length,
+                  productImages.length,
                   (index) {
                     return AnimatedContainer(
                       duration: Duration(milliseconds: 300),
@@ -244,5 +409,39 @@ class ProductDetailPage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _buyerContinerButton(double width, double height, String svgPath,
+      String btnName, VoidCallback onTap) {
+    return Expanded(
+        child: Material(
+      color: Color(0xFFF4F5F6),
+      borderRadius: BorderRadius.circular(width * 0.03),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(width * 0.03),
+        onTap: onTap,
+        child: Container(
+          height: height * 0.055,
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(svgPath),
+                SizedBox(
+                  width: width * 0.04,
+                ),
+                Text(
+                  btnName,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF777E90)),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    ));
   }
 }

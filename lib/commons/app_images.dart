@@ -42,9 +42,14 @@ class AppImages {
   static String nearby = 'assets/images/svg/nearby.svg';
   static String loction_search = 'assets/images/svg/loction_search.svg';
   static String gallery_add = 'assets/images/svg/gallery_add.svg';
+  static String chat = 'assets/images/svg/Chat.svg';
+  static String phone = 'assets/images/svg/phone.svg';
+  static String ask_question = 'assets/images/svg/ask_question.svg';
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';
   static String img = 'assets/images/img.png';
   static String img2 = 'assets/images/img2.png';
+  static String map_location = 'assets/images/map_location.png';
+  static String profile_image = 'assets/images/profile_image.png';
 }

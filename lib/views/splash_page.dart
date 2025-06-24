@@ -68,7 +68,7 @@ class _SplashPageState extends State<SplashPage> {
               height: 0.5.h,
             ),
             Text(
-              AppStrings.realEstateApplication,
+              AppStrings.real_estate_application,
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,

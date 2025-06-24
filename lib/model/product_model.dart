@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class ProductModel {
   String name;
-  String imagePath;
+  List<String> imagePath;
   String address;
   double price;
   String description;

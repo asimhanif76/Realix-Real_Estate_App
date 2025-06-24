@@ -8,7 +8,14 @@ class HomePageController extends GetxController {
   RxList<ProductModel> ProductList = [
     ProductModel(
       name: 'Mighty Cinco Family',
-      imagePath: 'assets/images/img.png',
+      imagePath: [
+        'assets/images/img.png',
+        'assets/images/img2.png',
+        'assets/images/property_image.png',
+        'assets/images/img.png',
+        'assets/images/property_image.png',
+        'assets/images/img2.png'
+      ],
       address: 'Jakarta, Indonesia',
       price: 436.0,
       isFavourite: false,
@@ -29,7 +36,14 @@ class HomePageController extends GetxController {
     ),
     ProductModel(
       name: 'Cassablanca Ground',
-      imagePath: 'assets/images/img2.png',
+      imagePath: [
+        'assets/images/property_image.png',
+        'assets/images/img2.png',
+        'assets/images/img.png',
+        'assets/images/property_image.png',
+        'assets/images/img.png',
+        'assets/images/img2.png'
+      ],
       address: 'Russian Hill, 360 Lombard Street',
       price: 436.0,
       isFavourite: true,
@@ -50,7 +64,7 @@ class HomePageController extends GetxController {
     ),
     ProductModel(
       name: 'Primary Apartment',
-      imagePath: 'assets/images/img.png',
+      imagePath: ['assets/images/property_image.png', 'assets/images/img2.png'],
       address: 'Mojosongo street no 123, 360',
       price: 436.0,
       isFavourite: false,
@@ -71,7 +85,14 @@ class HomePageController extends GetxController {
     ),
     ProductModel(
       name: 'Mighty Cinco Family',
-      imagePath: 'assets/images/img2.png',
+      imagePath: [
+        'assets/images/img2.png',
+        'assets/images/property_image.png',
+        'assets/images/img.png',
+        'assets/images/img2.png',
+        'assets/images/property_image.png',
+        'assets/images/img.png'
+      ],
       address: 'Jakarta, Indonesia',
       price: 436.0,
       isFavourite: false,

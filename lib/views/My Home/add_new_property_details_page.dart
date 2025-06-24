@@ -238,7 +238,7 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(width * 0.05),
                 child: Image.asset(
-                  product.imagePath,
+                  product.imagePath[1],
                   fit: BoxFit.cover,
                 ),
               ),
