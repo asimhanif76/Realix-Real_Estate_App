@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/model/buyer_model.dart';
 
 class ProductModel {
   String name;
@@ -10,8 +11,9 @@ class ProductModel {
   int bedrooms;
   double lotSize;
   String phoneNumber;
-  RxBool isFavourite;
   List<String> amenities;
+  RxBool isFavourite;
+  BuyerModel buyerModel;
 
   ProductModel({
     required this.name,
@@ -25,5 +27,6 @@ class ProductModel {
     required this.phoneNumber,
     required this.amenities,
     required bool isFavourite,
+    required this.buyerModel,
   }) : isFavourite = isFavourite.obs;
 }

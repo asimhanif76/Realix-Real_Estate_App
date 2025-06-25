@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:realix_real_estate_app/commons/app_images.dart';
+import 'package:realix_real_estate_app/model/buyer_model.dart';
 import 'package:realix_real_estate_app/model/product_model.dart';
 
 class HomePageController extends GetxController {
@@ -17,7 +19,7 @@ class HomePageController extends GetxController {
         'assets/images/img2.png'
       ],
       address: 'Jakarta, Indonesia',
-      price: 436.0,
+      price: 1900.00,
       isFavourite: false,
       description:
           'A spacious family apartment located in the heart of Jakarta. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
@@ -33,6 +35,11 @@ class HomePageController extends GetxController {
         'CCTV',
         'Elevator',
       ],
+      buyerModel: BuyerModel(
+          buyerName: 'Diana Richards',
+          imagePath: AppImages.profile_image,
+          companyName: 'Rich Capital Properties LLC',
+          phoneNumber: '03001234567'),
     ),
     ProductModel(
       name: 'Cassablanca Ground',
@@ -45,13 +52,13 @@ class HomePageController extends GetxController {
         'assets/images/img2.png'
       ],
       address: 'Russian Hill, 360 Lombard Street',
-      price: 436.0,
+      price: 1836.0,
       isFavourite: true,
       description:
           'Modern home with stylish interior and nearby public transport. ',
       fullBaths: 1,
       bedrooms: 2,
-      lotSize: 1800.0,
+      lotSize: 1800.00,
       phoneNumber: '+62 812 1111 2222',
       amenities: [
         'Garden',
@@ -61,18 +68,23 @@ class HomePageController extends GetxController {
         'Community Hall',
         'Pool'
       ],
+      buyerModel: BuyerModel(
+          buyerName: 'Diana Richards',
+          imagePath: AppImages.profile_image,
+          companyName: 'Rich Capital Properties LLC',
+          phoneNumber: '03001234567'),
     ),
     ProductModel(
       name: 'Primary Apartment',
       imagePath: ['assets/images/property_image.png', 'assets/images/img2.png'],
       address: 'Mojosongo street no 123, 360',
-      price: 436.0,
+      price: 2620.0,
       isFavourite: false,
       description:
           'Comfortable house suitable for small families or couples. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
       fullBaths: 1,
       bedrooms: 2,
-      lotSize: 1600.0,
+      lotSize: 1600.00,
       phoneNumber: '+62 813 9876 5432',
       amenities: [
         'Parking',
@@ -82,6 +94,11 @@ class HomePageController extends GetxController {
         'Security',
         'Playground'
       ],
+      buyerModel: BuyerModel(
+          buyerName: 'Diana Richards',
+          imagePath: AppImages.profile_image,
+          companyName: 'Rich Capital Properties LLC',
+          phoneNumber: '03001234567'),
     ),
     ProductModel(
       name: 'Mighty Cinco Family',
@@ -94,7 +111,7 @@ class HomePageController extends GetxController {
         'assets/images/img.png'
       ],
       address: 'Jakarta, Indonesia',
-      price: 436.0,
+      price: 1906.00,
       isFavourite: false,
       description:
           'An elegant home offering a peaceful living experience. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families.',
@@ -110,6 +127,11 @@ class HomePageController extends GetxController {
         'Gym',
         'Playground'
       ],
+      buyerModel: BuyerModel(
+          buyerName: 'Diana Richards',
+          imagePath: AppImages.profile_image,
+          companyName: 'Rich Capital Properties LLC',
+          phoneNumber: '03001234567'),
     ),
   ].obs;
 }

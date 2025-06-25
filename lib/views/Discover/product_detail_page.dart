@@ -42,7 +42,7 @@ class ProductDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: height * 0.04,
+                  height: height * 0.01,
                 ),
                 _imageContainer(
                     width,
@@ -137,12 +137,12 @@ class ProductDetailPage extends StatelessWidget {
                           backgroundImage: AssetImage(AppImages.profile_image),
                         ),
                         title: Text(
-                          'Diana Richards',
+                          product.buyerModel.buyerName,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w700),
                         ),
                         subtitle: Text(
-                          'Rich Capital Properties LLC',
+                          product.buyerModel.companyName,
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -156,7 +156,9 @@ class ProductDetailPage extends StatelessWidget {
                             height,
                             AppImages.chat,
                             'Message',
-                            () {},
+                            () {
+                              
+                            },
                           ),
                           SizedBox(
                             width: width * 0.03,
@@ -176,8 +178,124 @@ class ProductDetailPage extends StatelessWidget {
                 SizedBox(
                   height: height * 0.03,
                 ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: width * 0.04),
+                  child: Text(
+                    'Popular Amenities',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: product.amenities.map(
+                      (e) {
+                        return Container(
+                          margin: EdgeInsets.only(right: 8),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            e,
+                            style: TextStyle(fontSize: 13, color: Colors.black),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.03,
+                ),
               ],
             ),
+          ),
+        ),
+        bottomNavigationBar: Container(
+          height: height * 0.145,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0, -4),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          padding: EdgeInsets.all(width * 0.05),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("price: "),
+                  Text(
+                    "\$${product.price.toPrecision(2)}",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF2FA2B9)),
+                  )
+                ],
+              ),
+              Expanded(child: SizedBox()),
+              Row(
+                children: [
+                  Container(
+                    width: height * 0.055,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Obx(
+                      () => InkWell(
+                        onTap: () {
+                          product.isFavourite.toggle();
+                        },
+                        child: SvgPicture.asset(
+                            product.isFavourite.value
+                                ? AppImages.favourite
+                                : AppImages.favourite_outline,
+                            color: product.isFavourite.value
+                                ? Colors.red
+                                : Colors.black,
+                            fit: BoxFit.scaleDown),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: width * 0.03,
+                  ),
+                  Expanded(
+                      child: Material(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(width * 0.03),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(width * 0.03),
+                      onTap: () {},
+                      child: Container(
+                        height: height * 0.055,
+                        child: Center(
+                          child: Text(
+                            'Schedule Tour',
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                ],
+              )
+            ],
           ),
         ),
       ),

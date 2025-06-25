@@ -1,12 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/message_page_controller.dart';
-import 'package:realix_real_estate_app/views/message/full_image_view.dart';
+import 'package:realix_real_estate_app/widgets/full_image_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MessagePage extends StatelessWidget {
