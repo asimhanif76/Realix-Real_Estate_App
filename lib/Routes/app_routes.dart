@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:realix_real_estate_app/views/Discover/constants/map_search_page.dart';
+import 'package:realix_real_estate_app/views/Discover/constants/show_all_images.dart';
+import 'package:realix_real_estate_app/views/Discover/pick_date_page.dart';
 import 'package:realix_real_estate_app/views/Discover/product_detail_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/add_new_property_details_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_address_page.dart';
@@ -41,6 +43,8 @@ class AppRoutes {
   static const String addNewPropertyDetailsPage = '/addNewPropertyDetailsPage';
   static const String mapSearchPage = '/mapSearchPage';
   static const String productDetailPage = '/productDetailPage';
+  static const String showAllImages = '/showAllImages';
+  static const String pickDatePage = '/pickDatePage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -63,5 +67,7 @@ class AppRoutes {
         addNewPropertyDetailsPage: (_) => AddNewPropertyDetailsPage(),
         mapSearchPage: (_) => MapSearchPage(),
         productDetailPage: (_) => ProductDetailPage(),
+        showAllImages: (_) => ShowAllImages(),
+        pickDatePage: (_) => PickDatePage(),
       };
 }

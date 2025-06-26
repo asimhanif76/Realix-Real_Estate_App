@@ -8,6 +8,7 @@ import 'package:realix_real_estate_app/controllers/discover_page_controller.dart
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/product_detail_page_controller.dart';
 import 'package:realix_real_estate_app/model/product_model.dart';
+import 'package:realix_real_estate_app/widgets/full_image_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -156,9 +157,7 @@ class ProductDetailPage extends StatelessWidget {
                             height,
                             AppImages.chat,
                             'Message',
-                            () {
-                              
-                            },
+                            () {},
                           ),
                           SizedBox(
                             width: width * 0.03,
@@ -248,7 +247,7 @@ class ProductDetailPage extends StatelessWidget {
                 children: [
                   Container(
                     width: height * 0.055,
-                    height: 44,
+                    height: height * 0.055,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.grey.shade300),
@@ -278,7 +277,9 @@ class ProductDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(width * 0.03),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(width * 0.03),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/pickDatePage');
+                      },
                       child: Container(
                         height: height * 0.055,
                         child: Center(
@@ -330,29 +331,55 @@ class ProductDetailPage extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      product.imagePath[index],
-                      width: (width - width * 0.16) / 3,
-                      height: height * 0.155,
-                      fit: BoxFit.cover,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FullImageView(
+                                  imagePath: product.imagePath[index]),
+                            ));
+                      },
+                      child: Image.asset(
+                        product.imagePath[index],
+                        width: (width - width * 0.16) / 3,
+                        height: height * 0.155,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: (width - width * 0.16) / 3,
+                            height: height * 0.155,
+                            color: Colors.grey.shade300,
+                            child: Icon(Icons.broken_image),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   // Show +N on the last visible image if more images exist
                   if (index == 2 && total > 3)
-                    Container(
-                      width: (width - width * 0.16) / 3,
-                      height: height * 0.155,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                      child: Center(
-                        child: Text(
-                          '+$remaining',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/showAllImages',
+                            arguments: {
+                              'index': index,
+                            });
+                      },
+                      child: Container(
+                        width: (width - width * 0.16) / 3,
+                        height: height * 0.155,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '+$remaining',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

@@ -10,11 +10,16 @@ class FullImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-        body: PhotoView(imageProvider: FileImage(File(imagePath))));
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      body: PhotoView(
+        imageProvider: imagePath.startsWith('assets/')
+            ? AssetImage(imagePath)
+            : FileImage(File(imagePath)) as ImageProvider,
+      ),
+    );
   }
 }
