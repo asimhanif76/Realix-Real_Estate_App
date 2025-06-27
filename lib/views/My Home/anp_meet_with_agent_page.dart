@@ -290,6 +290,7 @@ class AnpMeetWithAgentPage extends StatelessWidget {
 
   Widget _buildButton(VoidCallback ontap, IconData icon, double width) {
     return InkWell(
+      borderRadius: BorderRadius.circular(width * 0.02),
       onTap: ontap,
       child: Container(
         width: width * 0.08,

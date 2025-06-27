@@ -47,6 +47,9 @@ class AppImages {
   static String virtual = 'assets/images/svg/virtual.svg';
   static String in_person = 'assets/images/svg/in_person.svg';
   static String ask_question = 'assets/images/svg/ask_question.svg';
+  static String whatsapp = 'assets/images/svg/whatsapp.svg';
+  static String skype = 'assets/images/svg/skype.svg';
+  static String google_meet = 'assets/images/svg/google_meet.svg';
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';

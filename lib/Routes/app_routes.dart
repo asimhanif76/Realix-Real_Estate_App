@@ -3,6 +3,8 @@ import 'package:realix_real_estate_app/views/Discover/constants/map_search_page.
 import 'package:realix_real_estate_app/views/Discover/constants/show_all_images.dart';
 import 'package:realix_real_estate_app/views/Discover/pick_date_page.dart';
 import 'package:realix_real_estate_app/views/Discover/product_detail_page.dart';
+import 'package:realix_real_estate_app/views/Discover/select_virtual_app_page.dart';
+import 'package:realix_real_estate_app/views/Discover/verify_phone_number_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/add_new_property_details_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_address_page.dart';
 import 'package:realix_real_estate_app/views/My%20Home/anp_contacts.dart';
@@ -45,6 +47,8 @@ class AppRoutes {
   static const String productDetailPage = '/productDetailPage';
   static const String showAllImages = '/showAllImages';
   static const String pickDatePage = '/pickDatePage';
+  static const String verifyPhoneNumberPage = '/verifyPhoneNumberPage';
+  static const String selectVirtualAppPage = '/selectVirtualAppPage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -69,5 +73,7 @@ class AppRoutes {
         productDetailPage: (_) => ProductDetailPage(),
         showAllImages: (_) => ShowAllImages(),
         pickDatePage: (_) => PickDatePage(),
+        verifyPhoneNumberPage: (_) => VerifyPhoneNumberPage(),
+        selectVirtualAppPage: (_) => SelectVirtualAppPage(),
       };
 }
