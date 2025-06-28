@@ -151,44 +151,44 @@ class _VerifyPhoneNumberPageState extends State<VerifyPhoneNumberPage> {
           Expanded(
             child: SizedBox(),
           ),
-          Padding(
-            padding: EdgeInsets.all(width * 0.05),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  if (sheduleTourController.isPinComplete.value) {
-                    // Navigator.pushNamed(context, '/selectVirtualAppPage');
-                    Navigator.pushReplacementNamed(
-                        context, '/selectVirtualAppPage');
-                  }
-                },
-                borderRadius: BorderRadius.circular(width * 0.05),
-                child: Obx(
-                  () => Ink(
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: sheduleTourController.isPinComplete.value
-                          ? Color(0xFF0C0D20)
-                          : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(width * 0.05),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(width * 0.05),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              if (sheduleTourController.isPinComplete.value) {
+                // Navigator.pushNamed(context, '/selectVirtualAppPage');
+                Navigator.pushReplacementNamed(
+                    context, '/selectVirtualAppPage');
+              }
+            },
+            borderRadius: BorderRadius.circular(width * 0.05),
+            child: Obx(
+              () => Ink(
+                height: 55,
+                decoration: BoxDecoration(
+                  color: sheduleTourController.isPinComplete.value
+                      ? Color(0xFF0C0D20)
+                      : Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(width * 0.05),
+                ),
+                child: Center(
+                  child: Text(
+                    'Confirm',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

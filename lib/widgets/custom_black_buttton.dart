@@ -26,7 +26,8 @@ class CustomBlackButtton extends StatelessWidget {
           ),
         ],
       ),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(
+          horizontal: width * 0.04, vertical: width * 0.045),
       child: Material(
         color: Colors.transparent, // Needed for ripple effect
         child: InkWell(

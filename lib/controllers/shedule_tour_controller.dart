@@ -8,8 +8,6 @@ class SheduleTourController extends GetxController {
 
   RxBool isPinComplete = false.obs;
 
-
-
   RxString selectedState = ''.obs;
   RxInt selectedMonth = 8.obs;
   RxBool animateRight = false.obs;
@@ -105,4 +103,11 @@ class SheduleTourController extends GetxController {
     '11:00 PM',
     '11:30 PM',
   ];
+
+  // Virtual app Page
+  RxInt selectedVirtualAppIndex = 1.obs;
+  TextEditingController emailController = TextEditingController();
+
+  //selected property index of product page
+  RxInt selectedPropertyIndex = 0.obs;
 }

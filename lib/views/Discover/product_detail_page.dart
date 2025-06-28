@@ -7,6 +7,7 @@ import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/home_page_controller.dart';
 import 'package:realix_real_estate_app/controllers/product_detail_page_controller.dart';
+import 'package:realix_real_estate_app/controllers/shedule_tour_controller.dart';
 import 'package:realix_real_estate_app/model/product_model.dart';
 import 'package:realix_real_estate_app/widgets/full_image_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -22,11 +23,16 @@ class ProductDetailPage extends StatelessWidget {
   ProductDetailPageController productDetailPageController =
       Get.put(ProductDetailPageController());
 
+  SheduleTourController sheduleTourController =
+      Get.put(SheduleTourController());
+
   @override
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final int index = args['index'];
+
+    sheduleTourController.selectedPropertyIndex.value = index;
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
