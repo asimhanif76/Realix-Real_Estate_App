@@ -39,6 +39,14 @@ class HomePageController extends GetxController {
           buyerName: 'Diana Richards',
           imagePath: AppImages.profile_image,
           companyName: 'Rich Capital Properties LLC',
+          rating: 4.8,
+          ratingCount: 9,
+          about:
+              'Diana Richards is a third-generation realtor and Bay Area native who has lived in LA since 2015. She guides her clients through the City and...',
+          homesClosed: 25,
+          experience: '5+ years',
+          condos: '12+',
+          apartments: '10+',
           phoneNumber: '03001234567'),
     ),
     ProductModel(
@@ -55,7 +63,7 @@ class HomePageController extends GetxController {
       price: 1836.0,
       isFavourite: true,
       description:
-          'Modern home with stylish interior and nearby public transport. ',
+          'Modern home with stylish interior and nearby public transport. A spacious family apartment located in the heart of Jakarta. Cassablanca Ground is located in Malang City which is not far from the city center. This house was made in 2012 with a minimalist and modern architecture suitable for families. ',
       fullBaths: 1,
       bedrooms: 2,
       lotSize: 1800.00,
@@ -72,6 +80,14 @@ class HomePageController extends GetxController {
           buyerName: 'Diana Richards',
           imagePath: AppImages.profile_image,
           companyName: 'Rich Capital Properties LLC',
+          rating: 4.8,
+          ratingCount: 9,
+          about:
+              'Diana Richards is a third-generation realtor and Bay Area native who has lived in LA since 2015. She guides her clients through the City and...',
+          homesClosed: 25,
+          experience: '5+ years',
+          condos: '12+',
+          apartments: '10+',
           phoneNumber: '03001234567'),
     ),
     ProductModel(
@@ -98,6 +114,14 @@ class HomePageController extends GetxController {
           buyerName: 'Diana Richards',
           imagePath: AppImages.profile_image,
           companyName: 'Rich Capital Properties LLC',
+          rating: 4.8,
+          ratingCount: 9,
+          about:
+              'Diana Richards is a third-generation realtor and Bay Area native who has lived in LA since 2015. She guides her clients through the City and...',
+          homesClosed: 25,
+          experience: '5+ years',
+          condos: '12+',
+          apartments: '10+',
           phoneNumber: '03001234567'),
     ),
     ProductModel(
@@ -131,6 +155,14 @@ class HomePageController extends GetxController {
           buyerName: 'Diana Richards',
           imagePath: AppImages.profile_image,
           companyName: 'Rich Capital Properties LLC',
+          rating: 4.8,
+          ratingCount: 9,
+          about:
+              'Diana Richards is a third-generation realtor and Bay Area native who has lived in LA since 2015. She guides her clients through the City and...',
+          homesClosed: 25,
+          experience: '5+ years',
+          condos: '12+',
+          apartments: '10+',
           phoneNumber: '03001234567'),
     ),
   ].obs;

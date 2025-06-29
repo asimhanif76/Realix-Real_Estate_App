@@ -79,27 +79,31 @@ class ProfilePage extends StatelessWidget {
   Widget _buildProfileTile(var item, double height, VoidCallback onTap) {
     return Padding(
       padding: EdgeInsets.only(top: height * 0.01),
-      child: ListTile(
-        contentPadding: EdgeInsets.all(0),
+      child: InkWell(
         onTap: onTap,
-        leading: Container(
-          height: 28.sp,
-          width: 28.sp,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Color(0xFFE6E8EC)),
-          child: SvgPicture.asset(
-            item['svgImage'],
-            fit: BoxFit.scaleDown,
+        borderRadius: BorderRadius.circular(15),
+        child: ListTile(
+          contentPadding: EdgeInsets.all(0),
+          // onTap: onTap,
+          leading: Container(
+            height: 28.sp,
+            width: 28.sp,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Color(0xFFE6E8EC)),
+            child: SvgPicture.asset(
+              item['svgImage'],
+              fit: BoxFit.scaleDown,
+            ),
           ),
-        ),
-        title: Text(
-          item['title'],
-          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          size: 16.sp,
+          title: Text(
+            item['title'],
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            size: 16.sp,
+          ),
         ),
       ),
     );

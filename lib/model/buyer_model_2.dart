@@ -1,4 +1,4 @@
-class BuyerModel {
+class BuyerModel2 {
   String buyerName;
   String imagePath;
   String companyName;
@@ -10,7 +10,7 @@ class BuyerModel {
   String experience;
   String condos;
   String apartments;
-  BuyerModel({
+  BuyerModel2({
     required this.buyerName,
     required this.imagePath,
     required this.companyName,

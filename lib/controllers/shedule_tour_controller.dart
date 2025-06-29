@@ -16,7 +16,7 @@ class SheduleTourController extends GetxController {
 
   RxString month = 'January'.obs;
 
-  List<String> months = [
+  List<String> months = [  
     'January',
     'February',
     'March',

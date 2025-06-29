@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/controllers/discover_page_controller.dart';
-import 'package:realix_real_estate_app/views/Discover/constants/filter_bottom_sheet.dart';
+import 'package:realix_real_estate_app/views/home/constants/filter_bottom_sheet.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MapSearchPage extends StatelessWidget {

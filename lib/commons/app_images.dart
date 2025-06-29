@@ -50,6 +50,10 @@ class AppImages {
   static String whatsapp = 'assets/images/svg/whatsapp.svg';
   static String skype = 'assets/images/svg/skype.svg';
   static String google_meet = 'assets/images/svg/google_meet.svg';
+  static String apartment = 'assets/images/svg/apartment.svg';
+  static String condos = 'assets/images/svg/condos.svg';
+  static String experience = 'assets/images/svg/experience.svg';
+  static String home_closed = 'assets/images/svg/home_closed.svg';
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';

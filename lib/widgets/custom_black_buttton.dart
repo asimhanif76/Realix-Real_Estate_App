@@ -34,7 +34,7 @@ class CustomBlackButtton extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(width * 0.05),
           child: Ink(
-            height: 55,
+            height: width * 0.14,
             decoration: BoxDecoration(
               color: Color(0xFF0C0D20),
               borderRadius: BorderRadius.circular(width * 0.05),

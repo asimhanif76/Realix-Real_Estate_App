@@ -24,7 +24,7 @@ class SelectAppAlarm extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: height * 0.04),
-            PageHeadingRow(pageHeadingText: 'Select virtual app'),
+            PageHeadingRow(pageHeadingText: 'Review your tour'),
             SizedBox(height: height * 0.04),
             Container(
               width: width,
@@ -151,6 +151,78 @@ class SelectAppAlarm extends StatelessWidget {
               ),
             )
           ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: width * 0.04, vertical: width * 0.045),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, -4),
+              blurRadius: 10,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            _customButton(
+              width: width,
+              btnName: 'Edit',
+              textColor: Colors.black,
+              btnColor: Color(0xFFE6E8EC),
+              onTap: () {
+                Navigator.of(context)
+                    .popUntil(ModalRoute.withName('/pickDatePage'));
+              },
+            ),
+            SizedBox(
+              width: width * 0.04,
+            ),
+            _customButton(
+              width: width,
+              btnName: 'Shedule',
+              textColor: Colors.white,
+              btnColor: Colors.black,
+              onTap: () {
+                Navigator.pushNamed(context, '/confirmRequest');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _customButton({
+    required double width,
+    required String btnName,
+    required Color textColor,
+    required Color btnColor,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: Material(
+        color: btnColor,
+        borderRadius: BorderRadius.circular(width * 0.05),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(width * 0.05),
+          onTap: onTap,
+          child: Container(
+            height: width * 0.14,
+            child: Center(
+              child: Text(
+                btnName,
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: textColor),
+              ),
+            ),
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realix_real_estate_app/views/Discover/confirm_request.dart';
 import 'package:realix_real_estate_app/views/Discover/constants/map_search_page.dart';
 import 'package:realix_real_estate_app/views/Discover/constants/show_all_images.dart';
 import 'package:realix_real_estate_app/views/Discover/pick_date_page.dart';
@@ -22,6 +23,7 @@ import 'package:realix_real_estate_app/views/notification/notification_page.dart
 import 'package:realix_real_estate_app/views/onboarding/onboarding_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/sign_in_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/sign_up_page.dart';
+import 'package:realix_real_estate_app/views/profile/setting_page.dart';
 import 'package:realix_real_estate_app/views/root_page.dart';
 import 'package:realix_real_estate_app/views/splash_page.dart';
 
@@ -51,6 +53,8 @@ class AppRoutes {
   static const String verifyPhoneNumberPage = '/verifyPhoneNumberPage';
   static const String selectVirtualAppPage = '/selectVirtualAppPage';
   static const String selectAppAlarm = '/selectAppAlarm';
+  static const String confirmRequest = '/confirmRequest';
+  static const String settingPage = '/settingPage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -78,5 +82,7 @@ class AppRoutes {
         verifyPhoneNumberPage: (_) => VerifyPhoneNumberPage(),
         selectVirtualAppPage: (_) => SelectVirtualAppPage(),
         selectAppAlarm: (_) => SelectAppAlarm(),
+        confirmRequest: (_) => ConfirmRequest(),
+        settingPage: (_) => SettingPage(),
       };
 }

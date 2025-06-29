@@ -92,9 +92,9 @@ class ProductDetailPage extends StatelessWidget {
                   product.description,
                   trimMode: TrimMode.Line,
                   trimLines: 3,
-                  colorClickableText: Colors.pink,
-                  trimCollapsedText: 'Show more',
-                  trimExpandedText: 'Show less',
+                  colorClickableText: Color(0xFF2FA2B9),
+                  trimCollapsedText: 'See more',
+                  trimExpandedText: 'See less',
                   moreStyle: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
