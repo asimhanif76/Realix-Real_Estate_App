@@ -22,6 +22,7 @@ class ConfirmRequest extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: Color(0xFFFDFDFD),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width * 0.05),
         child: Column(
@@ -177,7 +178,7 @@ class ConfirmRequest extends StatelessWidget {
             ),
             _heaadingRow(width),
             ListTile(
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: EdgeInsets.only(top: width * 0.02),
               leading: CircleAvatar(
                 radius: 19.sp,
                 backgroundImage: AssetImage(AppImages.profile_image),
@@ -189,7 +190,7 @@ class ConfirmRequest extends StatelessWidget {
                     .buyerModel
                     .buyerName,
                 style: TextStyle(
-                  fontSize: 16.5.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -200,24 +201,24 @@ class ConfirmRequest extends StatelessWidget {
                     .buyerModel
                     .companyName,
                 style: TextStyle(
-                    fontSize: 15.5.sp,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: Colors.grey),
               ),
               trailing: Container(
-                width: width * 0.15,
+                width: width * 0.17,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(width * 0.1),
                     color: Color(0xFFF4F5F6)),
                 padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.02, vertical: width * 0.008),
+                    horizontal: width * 0.015, vertical: width * 0.008),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.star,
                       color: Colors.amber,
-                      size: 16.sp,
+                      size: 15.sp,
                     ),
                     Text(
                         "${homePageController.ProductList[sheduleTourController.selectedVirtualAppIndex.value].buyerModel.rating}(${homePageController.ProductList[sheduleTourController.selectedVirtualAppIndex.value].buyerModel.ratingCount})")
@@ -231,7 +232,7 @@ class ConfirmRequest extends StatelessWidget {
                 textAlign: TextAlign.start,
                 text: TextSpan(
                   style: TextStyle(
-                    fontSize: 15.5.sp,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
@@ -259,7 +260,7 @@ class ConfirmRequest extends StatelessWidget {
                 'If you’d like to keep working with me after your tour, I’ll be here for you every step of the way - from finding the right home to writing a winning offer.',
                 style: TextStyle(
                   fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
               ),
@@ -279,7 +280,7 @@ class ConfirmRequest extends StatelessWidget {
                   .about,
               style: TextStyle(
                 fontSize: 16.sp,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
               ),
               trimMode: TrimMode.Line,
               trimLines: 2,

@@ -3,8 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
-import 'package:realix_real_estate_app/controllers/profile_page_controller.dart';
-import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
+import 'package:realix_real_estate_app/controllers/profile_page_controllers/profile_page_controller.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -48,7 +47,9 @@ class ProfilePage extends StatelessWidget {
                         _buildProfileTile(
                           item,
                           height,
-                          () {},
+                          () {
+                            print('Recently Viewed');
+                          },
                         )
                       ],
                     )
@@ -60,14 +61,27 @@ class ProfilePage extends StatelessWidget {
                             _buildProfileTile(
                               item,
                               height,
-                              () {},
+                              () {
+                                print('Sell My Home');
+                              },
                             )
                           ],
                         )
                       : _buildProfileTile(
                           item,
                           height,
-                          () {},
+                          () {
+                            index == 1
+                                ? print('My Favourite')
+                                : index == 2
+                                    ? print('Past Tour')
+                                    : index == 4
+                                        ? print('My Listing')
+                                        : index == 5
+                                            ? Navigator.pushNamed(
+                                                context, '/settingPage')
+                                            : null;
+                          },
                         );
             },
           )

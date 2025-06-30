@@ -19,6 +19,7 @@ class SelectAppAlarm extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Color(0xFFFDFDFD),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: width * 0.05),
         child: Column(
