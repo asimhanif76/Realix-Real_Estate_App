@@ -6,10 +6,10 @@ class ProfilePageController extends GetxController {
   //   UserModel(userName: 'Andrew Preston', userImage: 'userImage', userEmail: 'andrew.hello@gmail.com')
   // ].obs;
 
-  var user = UserModel(
+  Rx<UserModel> user = UserModel(
       userName: 'Andrew Preston',
       userImage: 'assets/images/profile_image.png',
-      userEmail: 'andrew.hello@gmail.com');
+      userEmail: 'andrew.hello@gmail.com').obs;
 
   List settingOptions = [
     {

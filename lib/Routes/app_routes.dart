@@ -23,6 +23,9 @@ import 'package:realix_real_estate_app/views/notification/notification_page.dart
 import 'package:realix_real_estate_app/views/onboarding/onboarding_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/sign_in_page.dart';
 import 'package:realix_real_estate_app/views/onboarding/sign_up_page.dart';
+import 'package:realix_real_estate_app/views/profile/edit_profile_page.dart';
+import 'package:realix_real_estate_app/views/profile/faqs_get_help_page.dart';
+import 'package:realix_real_estate_app/views/profile/my_favouriite_page.dart';
 import 'package:realix_real_estate_app/views/profile/setting_page.dart';
 import 'package:realix_real_estate_app/views/root_page.dart';
 import 'package:realix_real_estate_app/views/splash_page.dart';
@@ -55,6 +58,9 @@ class AppRoutes {
   static const String selectAppAlarm = '/selectAppAlarm';
   static const String confirmRequest = '/confirmRequest';
   static const String settingPage = '/settingPage';
+  static const String faqsGetHelpPage = '/faqsGetHelpPage';
+  static const String editProfilePage = '/editProfilePage';
+  static const String myFavouriitePage = '/myFavouriitePage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -84,5 +90,8 @@ class AppRoutes {
         selectAppAlarm: (_) => SelectAppAlarm(),
         confirmRequest: (_) => ConfirmRequest(),
         settingPage: (_) => SettingPage(),
+        faqsGetHelpPage: (_) => FaqsGetHelpPage(),
+        editProfilePage: (_) => EditProfilePage(),
+        myFavouriitePage: (_) => MyFavouriitePage(),
       };
 }

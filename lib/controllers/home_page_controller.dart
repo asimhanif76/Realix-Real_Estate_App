@@ -166,4 +166,6 @@ class HomePageController extends GetxController {
           phoneNumber: '03001234567'),
     ),
   ].obs;
+
+  
 }

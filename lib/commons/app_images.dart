@@ -54,6 +54,9 @@ class AppImages {
   static String condos = 'assets/images/svg/condos.svg';
   static String experience = 'assets/images/svg/experience.svg';
   static String home_closed = 'assets/images/svg/home_closed.svg';
+  static String searchsvg = 'assets/images/svg/searchsvg.svg';
+  static String sort = 'assets/images/svg/sort.svg';
+  static String filter_1 = 'assets/images/svg/filter_1.svg';
   static String map_satellite_image = 'assets/images/map_satellite.png';
   static String map_image = 'assets/images/map.png';
   static String map_draw = 'assets/images/map_draw.png';

@@ -73,6 +73,8 @@ class MessagePageController extends GetxController {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       selectedImage.value = image;
+
+      print('.................................. ${selectedImage.value}');
     }
   }
 

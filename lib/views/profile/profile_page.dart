@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/profile_page_controllers/profile_page_controller.dart';
+import 'package:realix_real_estate_app/widgets/full_image_view.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -31,7 +34,16 @@ class ProfilePage extends StatelessWidget {
           SizedBox(
             height: height * 0.05,
           ),
-          _userProfileContainer(width),
+          _userProfileContainer(
+            width,
+            onTapImage: () {
+              Get.to(FullImageView(
+                  imagePath: profilePageController.user.value.userImage));
+            },
+            onTapEdit: () {
+              Navigator.pushNamed(context, '/editProfilePage');
+            },
+          ),
           ListView.builder(
             padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             shrinkWrap: true,
@@ -72,7 +84,8 @@ class ProfilePage extends StatelessWidget {
                           height,
                           () {
                             index == 1
-                                ? print('My Favourite')
+                                ? Navigator.pushNamed(
+                                    context, '/myFavouriitePage')
                                 : index == 2
                                     ? print('Past Tour')
                                     : index == 4
@@ -131,35 +144,43 @@ class ProfilePage extends StatelessWidget {
           child: Text(
             heading,
             style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 15.5.sp,
                 fontWeight: FontWeight.w600,
                 color: Colors.grey),
           )),
     );
   }
 
-  Widget _userProfileContainer(double width) {
+  Widget _userProfileContainer(double width,
+      {required VoidCallback onTapImage, required VoidCallback onTapEdit}) {
     return Column(
       children: [
         Stack(
           children: [
-            CircleAvatar(
-              radius: 26.sp,
-              backgroundImage: AssetImage(profilePageController.user.userImage),
+            InkWell(
+              onTap: onTapImage,
+              child: CircleAvatar(
+                radius: 26.sp,
+                backgroundImage:
+                    getProfileImage(profilePageController.user.value.userImage),
+              ),
             ),
             Positioned(
                 bottom: 0,
                 right: 0,
-                child: Container(
-                  width: 21.sp,
-                  height: 21.sp,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 2),
-                      shape: BoxShape.circle,
-                      color: Colors.black),
-                  child: SvgPicture.asset(
-                    AppImages.edit,
-                    fit: BoxFit.scaleDown,
+                child: InkWell(
+                  onTap: onTapEdit,
+                  child: Container(
+                    width: 21.sp,
+                    height: 21.sp,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        shape: BoxShape.circle,
+                        color: Colors.black),
+                    child: SvgPicture.asset(
+                      AppImages.edit,
+                      fit: BoxFit.scaleDown,
+                    ),
                   ),
                 ))
           ],
@@ -167,12 +188,12 @@ class ProfilePage extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: width * 0.04, bottom: width * 0.01),
           child: Text(
-            profilePageController.user.userName,
+            profilePageController.user.value.userName,
             style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
           ),
         ),
         Text(
-          profilePageController.user.userEmail,
+          profilePageController.user.value.userEmail,
           style: TextStyle(
               fontSize: 15.2.sp,
               fontWeight: FontWeight.w500,
@@ -180,5 +201,15 @@ class ProfilePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  ImageProvider getProfileImage(String imagePath) {
+    if (imagePath.startsWith('http')) {
+      return NetworkImage(imagePath);
+    } else if (imagePath.startsWith('/')) {
+      return FileImage(File(imagePath));
+    } else {
+      return AssetImage(imagePath);
+    }
   }
 }
