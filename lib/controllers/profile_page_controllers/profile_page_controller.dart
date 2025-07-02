@@ -1,15 +1,16 @@
+import 'dart:ffi';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:realix_real_estate_app/model/user_model.dart';
 
 class ProfilePageController extends GetxController {
-  // RxList userProfile =<UserModel>[
-  //   UserModel(userName: 'Andrew Preston', userImage: 'userImage', userEmail: 'andrew.hello@gmail.com')
-  // ].obs;
-
   Rx<UserModel> user = UserModel(
-      userName: 'Andrew Preston',
-      userImage: 'assets/images/profile_image.png',
-      userEmail: 'andrew.hello@gmail.com').obs;
+          userName: 'Andrew Preston',
+          userImage: 'assets/images/profile_image.png',
+          userEmail: 'andrew.hello@gmail.com')
+      .obs;
 
   List settingOptions = [
     {
@@ -37,4 +38,56 @@ class ProfilePageController extends GetxController {
       'title': 'Settings',
     },
   ];
+
+  var selectedImage = Rxn<XFile>();
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> pickImageFromGallery() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      selectedImage.value = image;
+      user.update((val) {
+        if (val != null) val.userImage = image.path;
+      });
+    }
+  }
+
+  Future<void> pickImageFromCamera() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      selectedImage.value = image;
+      user.update((val) {
+        if (val != null) val.userImage = image.path;
+      });
+    }
+  }
+
+  // Edit Profile Controllers
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void onInit() {
+    nameController.text = user.value.userName;
+    emailController.text = user.value.userEmail;
+    super.onInit();
+  }
+
+  void updateUserModel() {
+    user.update((val) {
+      if (val != null) {
+        if (nameController.text.trim().isNotEmpty) {
+          val.userName = nameController.text.trim();
+        }
+        if (emailController.text.trim().isNotEmpty) {
+          val.userEmail = emailController.text.trim();
+        }
+      }
+    });
+  }
+
+ 
 }

@@ -7,6 +7,7 @@ import 'package:realix_real_estate_app/commons/app_images.dart';
 import 'package:realix_real_estate_app/commons/app_strings.dart';
 import 'package:realix_real_estate_app/controllers/profile_page_controllers/profile_page_controller.dart';
 import 'package:realix_real_estate_app/widgets/full_image_view.dart';
+import 'package:realix_real_estate_app/widgets/image_provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -36,6 +37,8 @@ class ProfilePage extends StatelessWidget {
           ),
           _userProfileContainer(
             width,
+            onTapContainer: () =>
+                Navigator.pushNamed(context, '/editProfilePage'),
             onTapImage: () {
               Get.to(FullImageView(
                   imagePath: profilePageController.user.value.userImage));
@@ -61,6 +64,7 @@ class ProfilePage extends StatelessWidget {
                           height,
                           () {
                             print('Recently Viewed');
+                            Navigator.pushNamed(context, '/recentlyViewPage');
                           },
                         )
                       ],
@@ -152,64 +156,61 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _userProfileContainer(double width,
-      {required VoidCallback onTapImage, required VoidCallback onTapEdit}) {
-    return Column(
-      children: [
-        Stack(
-          children: [
-            InkWell(
-              onTap: onTapImage,
-              child: CircleAvatar(
-                radius: 26.sp,
-                backgroundImage:
-                    getProfileImage(profilePageController.user.value.userImage),
-              ),
-            ),
-            Positioned(
-                bottom: 0,
-                right: 0,
-                child: InkWell(
-                  onTap: onTapEdit,
-                  child: Container(
-                    width: 21.sp,
-                    height: 21.sp,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 2),
-                        shape: BoxShape.circle,
-                        color: Colors.black),
-                    child: SvgPicture.asset(
-                      AppImages.edit,
-                      fit: BoxFit.scaleDown,
-                    ),
+      {required VoidCallback onTapImage,
+      required VoidCallback onTapEdit,
+      required VoidCallback onTapContainer}) {
+    return GestureDetector(
+      onTap: onTapContainer,
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: onTapImage,
+                child: Obx(
+                  () => CircleAvatar(
+                    radius: 26.sp,
+                    backgroundImage: getProfileImage(
+                        profilePageController.user.value.userImage),
                   ),
-                ))
-          ],
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: width * 0.04, bottom: width * 0.01),
-          child: Text(
-            profilePageController.user.value.userName,
-            style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: GestureDetector(
+                    onTap: onTapEdit,
+                    child: Container(
+                      width: 21.sp,
+                      height: 21.sp,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          shape: BoxShape.circle,
+                          color: Colors.black),
+                      child: SvgPicture.asset(
+                        AppImages.edit,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  ))
+            ],
           ),
-        ),
-        Text(
-          profilePageController.user.value.userEmail,
-          style: TextStyle(
-              fontSize: 15.2.sp,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey),
-        ),
-      ],
+          Padding(
+            padding: EdgeInsets.only(top: width * 0.04, bottom: width * 0.01),
+            child: Text(
+              profilePageController.user.value.userName,
+              style: TextStyle(fontSize: 17.5.sp, fontWeight: FontWeight.w700),
+            ),
+          ),
+          Text(
+            profilePageController.user.value.userEmail,
+            style: TextStyle(
+                fontSize: 15.2.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey),
+          ),
+        ],
+      ),
     );
-  }
-
-  ImageProvider getProfileImage(String imagePath) {
-    if (imagePath.startsWith('http')) {
-      return NetworkImage(imagePath);
-    } else if (imagePath.startsWith('/')) {
-      return FileImage(File(imagePath));
-    } else {
-      return AssetImage(imagePath);
-    }
   }
 }

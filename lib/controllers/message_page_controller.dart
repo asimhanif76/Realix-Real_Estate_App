@@ -65,7 +65,7 @@ class MessagePageController extends GetxController {
     return "${now.hour}:${now.minute.toString().padLeft(2, '0')}";
   }
 
-  var selectedImage = Rxn<XFile>(); // Rxn ka matlab null bhi ho sakta hai
+  var selectedImage = Rxn<XFile>();
 
   final ImagePicker _picker = ImagePicker();
 
@@ -73,8 +73,6 @@ class MessagePageController extends GetxController {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       selectedImage.value = image;
-
-      print('.................................. ${selectedImage.value}');
     }
   }
 

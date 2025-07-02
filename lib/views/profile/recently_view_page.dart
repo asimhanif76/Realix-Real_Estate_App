@@ -7,16 +7,13 @@ import 'package:realix_real_estate_app/views/home/constants/filter_bottom_sheet.
 import 'package:realix_real_estate_app/widgets/page_heading_row.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class MyFavouriitePage extends StatelessWidget {
-  MyFavouriitePage({super.key});
+class RecentlyViewPage extends StatelessWidget {
+  RecentlyViewPage({super.key});
 
   HomePageController homePageController = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
-    final favouriteList = homePageController.ProductList.where(
-        (product) => product.isFavourite.value).toList();
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
@@ -27,11 +24,10 @@ class MyFavouriitePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          
             SizedBox(
               height: height * 0.05,
             ),
-            PageHeadingRow(pageHeadingText: 'Favourites'),
+            PageHeadingRow(pageHeadingText: 'Recently Viewed'),
             SizedBox(
               height: height * 0.04,
             ),
@@ -62,7 +58,7 @@ class MyFavouriitePage extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  '${favouriteList.length} Homes',
+                  '${homePageController.ProductList.length} Homes',
                   style: TextStyle(fontWeight: FontWeight.w600),
                 )
               ],
@@ -71,30 +67,25 @@ class MyFavouriitePage extends StatelessWidget {
               height: height * 0.02,
             ),
             Expanded(
-              child: Obx(
-                () => ListView.separated(
-                  padding: EdgeInsets.symmetric(vertical: width * 0.03),
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: width * 0.05,
-                  ),
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  itemCount: homePageController.ProductList.length,
-                  itemBuilder: (context, index) {
-                    return homePageController
-                            .ProductList[index].isFavourite.value
-                        ? InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/productDetailPage',
-                                  arguments: {
-                                    'index': index,
-                                  });
-                            },
-                            borderRadius: BorderRadius.circular(width * 0.6),
-                            child: _buildProductCard(context, index))
-                        : SizedBox();
-                  },
+              child: ListView.separated(
+                padding: EdgeInsets.symmetric(vertical: width * 0.03),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: width * 0.05,
                 ),
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: homePageController.ProductList.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetailPage',
+                            arguments: {
+                              'index': index,
+                            });
+                      },
+                      borderRadius: BorderRadius.circular(width * 0.6),
+                      child: _buildProductCard(context, index));
+                },
               ),
             )
           ],

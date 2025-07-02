@@ -26,6 +26,7 @@ import 'package:realix_real_estate_app/views/onboarding/sign_up_page.dart';
 import 'package:realix_real_estate_app/views/profile/edit_profile_page.dart';
 import 'package:realix_real_estate_app/views/profile/faqs_get_help_page.dart';
 import 'package:realix_real_estate_app/views/profile/my_favouriite_page.dart';
+import 'package:realix_real_estate_app/views/profile/recently_view_page.dart';
 import 'package:realix_real_estate_app/views/profile/setting_page.dart';
 import 'package:realix_real_estate_app/views/root_page.dart';
 import 'package:realix_real_estate_app/views/splash_page.dart';
@@ -61,6 +62,7 @@ class AppRoutes {
   static const String faqsGetHelpPage = '/faqsGetHelpPage';
   static const String editProfilePage = '/editProfilePage';
   static const String myFavouriitePage = '/myFavouriitePage';
+  static const String recentlyViewPage = '/recentlyViewPage';
 
   static Map<String, WidgetBuilder> get routes => {
         splashPage: (_) => SplashPage(),
@@ -93,5 +95,6 @@ class AppRoutes {
         faqsGetHelpPage: (_) => FaqsGetHelpPage(),
         editProfilePage: (_) => EditProfilePage(),
         myFavouriitePage: (_) => MyFavouriitePage(),
+        recentlyViewPage: (_) => RecentlyViewPage(),
       };
 }
