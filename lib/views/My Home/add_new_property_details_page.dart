@@ -29,7 +29,11 @@ class AddNewPropertyDetailsPage extends StatelessWidget {
       backgroundColor: Color(0xFFFDFDFD),
       bottomNavigationBar: CustomBlackButtton(
         buttonName: AppStrings.contact_agent,
-        onTap: () {},
+        onTap: () {
+          addNewPropertyController.addedProperties
+              .add(addNewPropertyController.property.value);
+          print(addNewPropertyController.addedProperties.length);
+        },
       ),
       body: SingleChildScrollView(
         child: Padding(

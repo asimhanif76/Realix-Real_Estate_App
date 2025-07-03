@@ -26,111 +26,114 @@ class EditProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFFDFDFD),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            PageHeadingRow(pageHeadingText: 'Edit Profile'),
-            SizedBox(
-              height: height * 0.04,
-            ),
-            Center(
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    backgroundColor: Color(0xFFFDFDFD),
-                    context: context,
-                    builder: (context) {
-                      return SizedBox(
-                        height: height * 0.15,
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: width * 0.1),
-                          child: Row(
-                            children: [
-                              _imagePickerContainer(
-                                text: "Camera",
-                                icon: Icons.add_a_photo_outlined,
-                                onTap: () {
-                                  profilePageController.pickImageFromCamera();
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              SizedBox(
-                                width: width * 0.04,
-                              ),
-                              _imagePickerContainer(
-                                text: "Gallery",
-                                icon: Icons.add_photo_alternate_outlined,
-                                onTap: () {
-                                  profilePageController.pickImageFromGallery();
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Stack(
-                  children: [
-                    Obx(
-                      () => CircleAvatar(
-                        radius: 30.sp,
-                        backgroundImage: getProfileImage(
-                            profilePageController.user.value.userImage),
-                      ),
-                    ),
-                    Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            width: 21.sp,
-                            height: 21.sp,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.white, width: 2),
-                                shape: BoxShape.circle,
-                                color: Colors.black),
-                            child: SvgPicture.asset(
-                              AppImages.edit,
-                              fit: BoxFit.scaleDown,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * 0.05,
+              ),
+              PageHeadingRow(pageHeadingText: 'Edit Profile'),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              Center(
+                child: GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      backgroundColor: Color(0xFFFDFDFD),
+                      context: context,
+                      builder: (context) {
+                        return SizedBox(
+                          height: height * 0.15,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.symmetric(horizontal: width * 0.1),
+                            child: Row(
+                              children: [
+                                _imagePickerContainer(
+                                  text: "Camera",
+                                  icon: Icons.add_a_photo_outlined,
+                                  onTap: () {
+                                    profilePageController.pickImageFromCamera();
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                SizedBox(
+                                  width: width * 0.04,
+                                ),
+                                _imagePickerContainer(
+                                  text: "Gallery",
+                                  icon: Icons.add_photo_alternate_outlined,
+                                  onTap: () {
+                                    profilePageController
+                                        .pickImageFromGallery();
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
                             ),
                           ),
-                        ))
-                  ],
+                        );
+                      },
+                    );
+                  },
+                  child: Stack(
+                    children: [
+                      Obx(
+                        () => CircleAvatar(
+                          radius: 30.sp,
+                          backgroundImage: getProfileImage(
+                              profilePageController.user.value.userImage),
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              width: 21.sp,
+                              height: 21.sp,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.white, width: 2),
+                                  shape: BoxShape.circle,
+                                  color: Colors.black),
+                              child: SvgPicture.asset(
+                                AppImages.edit,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            _customtextFieldColumn(height,
-                fieldName: 'Full Name',
-                hintText: profilePageController.user.value.userName,
-                controller: profilePageController.nameController),
-            _customtextFieldColumn(height,
-                fieldName: 'Email',
-                hintText: profilePageController.user.value.userEmail,
-                controller: profilePageController.emailController),
-            _customtextFieldColumn(height,
-                fieldName: 'Address',
-                hintText: 'Merta Nadi Street 88, Kuta, Bali',
-                controller: profilePageController.addressController),
-            _customtextFieldColumn(height,
-                fieldName: 'Password',
-                hintText: '*********',
-                isObsure: true,
-                controller: profilePageController.passwordController),
-          ],
+              SizedBox(
+                height: height * 0.02,
+              ),
+              _customtextFieldColumn(height,
+                  fieldName: 'Full Name',
+                  hintText: profilePageController.user.value.userName,
+                  controller: profilePageController.nameController),
+              _customtextFieldColumn(height,
+                  fieldName: 'Email',
+                  hintText: profilePageController.user.value.userEmail,
+                  controller: profilePageController.emailController),
+              _customtextFieldColumn(height,
+                  fieldName: 'Address',
+                  hintText: 'Merta Nadi Street 88, Kuta, Bali',
+                  controller: profilePageController.addressController),
+              _customtextFieldColumn(height,
+                  fieldName: 'Password',
+                  hintText: '*********',
+                  isObsure: true,
+                  controller: profilePageController.passwordController),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

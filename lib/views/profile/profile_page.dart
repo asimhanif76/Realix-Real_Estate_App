@@ -91,7 +91,8 @@ class ProfilePage extends StatelessWidget {
                                 ? Navigator.pushNamed(
                                     context, '/myFavouriitePage')
                                 : index == 2
-                                    ? print('Past Tour')
+                                    ? Navigator.pushNamed(
+                                        context, '/pastTourPage')
                                     : index == 4
                                         ? print('My Listing')
                                         : index == 5

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:realix_real_estate_app/model/buyer_model.dart';
+import 'package:realix_real_estate_app/model/past_tour_model.dart';
 
 class ProductModel {
   String name;
@@ -14,6 +15,7 @@ class ProductModel {
   List<String> amenities;
   RxBool isFavourite;
   BuyerModel buyerModel;
+  PastTourModel? pastTourModel;
 
   ProductModel({
     required this.name,
@@ -28,5 +30,6 @@ class ProductModel {
     required this.amenities,
     required bool isFavourite,
     required this.buyerModel,
+    this.pastTourModel
   }) : isFavourite = isFavourite.obs;
 }

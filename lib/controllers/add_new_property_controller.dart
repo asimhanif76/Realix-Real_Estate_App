@@ -17,6 +17,59 @@ class AddNewPropertyController extends GetxController {
     zipCodeController.clear();
   }
 
+  List<PropertyModel> addedProperties = [
+    PropertyModel(
+      streetAddress: "123 Main Street",
+      city: "Los Angeles",
+      state: "California",
+      zipCode: "90001",
+      timeToSell: "Within 3 months",
+      reasonForSelling: "Relocating to a new city",
+      description:
+          "A beautiful 3-bedroom family house located near downtown. Recently renovated and well-maintained.",
+      propertyType: "Single Family Home",
+      lotSize: 3500.0,
+      yearBuilt: 2010,
+      fullBaths: 2,
+      bedrooms: 3,
+      monthlyRent: 3200.0,
+      securityDeposit: 1500.0,
+      phoneNumber: "+1 310 123 4567",
+      amenities: [
+        "Swimming Pool",
+        "Gym",
+        "Garage",
+        "WiFi",
+        "CCTV",
+      ],
+    ),
+    PropertyModel(
+      streetAddress: "123 Main Street",
+      city: "Los Angeles",
+      state: "California",
+      zipCode: "90001",
+      timeToSell: "Within 3 months",
+      reasonForSelling: "Relocating to a new city",
+      description:
+          "A beautiful 3-bedroom family house located near downtown. Recently renovated and well-maintained.",
+      propertyType: "Single Family Home",
+      lotSize: 3150.0,
+      yearBuilt: 2010,
+      fullBaths: 4,
+      bedrooms: 3,
+      monthlyRent: 2500.0,
+      securityDeposit: 1500.0,
+      phoneNumber: "+1 310 123 4567",
+      amenities: [
+        "Swimming Pool",
+        "Gym",
+        "Garage",
+        "WiFi",
+        "CCTV",
+      ],
+    )
+  ];
+
   var property = PropertyModel(
     streetAddress: '',
     city: '',
